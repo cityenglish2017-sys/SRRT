@@ -1739,3 +1739,79 @@ and
     min-height: 5.6vh;
   }
 }
+/* ===== 철도 영역 세로 간격 압축 최종 보정 ===== */
+
+.track-upper {
+  top: 18vh !important;
+}
+
+.track-middle {
+  top: 24vh !important;
+}
+
+.track-lower {
+  top: 30vh !important;
+}
+
+
+/* SRT를 위 선로에 맞춤 */
+
+.srt-train {
+  top: 15.8vh !important;
+}
+
+
+/* 무궁화호를 아래 선로에 맞춤 */
+
+.mugunghwa-train {
+  top: 27.8vh !important;
+}
+
+
+/* 터널도 위 선로 위치에 맞춤 */
+
+.tunnel-area {
+  top: 11.5vh !important;
+}
+
+
+/* 신호 A */
+
+.signal-a {
+  top: 11.5vh !important;
+}
+
+
+/* 신호 B */
+
+.signal-b {
+  top: 21.5vh !important;
+}
+
+
+/* 분기 선로 */
+
+.branch-track {
+  top: 25.5vh !important;
+}
+
+
+/* 분기기 버튼 */
+
+.switch-area {
+  top: 27vh !important;
+}
+
+
+/* 산이 선로를 가리지 않도록 살짝 위로 */
+
+.mountain {
+  bottom: 19vh !important;
+}
+
+
+/* 관제 버튼은 기존처럼 맨 아래 유지 */
+
+.rail-control-panel {
+  bottom: .4vh !important;
+}
