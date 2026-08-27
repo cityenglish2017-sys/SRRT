@@ -19,9 +19,7 @@ const shuffle = array =>
     );
 
 
-
 const TOTAL_ROUNDS = 12;
-
 
 
 let round = 1;
@@ -37,45 +35,31 @@ let spoken = false;
 let currentScenario;
 
 
-
 let signalA = "red";
 
 let signalB = "green";
 
-let switchMode =
-  "straight";
-
+let switchMode = "straight";
 
 
 let usedTypes = [];
 
 
-
 const trains = [
-
   "SRT",
-
   "무궁화호"
-
 ];
-
 
 
 const stations = [
-
   "서울역",
-
   "대전역",
-
   "부산역"
-
 ];
 
 
 
-function otherTrain(
-  train
-) {
+function otherTrain(train) {
 
   return train === "SRT"
     ? "무궁화호"
@@ -85,27 +69,15 @@ function otherTrain(
 
 
 
-function iconFor(
-  name
-) {
+function iconFor(name) {
 
-  if (
-    name === "SRT"
-  ) {
-
+  if (name === "SRT") {
     return "🚄";
-
   }
 
-
-  if (
-    name === "무궁화호"
-  ) {
-
+  if (name === "무궁화호") {
     return "🚂";
-
   }
-
 
   return "🎛️";
 
@@ -147,8 +119,7 @@ function setSignal(
 
 
   button.innerHTML = `
-
-    <span class="button-icon">
+    <span>
       🚦
     </span>
 
@@ -157,7 +128,6 @@ function setSignal(
     </span>
 
     <strong>
-
       ${
         state === "red"
           ? "🔴"
@@ -165,15 +135,11 @@ function setSignal(
           ? "🟡"
           : "🟢"
       }
-
     </strong>
-
   `;
 
 
-  if (
-    name === "A"
-  ) {
+  if (name === "A") {
 
     signalA = state;
 
@@ -198,11 +164,8 @@ function updateSwitch() {
   $("switchText")
     .textContent =
 
-    switchMode ===
-    "straight"
-
+    switchMode === "straight"
       ? "직진"
-
       : "옆선로";
 
 }
@@ -222,7 +185,7 @@ function resetWorld() {
 
   $("srt")
     .style.top =
-    "22.2vh";
+    "20.4vh";
 
 
   $("mugunghwa")
@@ -232,34 +195,28 @@ function resetWorld() {
 
   $("mugunghwa")
     .style.top =
-    "44.2vh";
+    "40.4vh";
 
 
   setSignal(
-
     "A",
-
     random(
       [
         "red",
         "green"
       ]
     )
-
   );
 
 
   setSignal(
-
     "B",
-
     random(
       [
         "red",
         "green"
       ]
     )
-
   );
 
 
@@ -290,13 +247,11 @@ function renderDialogue(
     $("dialogueList");
 
 
-  list.innerHTML =
-    "";
+  list.innerHTML = "";
 
 
   dialogue.forEach(
-
-    ([name,text]) => {
+    ([name, text]) => {
 
       const row =
         document.createElement(
@@ -309,31 +264,19 @@ function renderDialogue(
 
 
       row.innerHTML = `
-
         <div class="dialogue-icon">
-
           ${iconFor(name)}
-
         </div>
-
 
         <div>
-
           <div class="dialogue-name">
-
             ${name}
-
           </div>
-
 
           <div class="dialogue-text">
-
             ${text}
-
           </div>
-
         </div>
-
       `;
 
 
@@ -342,7 +285,6 @@ function renderDialogue(
       );
 
     }
-
   );
 
 }
@@ -350,7 +292,7 @@ function renderDialogue(
 
 
 /* =======================================
-   터널 문제
+   터널
 ======================================= */
 
 function tunnelScenario() {
@@ -376,13 +318,11 @@ function tunnelScenario() {
 
       [
         first,
-
         "관제사님! 제가 터널 앞에 먼저 도착했어요."
       ],
 
       [
         second,
-
         "저도 반대편에서 터널 앞에 도착했어요."
       ]
 
@@ -390,12 +330,10 @@ function tunnelScenario() {
 
 
     question:
-
       "한 대만 들어갈 수 있는 터널이에요. 어떻게 하면 좋을까요?",
 
 
     correct:
-
       `${first}가 먼저 지나가고 ${second}는 기다려요.`,
 
 
@@ -411,7 +349,6 @@ function tunnelScenario() {
 
 
     speak:
-
       `${second} 기관사님, 잠시 기다려 주세요. ${first}가 먼저 갈게요.`,
 
 
@@ -432,7 +369,7 @@ function tunnelScenario() {
 
 
 /* =======================================
-   신호 문제
+   신호
 ======================================= */
 
 function signalScenario() {
@@ -468,23 +405,18 @@ function signalScenario() {
     dialogue: [
 
       [
-
         train,
-
         `관제사님, 신호 ${signal}가 빨간색이에요.`
-
       ]
 
     ],
 
 
     question:
-
       `${train}는 어떻게 해야 할까요?`,
 
 
     correct:
-
       "신호가 초록색이 될 때까지 기다려요.",
 
 
@@ -500,7 +432,6 @@ function signalScenario() {
 
 
     speak:
-
       `${train} 기관사님, 빨간 신호예요. 잠시 기다려 주세요.`,
 
 
@@ -520,7 +451,7 @@ function signalScenario() {
 
 
 /* =======================================
-   역 문제
+   역
 ======================================= */
 
 function stationScenario() {
@@ -545,23 +476,18 @@ function stationScenario() {
     dialogue: [
 
       [
-
         train,
-
         `${station}에서 아직 승객이 타고 있어요.`
-
       ]
 
     ],
 
 
     question:
-
       "열차는 언제 출발해야 할까요?",
 
 
     correct:
-
       "승객이 다 타고 문이 닫힌 뒤 출발해요.",
 
 
@@ -577,7 +503,6 @@ function stationScenario() {
 
 
     speak:
-
       `${train} 기관사님, 문이 닫히면 출발해 주세요.`,
 
 
@@ -622,31 +547,23 @@ function turnScenario() {
     dialogue: [
 
       [
-
         first,
-
         "관제사님! 제가 먼저 말할게요!"
-
       ],
 
       [
-
         second,
-
         "저도 질문이 있어요!"
-
       ]
 
     ],
 
 
     question:
-
       "두 기관사가 동시에 말하면 어떻게 할까요?",
 
 
     correct:
-
       `${first}의 말을 먼저 듣고 그 다음 ${second}의 말을 들어요.`,
 
 
@@ -662,7 +579,6 @@ function turnScenario() {
 
 
     speak:
-
       `${first} 기관사님 먼저 말씀하세요. 그 다음 ${second} 기관사님 말씀을 들을게요.`,
 
 
@@ -701,23 +617,18 @@ function askAgainScenario() {
     dialogue: [
 
       [
-
         train,
-
         "관제사님, 방금 제가 말한 내용 들으셨나요?"
-
       ]
 
     ],
 
 
     question:
-
       "말을 잘 못 들었어요. 어떻게 하면 좋을까요?",
 
 
     correct:
-
       "다시 한번 말해 달라고 해요.",
 
 
@@ -733,7 +644,6 @@ function askAgainScenario() {
 
 
     speak:
-
       `${train} 기관사님, 다시 한번 말해 주세요.`,
 
 
@@ -766,17 +676,13 @@ function informationScenario() {
 
   const issue =
     random(
-
       [
-
         "터널 안에 다른 열차가 있어요",
 
         "앞 신호가 빨간색이에요",
 
         "앞 역에서 승객이 타고 있어요"
-
       ]
-
     );
 
 
@@ -792,31 +698,23 @@ function informationScenario() {
     dialogue: [
 
       [
-
         first,
-
         `저는 "${issue}"라는 안내를 들었어요.`
-
       ],
 
       [
-
         second,
-
         "저는 그 내용을 아직 몰라요."
-
       ]
 
     ],
 
 
     question:
-
       `${second} 기관사에게 어떻게 해야 할까요?`,
 
 
     correct:
-
       "중요한 내용을 다시 알려줘요.",
 
 
@@ -832,7 +730,6 @@ function informationScenario() {
 
 
     speak:
-
       `${second} 기관사님, ${issue}`,
 
 
@@ -880,32 +777,25 @@ function switchScenario() {
     dialogue: [
 
       [
-
         train,
-
         `관제사님, 저는 ${direction} 방향으로 가야 해요.`
-
       ]
 
     ],
 
 
     question:
-
       `${train}가 가야 하는 방향은 어디일까요?`,
 
 
     correct:
-
       `분기기를 ${direction}으로 바꿔요.`,
 
 
     wrong: [
 
       direction === "직진"
-
         ? "분기기를 옆선로로 바꿔요."
-
         : "분기기를 직진으로 바꿔요.",
 
       "분기기를 확인하지 않아요.",
@@ -916,7 +806,6 @@ function switchScenario() {
 
 
     speak:
-
       `${train} 기관사님, 선로를 확인했어요. 출발하세요.`,
 
 
@@ -938,7 +827,7 @@ function switchScenario() {
 
 
 /* =======================================
-   복합
+   종합 상황
 ======================================= */
 
 function combinedScenario() {
@@ -974,31 +863,23 @@ function combinedScenario() {
     dialogue: [
 
       [
-
         train,
-
         `신호 ${signal}가 빨간색이에요.`
-
       ],
 
       [
-
         "관제센터",
-
         "터널 안에도 다른 열차가 있어요."
-
       ]
 
     ],
 
 
     question:
-
       "지금 가장 먼저 해야 하는 일은 무엇일까요?",
 
 
     correct:
-
       "열차를 멈추고 안전해질 때까지 기다려요.",
 
 
@@ -1014,7 +895,6 @@ function combinedScenario() {
 
 
     speak:
-
       `${train} 기관사님, 지금은 멈춰 주세요.`,
 
 
@@ -1103,7 +983,7 @@ function getScenario() {
 
 
 /* =======================================
-   화면 표시
+   라운드 렌더링
 ======================================= */
 
 function renderScenario() {
@@ -1172,15 +1052,10 @@ function renderScenario() {
 
   const choices =
     shuffle(
-
       [
-
         currentScenario.correct,
-
         ...currentScenario.wrong
-
       ]
-
     );
 
 
@@ -1190,7 +1065,6 @@ function renderScenario() {
 
 
   choices.forEach(
-
     text => {
 
       const button =
@@ -1221,7 +1095,6 @@ function renderScenario() {
         );
 
     }
-
   );
 
 }
@@ -1229,7 +1102,7 @@ function renderScenario() {
 
 
 /* =======================================
-   답 선택
+   정답 선택
 ======================================= */
 
 function selectAnswer(
@@ -1237,12 +1110,8 @@ function selectAnswer(
   text
 ) {
 
-  if (
-    answered
-  ) {
-
+  if (answered) {
     return;
-
   }
 
 
@@ -1250,10 +1119,8 @@ function selectAnswer(
 
 
   const buttons =
-
     [
-      ...document
-      .querySelectorAll(
+      ...document.querySelectorAll(
         ".choice"
       )
     ];
@@ -1276,7 +1143,6 @@ function selectAnswer(
 
     $("feedback")
       .textContent =
-
       "✅ 좋아요! 안전한 선택이에요.";
 
   }
@@ -1291,20 +1157,14 @@ function selectAnswer(
 
 
     const correctButton =
-
       buttons.find(
-
         item =>
-
-        item.textContent ===
-        currentScenario.correct
-
+          item.textContent ===
+          currentScenario.correct
       );
 
 
-    if (
-      correctButton
-    ) {
+    if (correctButton) {
 
       correctButton
         .classList
@@ -1320,7 +1180,6 @@ function selectAnswer(
 
     $("feedback")
       .textContent =
-
       "💡 초록색 답을 다시 한번 볼까요?";
 
   }
@@ -1350,7 +1209,7 @@ function selectAnswer(
 
 
 /* =======================================
-   기차 움직임
+   화면 동작
 ======================================= */
 
 function runAction(
@@ -1363,8 +1222,7 @@ function runAction(
   ) {
 
     if (
-      action.train ===
-      "SRT"
+      action.train === "SRT"
     ) {
 
       $("srt")
@@ -1390,7 +1248,6 @@ function runAction(
   ) {
 
     setTimeout(
-
       () => {
 
         setSignal(
@@ -1399,9 +1256,7 @@ function runAction(
         );
 
       },
-
       700
-
     );
 
   }
@@ -1413,21 +1268,16 @@ function runAction(
   ) {
 
     switchMode =
-
-      action.direction ===
-      "직진"
-
-      ? "straight"
-
-      : "branch";
+      action.direction === "직진"
+        ? "straight"
+        : "branch";
 
 
     updateSwitch();
 
 
     if (
-      action.train ===
-      "SRT"
+      action.train === "SRT"
     ) {
 
       $("srt")
@@ -1436,18 +1286,16 @@ function runAction(
 
 
       if (
-        switchMode ===
-        "branch"
+        switchMode === "branch"
       ) {
 
         $("srt")
           .style.top =
-          "32vh";
+          "30vh";
 
       }
 
     }
-
 
     else {
 
@@ -1457,13 +1305,12 @@ function runAction(
 
 
       if (
-        switchMode ===
-        "branch"
+        switchMode === "branch"
       ) {
 
         $("mugunghwa")
           .style.top =
-          "34vh";
+          "32vh";
 
       }
 
@@ -1476,19 +1323,15 @@ function runAction(
 
 
 /* =======================================
-   말했어요
+   말하기 완료
 ======================================= */
 
 $("speakDoneBtn")
 .onclick =
 function() {
 
-  if (
-    spoken
-  ) {
-
+  if (spoken) {
     return;
-
   }
 
 
@@ -1520,7 +1363,6 @@ function() {
 
   $("feedback")
     .textContent =
-
     "🌟 좋아요! 다음 운행으로 가요.";
 
 };
@@ -1528,7 +1370,7 @@ function() {
 
 
 /* =======================================
-   다음
+   다음 상황
 ======================================= */
 
 $("nextBtn")
@@ -1536,8 +1378,7 @@ $("nextBtn")
 function() {
 
   if (
-    round >=
-    TOTAL_ROUNDS
+    round >= TOTAL_ROUNDS
   ) {
 
     finishGame();
@@ -1565,15 +1406,10 @@ $("signalABtn")
 function() {
 
   setSignal(
-
     "A",
-
     signalA === "red"
-
       ? "green"
-
       : "red"
-
   );
 
 };
@@ -1585,15 +1421,10 @@ $("signalBBtn")
 function() {
 
   setSignal(
-
     "B",
-
     signalB === "red"
-
       ? "green"
-
       : "red"
-
   );
 
 };
@@ -1609,13 +1440,9 @@ $("switchBtn")
 function() {
 
   switchMode =
-
-    switchMode ===
-    "straight"
-
-    ? "branch"
-
-    : "straight";
+    switchMode === "straight"
+      ? "branch"
+      : "straight";
 
 
   updateSwitch();
@@ -1625,7 +1452,7 @@ function() {
 
 
 /* =======================================
-   직접 기차 출발
+   SRT 직접 출발
 ======================================= */
 
 $("departSrtBtn")
@@ -1635,16 +1462,17 @@ function() {
   $("srt")
     .style.left =
 
-    $("srt").style.left ===
-    "64vw"
-
+    $("srt").style.left === "64vw"
       ? "4vw"
-
       : "64vw";
 
 };
 
 
+
+/* =======================================
+   무궁화 직접 출발
+======================================= */
 
 $("departMugBtn")
 .onclick =
@@ -1653,11 +1481,8 @@ function() {
   $("mugunghwa")
     .style.left =
 
-    $("mugunghwa").style.left ===
-    "18vw"
-
+    $("mugunghwa").style.left === "18vw"
       ? "76vw"
-
       : "18vw";
 
 };
@@ -1665,21 +1490,19 @@ function() {
 
 
 /* =======================================
-   종료
+   게임 종료
 ======================================= */
 
 function finishGame() {
 
   $("resultText")
     .innerHTML = `
-
       ⭐ 안전운행 점수
       <b>${stars}</b>
       <br><br>
 
       💬 관제 대화 점수
       <b>${talkScore}</b>
-
     `;
 
 
