@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <title>SRT & 무궁화호 철도 관제 게임</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+
+<div id="app">
+
+  <!-- ========================================
+       상단 메뉴
+  ========================================= -->
+
+  <header class="top-bar">
+
+    <div class="game-title">
+
+      <div class="title-signal">
+        🚦
+      </div>
+
+      <div>
+        <div class="main-title">
+          KIDS RAIL CONTROL
+        </div>
+
+        <div class="sub-title">
+          SRT & 무궁화호 안전 운행
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="score-area">
+
+      <div class="score-item">
+        🚆
+        <span>
+          <b id="roundText">1</b>/12
+        </span>
+      </div>
+
+      <div class="score-item">
+        ⭐
+        <span id="starText">
+          0
+        </span>
+      </div>
+
+      <div class="score-item">
+        💬
+        <span id="talkText">
+          0
+        </span>
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- ========================================
+       철도 게임 화면
+  ========================================= -->
+
+  <main class="rail-world">
+
+
+    <!-- 하늘 -->
+
+    <div class="sun"></div>
+
+    <div class="cloud cloud-a"></div>
+
+    <div class="cloud cloud-b"></div>
+
+    <div class="cloud cloud-c"></div>
+
+
+
+    <!-- 산 -->
+
+    <div class="mountain mountain-a"></div>
+
+    <div class="mountain mountain-b"></div>
+
+    <div class="mountain mountain-c"></div>
+
+
+
+    <!-- 나무 -->
+
+    <div class="tree tree1">
+      <div class="tree-leaf"></div>
+      <div class="tree-body"></div>
+    </div>
+
+    <div class="tree tree2">
+      <div class="tree-leaf"></div>
+      <div class="tree-body"></div>
+    </div>
+
+    <div class="tree tree3">
+      <div class="tree-leaf"></div>
+      <div class="tree-body"></div>
+    </div>
+
+
+
+    <!-- 현재 상황 -->
+
+    <div
+      id="mapBadge"
+      class="map-badge"
+    >
+      🚦 안전 운행 준비!
+    </div>
+
+
+
+    <!-- ========================================
+         서울역
+    ========================================= -->
+
+    <section class="station station-seoul">
+
+      <div class="station-roof"></div>
+
+      <div class="station-name">
+        서울
+        <small>SEOUL</small>
+      </div>
+
+      <div class="station-building">
+
+        <div class="station-door"></div>
+
+        <div class="station-window"></div>
+
+        <div class="station-window"></div>
+
+      </div>
+
+      <div class="platform"></div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         대전역
+    ========================================= -->
+
+    <section class="station station-daejeon">
+
+      <div class="station-roof"></div>
+
+      <div class="station-name">
+        대전
+        <small>DAEJEON</small>
+      </div>
+
+      <div class="station-building">
+
+        <div class="station-door"></div>
+
+        <div class="station-window"></div>
+
+        <div class="station-window"></div>
+
+      </div>
+
+      <div class="platform"></div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         부산역
+    ========================================= -->
+
+    <section class="station station-busan">
+
+      <div class="station-roof"></div>
+
+      <div class="station-name">
+        부산
+        <small>BUSAN</small>
+      </div>
+
+      <div class="station-building">
+
+        <div class="station-door"></div>
+
+        <div class="station-window"></div>
+
+        <div class="station-window"></div>
+
+      </div>
+
+      <div class="platform"></div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         선로
+    ========================================= -->
+
+    <div class="rail-track track-upper">
+
+      <div class="rail rail-one"></div>
+
+      <div class="rail rail-two"></div>
+
+    </div>
+
+
+    <div class="rail-track track-middle">
+
+      <div class="rail rail-one"></div>
+
+      <div class="rail rail-two"></div>
+
+    </div>
+
+
+    <div class="rail-track track-lower">
+
+      <div class="rail rail-one"></div>
+
+      <div class="rail rail-two"></div>
+
+    </div>
+
+
+
+    <!-- ========================================
+         터널
+    ========================================= -->
+
+    <section class="tunnel-area">
+
+      <div class="tunnel-sign">
+
+        <div class="tunnel-number">
+          T-01
+        </div>
+
+        단선 터널
+
+      </div>
+
+
+      <div class="tunnel-rock tunnel-rock-left"></div>
+
+
+      <div class="tunnel-structure">
+
+        <div class="tunnel-arch">
+
+          <div class="tunnel-dark">
+
+            <div class="tunnel-rail-line"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="tunnel-rock tunnel-rock-right"></div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         철도 신호기 A
+    ========================================= -->
+
+    <section
+      id="signalA"
+      class="rail-signal signal-a red"
+    >
+
+      <div class="signal-label">
+        A
+      </div>
+
+
+      <div class="signal-head">
+
+        <div class="signal-light red-light"></div>
+
+        <div class="signal-light yellow-light"></div>
+
+        <div class="signal-light green-light"></div>
+
+      </div>
+
+
+      <div class="signal-pole"></div>
+
+
+      <div class="signal-base"></div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         철도 신호기 B
+    ========================================= -->
+
+    <section
+      id="signalB"
+      class="rail-signal signal-b green"
+    >
+
+      <div class="signal-label">
+        B
+      </div>
+
+
+      <div class="signal-head">
+
+        <div class="signal-light red-light"></div>
+
+        <div class="signal-light yellow-light"></div>
+
+        <div class="signal-light green-light"></div>
+
+      </div>
+
+
+      <div class="signal-pole"></div>
+
+
+      <div class="signal-base"></div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         분기기
+    ========================================= -->
+
+    <div class="branch-track branch-up"></div>
+
+    <div class="branch-track branch-down"></div>
+
+
+    <section class="switch-area">
+
+      <div class="switch-sign">
+        POINT
+      </div>
+
+      <button
+        id="switchBtn"
+        class="switch-button"
+      >
+
+        🔀
+
+        <span id="switchText">
+          직진
+        </span>
+
+      </button>
+
+    </section>
+
+
+
+    <!-- ========================================
+         SRT
+    ========================================= -->
+
+    <div
+      id="srt"
+      class="train srt-train"
+    >
+
+      <div class="srt-nose">
+
+        <div class="srt-front-window"></div>
+
+        <div class="srt-headlight"></div>
+
+      </div>
+
+
+      <div class="srt-car">
+
+        <div class="train-logo">
+          SRT
+        </div>
+
+        <div class="windows">
+
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </div>
+
+      </div>
+
+
+      <div class="srt-car car-two">
+
+        <div class="windows">
+
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ========================================
+         무궁화호
+    ========================================= -->
+
+    <div
+      id="mugunghwa"
+      class="train mugunghwa-train"
+    >
+
+      <div class="mug-engine">
+
+        <div class="mug-front-window"></div>
+
+        <div class="mug-headlight"></div>
+
+        <div class="mug-blue-line"></div>
+
+      </div>
+
+
+      <div class="mug-car">
+
+        <div class="mug-logo">
+          무궁화
+        </div>
+
+        <div class="windows">
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </div>
+
+      </div>
+
+
+      <div class="mug-car">
+
+        <div class="windows">
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ========================================
+         철도 조작판
+    ========================================= -->
+
+    <div class="rail-control-panel">
+
+      <button
+        id="signalABtn"
+        class="rail-button signal-control red"
+      >
+
+        <span class="button-icon">
+          🚦
+        </span>
+
+        <span>
+          신호 A
+        </span>
+
+        <strong>
+          🔴
+        </strong>
+
+      </button>
+
+
+      <button
+        id="signalBBtn"
+        class="rail-button signal-control green"
+      >
+
+        <span class="button-icon">
+          🚦
+        </span>
+
+        <span>
+          신호 B
+        </span>
+
+        <strong>
+          🟢
+        </strong>
+
+      </button>
+
+
+      <button
+        id="departSrtBtn"
+        class="rail-button srt-button"
+      >
+
+        <span class="button-icon">
+          🚄
+        </span>
+
+        <span>
+          SRT 출발
+        </span>
+
+      </button>
+
+
+      <button
+        id="departMugBtn"
+        class="rail-button mug-button"
+      >
+
+        <span class="button-icon">
+          🚂
+        </span>
+
+        <span>
+          무궁화 출발
+        </span>
+
+      </button>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- ========================================
+       아래 화용언어 미션
+  ========================================= -->
+
+  <section class="language-zone">
+
+
+    <!-- 기관사 무전 -->
+
+    <div class="radio-panel">
+
+      <div class="panel-title">
+
+        <span>
+          📻
+        </span>
+
+        기관사 무전
+
+      </div>
+
+
+      <div
+        id="dialogueList"
+        class="dialogue-list"
+      ></div>
+
+    </div>
+
+
+
+    <!-- 문제 -->
+
+    <div class="mission-panel">
+
+
+      <div
+        id="missionType"
+        class="mission-tag"
+      >
+        안전 판단
+      </div>
+
+
+      <div
+        id="question"
+        class="mission-question"
+      >
+        상황을 잘 보고 알맞은 행동을 골라요.
+      </div>
+
+
+      <div
+        id="choices"
+        class="choice-area"
+      ></div>
+
+
+      <div class="speech-area">
+
+
+        <div class="speech-text">
+
+          <b>
+            🎙️ 관제사가 직접 말해봐요
+          </b>
+
+          <span id="speakPrompt">
+            정답을 고른 뒤 말해요.
+          </span>
+
+        </div>
+
+
+        <button
+          id="speakDoneBtn"
+          disabled
+        >
+          말했어요!
+        </button>
+
+      </div>
+
+
+      <div class="next-area">
+
+        <span id="feedback">
+
+          기관사의 이야기를 잘 들어보세요.
+
+        </span>
+
+
+        <button
+          id="nextBtn"
+          disabled
+        >
+
+          다음 상황 ▶
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================
+       종료
+  ========================================= -->
+
+  <div
+    id="finishModal"
+    class="finish-modal hidden"
+  >
+
+    <div class="finish-card">
+
+      <div class="finish-train">
+        🚄
+      </div>
+
+      <h1>
+        안전 운행 성공!
+      </h1>
+
+      <div id="resultText"></div>
+
+      <button id="restartBtn">
+
+        🚦 다시 관제하기
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

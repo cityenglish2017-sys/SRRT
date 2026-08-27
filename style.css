@@ -1,0 +1,2720 @@
+:root {
+
+  --navy: #163b65;
+
+  --dark-navy: #0d2743;
+
+  --blue: #2472d7;
+
+  --green: #28b96f;
+
+  --red: #ef4747;
+
+  --yellow: #f4cc42;
+
+  --sky1: #94d7ff;
+
+  --sky2: #eaf8ff;
+
+}
+
+
+
+* {
+
+  box-sizing: border-box;
+
+  -webkit-tap-highlight-color:
+  transparent;
+
+  user-select: none;
+
+}
+
+
+
+html,
+body {
+
+  margin: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  overflow: hidden;
+
+  font-family:
+
+  -apple-system,
+  BlinkMacSystemFont,
+  "Apple SD Gothic Neo",
+  "Noto Sans KR",
+  sans-serif;
+
+}
+
+
+
+button {
+
+  font: inherit;
+
+  touch-action: manipulation;
+
+}
+
+
+
+#app {
+
+  width: 100vw;
+
+  height: 100vh;
+
+  display: grid;
+
+  grid-template-rows:
+
+  9vh
+  58vh
+  33vh;
+
+}
+
+
+
+/* =======================================
+   상단
+======================================= */
+
+.top-bar {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+  space-between;
+
+  padding:
+
+  0
+  2vw;
+
+  color: white;
+
+  background:
+
+  linear-gradient(
+    180deg,
+    #184d80,
+    #102f50
+  );
+
+  border-bottom:
+
+  4px solid
+  #071f36;
+
+  box-shadow:
+
+  0
+  4px
+  12px
+  rgba(0,0,0,.25);
+
+  z-index: 50;
+
+}
+
+
+
+.game-title {
+
+  display: flex;
+
+  gap: .8vw;
+
+  align-items: center;
+
+}
+
+
+
+.title-signal {
+
+  font-size: 2.5vw;
+
+}
+
+
+
+.main-title {
+
+  font-weight: 1000;
+
+  font-size: 1.75vw;
+
+  letter-spacing:
+  .07em;
+
+}
+
+
+
+.sub-title {
+
+  font-size: .9vw;
+
+  opacity: .8;
+
+  font-weight: 700;
+
+}
+
+
+
+.score-area {
+
+  display: flex;
+
+  gap: .8vw;
+
+}
+
+
+
+.score-item {
+
+  min-width: 6vw;
+
+  padding:
+
+  .55vw
+  .8vw;
+
+  border-radius:
+  .9vw;
+
+  background:
+
+  linear-gradient(
+    180deg,
+    rgba(255,255,255,.2),
+    rgba(255,255,255,.07)
+  );
+
+  border:
+
+  1px solid
+  rgba(255,255,255,.35);
+
+  text-align: center;
+
+  font-size: 1.1vw;
+
+  font-weight: 900;
+
+}
+
+
+
+/* =======================================
+   철도 세계
+======================================= */
+
+.rail-world {
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+
+  linear-gradient(
+
+    to bottom,
+
+    var(--sky1)
+    0%,
+
+    var(--sky2)
+    39%,
+
+    #8bc46d
+    40%,
+
+    #6fa654
+    100%
+
+  );
+
+}
+
+
+
+/* 태양 */
+
+.sun {
+
+  position: absolute;
+
+  right: 10vw;
+
+  top: 3vh;
+
+  width: 4vw;
+
+  height: 4vw;
+
+  border-radius: 50%;
+
+  background:
+
+  radial-gradient(
+    circle,
+    #fff9a2,
+    #ffc932
+  );
+
+  box-shadow:
+
+  0
+  0
+  35px
+  #ffe66a;
+
+}
+
+
+
+/* 구름 */
+
+.cloud {
+
+  position: absolute;
+
+  height: 2.4vh;
+
+  border-radius: 999px;
+
+  background: white;
+
+  opacity: .86;
+
+}
+
+
+
+.cloud::before,
+.cloud::after {
+
+  content: "";
+
+  position: absolute;
+
+  background: white;
+
+  border-radius: 50%;
+
+}
+
+
+
+.cloud::before {
+
+  width: 3vw;
+
+  height: 3vw;
+
+  left: 1vw;
+
+  bottom: 0;
+
+}
+
+
+
+.cloud::after {
+
+  width: 2.2vw;
+
+  height: 2.2vw;
+
+  right: 1vw;
+
+  bottom: 0;
+
+}
+
+
+
+.cloud-a {
+
+  width: 9vw;
+
+  left: 8vw;
+
+  top: 5vh;
+
+}
+
+
+
+.cloud-b {
+
+  width: 7vw;
+
+  left: 58vw;
+
+  top: 6vh;
+
+}
+
+
+
+.cloud-c {
+
+  width: 7vw;
+
+  right: 4vw;
+
+  top: 12vh;
+
+}
+
+
+
+/* 산 */
+
+.mountain {
+
+  position: absolute;
+
+  bottom: 28vh;
+
+  width: 30vw;
+
+  height: 18vh;
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #6c9f68,
+    #4f8152
+  );
+
+  clip-path:
+
+  polygon(
+    50% 0,
+    100% 100%,
+    0 100%
+  );
+
+}
+
+
+
+.mountain-a {
+
+  left: -9vw;
+
+}
+
+
+
+.mountain-b {
+
+  left: 15vw;
+
+  height: 14vh;
+
+  opacity: .8;
+
+}
+
+
+
+.mountain-c {
+
+  right: -6vw;
+
+  height: 15vh;
+
+}
+
+
+
+/* =======================================
+   나무
+======================================= */
+
+.tree {
+
+  position: absolute;
+
+  width: 3vw;
+
+  height: 7vh;
+
+  z-index: 1;
+
+}
+
+
+
+.tree-leaf {
+
+  position: absolute;
+
+  width: 3vw;
+
+  height: 3vw;
+
+  border-radius:
+  50%;
+
+  background:
+
+  radial-gradient(
+    circle at 35% 30%,
+    #75c85c,
+    #33843f
+  );
+
+}
+
+
+
+.tree-body {
+
+  position: absolute;
+
+  width: .5vw;
+
+  height: 4vh;
+
+  left: 1.25vw;
+
+  top: 2.4vw;
+
+  background:
+  #734924;
+
+}
+
+
+
+.tree1 {
+
+  left: 18vw;
+
+  top: 16vh;
+
+}
+
+
+
+.tree2 {
+
+  right: 17vw;
+
+  top: 18vh;
+
+}
+
+
+
+.tree3 {
+
+  right: 4vw;
+
+  top: 20vh;
+
+}
+
+
+
+/* =======================================
+   상황 배지
+======================================= */
+
+.map-badge {
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 1.3vh;
+
+  transform:
+  translateX(-50%);
+
+  padding:
+
+  .55vw
+  1.3vw;
+
+  border-radius:
+  999px;
+
+  background:
+
+  linear-gradient(
+    180deg,
+    #fffcec,
+    #ffe487
+  );
+
+  border:
+
+  3px solid
+  #dba822;
+
+  font-size: 1.15vw;
+
+  font-weight: 1000;
+
+  color: #513d00;
+
+  box-shadow:
+
+  0
+  5px
+  12px
+  rgba(0,0,0,.18);
+
+  z-index: 25;
+
+}
+
+
+
+/* =======================================
+   역
+======================================= */
+
+.station {
+
+  position: absolute;
+
+  width: 12vw;
+
+  top: 8vh;
+
+  z-index: 5;
+
+}
+
+
+
+.station-seoul {
+
+  left: 4vw;
+
+}
+
+
+
+.station-daejeon {
+
+  left: 44vw;
+
+}
+
+
+
+.station-busan {
+
+  right: 4vw;
+
+}
+
+
+
+.station-roof {
+
+  height: 1.3vh;
+
+  width: 13vw;
+
+  margin-left: -.5vw;
+
+  background:
+
+  linear-gradient(
+    #445970,
+    #24364a
+  );
+
+  border-radius:
+
+  .5vw
+  .5vw
+  0
+  0;
+
+}
+
+
+
+.station-name {
+
+  width: 7vw;
+
+  margin:
+
+  -.2vh
+  auto
+  .4vh;
+
+  background:
+  #195990;
+
+  color: white;
+
+  font-size: 1vw;
+
+  font-weight: 1000;
+
+  text-align: center;
+
+  padding:
+  .25vw;
+
+  border:
+
+  3px solid
+  white;
+
+  box-shadow:
+
+  0
+  2px
+  6px
+  rgba(0,0,0,.3);
+
+}
+
+
+
+.station-name small {
+
+  display: block;
+
+  font-size: .48vw;
+
+  font-weight: 600;
+
+  opacity: .8;
+
+}
+
+
+
+.station-building {
+
+  height: 5vh;
+
+  background:
+
+  linear-gradient(
+    #fefefe,
+    #dce6ed
+  );
+
+  border:
+
+  3px solid
+  #6d7f8f;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  gap: 1vw;
+
+  padding-bottom: .4vh;
+
+}
+
+
+
+.station-door {
+
+  width: 1.4vw;
+
+  height: 3vh;
+
+  background:
+
+  linear-gradient(
+    #7da7c8,
+    #3f6b8a
+  );
+
+}
+
+
+
+.station-window {
+
+  width: 1.5vw;
+
+  height: 1.7vh;
+
+  background:
+  #91d2f4;
+
+  border:
+
+  2px solid
+  #667b8b;
+
+}
+
+
+
+.platform {
+
+  width: 15vw;
+
+  margin-left: -1.5vw;
+
+  height: 1.5vh;
+
+  background:
+
+  repeating-linear-gradient(
+
+    90deg,
+
+    #5d6268
+    0
+    2vw,
+
+    #f3d54a
+    2vw
+    2.3vw
+
+  );
+
+  border-top:
+
+  3px solid
+  #34383c;
+
+}
+
+
+
+/* =======================================
+   철도 선로
+======================================= */
+
+.rail-track {
+
+  position: absolute;
+
+  left: 2vw;
+
+  width: 96vw;
+
+  height: 4vh;
+
+  background:
+
+  repeating-linear-gradient(
+
+    90deg,
+
+    transparent
+    0
+    1.5vw,
+
+    #674c31
+    1.5vw
+    1.9vw,
+
+    transparent
+    1.9vw
+    3vw
+
+  );
+
+  z-index: 2;
+
+}
+
+
+
+.track-upper {
+
+  top: 25vh;
+
+}
+
+
+
+.track-middle {
+
+  top: 36vh;
+
+}
+
+
+
+.track-lower {
+
+  top: 47vh;
+
+}
+
+
+
+.rail {
+
+  position: absolute;
+
+  left: 0;
+
+  width: 100%;
+
+  height: .45vh;
+
+  background:
+
+  linear-gradient(
+    #d8d9dc,
+    #555d65,
+    #20262c
+  );
+
+  box-shadow:
+
+  0
+  1px
+  2px
+  black;
+
+}
+
+
+
+.rail-one {
+
+  top: .5vh;
+
+}
+
+
+
+.rail-two {
+
+  top: 2.9vh;
+
+}
+
+
+
+/* 자갈 */
+
+.rail-track::before {
+
+  content: "";
+
+  position: absolute;
+
+  left: -1vw;
+
+  top: -.4vh;
+
+  right: -1vw;
+
+  height: 4.7vh;
+
+  background:
+
+  repeating-radial-gradient(
+
+    circle,
+
+    #73777b
+    0
+    2px,
+
+    #999d9f
+    2px
+    4px
+
+  );
+
+  opacity: .45;
+
+  z-index: -1;
+
+}
+
+
+
+/* =======================================
+   터널
+======================================= */
+
+.tunnel-area {
+
+  position: absolute;
+
+  left: 33vw;
+
+  top: 18vh;
+
+  width: 34vw;
+
+  height: 17vh;
+
+  z-index: 10;
+
+}
+
+
+
+.tunnel-sign {
+
+  position: absolute;
+
+  top: -2vh;
+
+  width: 100%;
+
+  text-align: center;
+
+  font-size: .85vw;
+
+  font-weight: 1000;
+
+  color: #222;
+
+}
+
+
+
+.tunnel-number {
+
+  display: inline-block;
+
+  background:
+  #fff;
+
+  border:
+
+  2px solid
+  #333;
+
+  margin-right: .5vw;
+
+  padding:
+
+  .1vw
+  .35vw;
+
+}
+
+
+
+.tunnel-structure {
+
+  position: absolute;
+
+  left: 7vw;
+
+  top: 1vh;
+
+  width: 20vw;
+
+  height: 14vh;
+
+  background:
+
+  repeating-linear-gradient(
+
+    90deg,
+
+    #73777a
+    0
+    2vw,
+
+    #858a8e
+    2vw
+    2.2vw
+
+  );
+
+  border:
+
+  1vw solid
+  #64696d;
+
+  border-radius:
+
+  10vw
+  10vw
+  1vw
+  1vw;
+
+  box-shadow:
+
+  inset
+  0
+  0
+  18px
+  #3b3e40,
+
+  0
+  6px
+  12px
+  rgba(0,0,0,.3);
+
+}
+
+
+
+.tunnel-arch {
+
+  position: absolute;
+
+  left: 3vw;
+
+  right: 3vw;
+
+  top: 1.5vh;
+
+  bottom: 0;
+
+  border-radius:
+
+  7vw
+  7vw
+  0
+  0;
+
+  overflow: hidden;
+
+}
+
+
+
+.tunnel-dark {
+
+  width: 100%;
+
+  height: 100%;
+
+  background:
+
+  radial-gradient(
+
+    ellipse at center,
+
+    #373b3d
+    0%,
+
+    #121416
+    65%,
+
+    #050606
+    100%
+
+  );
+
+}
+
+
+
+.tunnel-rail-line {
+
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 2vh;
+
+  height: .5vh;
+
+  background:
+  #aaa;
+
+}
+
+
+
+.tunnel-rock {
+
+  position: absolute;
+
+  bottom: 0;
+
+  width: 9vw;
+
+  height: 8vh;
+
+  background:
+
+  radial-gradient(
+    circle,
+    #777,
+    #565a5d
+  );
+
+  clip-path:
+
+  polygon(
+    10% 90%,
+    0 50%,
+    30% 20%,
+    55% 0,
+    80% 30%,
+    100% 70%,
+    90% 100%
+  );
+
+}
+
+
+
+.tunnel-rock-left {
+
+  left: 0;
+
+}
+
+
+
+.tunnel-rock-right {
+
+  right: 0;
+
+}
+
+
+
+/* =======================================
+   실제 느낌 신호기
+======================================= */
+
+.rail-signal {
+
+  position: absolute;
+
+  width: 4vw;
+
+  z-index: 22;
+
+  text-align: center;
+
+}
+
+
+
+.signal-a {
+
+  left: 25vw;
+
+  top: 18vh;
+
+}
+
+
+
+.signal-b {
+
+  right: 23vw;
+
+  top: 36vh;
+
+}
+
+
+
+.signal-label {
+
+  display: inline-block;
+
+  min-width: 2vw;
+
+  margin-bottom: .3vh;
+
+  background:
+  white;
+
+  border:
+
+  2px solid
+  #222;
+
+  border-radius:
+  .25vw;
+
+  font-size: .8vw;
+
+  font-weight: 1000;
+
+}
+
+
+
+.signal-head {
+
+  width: 2.7vw;
+
+  height: 8vh;
+
+  margin: auto;
+
+  background:
+
+  linear-gradient(
+    90deg,
+    #0b0e10,
+    #34383b,
+    #0b0e10
+  );
+
+  border:
+
+  3px solid
+  #070909;
+
+  border-radius:
+  .7vw;
+
+  padding:
+
+  .4vh
+  .35vw;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content:
+  space-around;
+
+}
+
+
+
+.signal-light {
+
+  width: 1.25vw;
+
+  height: 1.25vw;
+
+  border-radius:
+  50%;
+
+  margin: auto;
+
+  background:
+  #282828;
+
+  border:
+
+  2px solid
+  #050505;
+
+}
+
+
+
+.rail-signal.red
+.red-light {
+
+  background:
+  #ff3131;
+
+  box-shadow:
+
+  0
+  0
+  15px
+  #ff3131;
+
+}
+
+
+
+.rail-signal.yellow
+.yellow-light {
+
+  background:
+  #ffca2e;
+
+  box-shadow:
+
+  0
+  0
+  15px
+  #ffca2e;
+
+}
+
+
+
+.rail-signal.green
+.green-light {
+
+  background:
+  #32ee78;
+
+  box-shadow:
+
+  0
+  0
+  15px
+  #32ee78;
+
+}
+
+
+
+.signal-pole {
+
+  width: .38vw;
+
+  height: 6vh;
+
+  margin: auto;
+
+  background:
+
+  repeating-linear-gradient(
+
+    180deg,
+
+    #222
+    0
+    .7vh,
+
+    white
+    .7vh
+    1.4vh
+
+  );
+
+}
+
+
+
+.signal-base {
+
+  width: 2vw;
+
+  height: .8vh;
+
+  margin: auto;
+
+  background:
+  #444;
+
+  border-radius:
+  .2vw;
+
+}
+
+
+
+/* =======================================
+   분기선
+======================================= */
+
+.branch-track {
+
+  position: absolute;
+
+  left: 56vw;
+
+  top: 38vh;
+
+  width: 19vw;
+
+  height: .7vh;
+
+  background:
+  #656b70;
+
+  transform-origin:
+  left center;
+
+  z-index: 3;
+
+}
+
+
+
+.branch-up {
+
+  transform:
+  rotate(-17deg);
+
+}
+
+
+
+.branch-down {
+
+  transform:
+  rotate(17deg);
+
+}
+
+
+
+.switch-area {
+
+  position: absolute;
+
+  left: 57vw;
+
+  top: 41vh;
+
+  z-index: 25;
+
+}
+
+
+
+.switch-sign {
+
+  font-size: .65vw;
+
+  font-weight: 1000;
+
+  background:
+  #1f2830;
+
+  color: white;
+
+  text-align: center;
+
+  padding:
+  .2vw;
+
+}
+
+
+
+.switch-button {
+
+  border: none;
+
+  padding:
+
+  .55vw
+  .8vw;
+
+  border-radius:
+
+  0
+  0
+  .6vw
+  .6vw;
+
+  background:
+
+  linear-gradient(
+    #ffe66f,
+    #e9b729
+  );
+
+  box-shadow:
+
+  0
+  4px
+  0
+  #9e7918;
+
+  font-size: .95vw;
+
+  font-weight: 1000;
+
+}
+
+
+
+/* =======================================
+   SRT
+======================================= */
+
+.train {
+
+  position: absolute;
+
+  display: flex;
+
+  z-index: 18;
+
+  filter:
+
+  drop-shadow(
+    0
+    .5vh
+    .45vh
+    rgba(0,0,0,.38)
+  );
+
+  transition:
+
+  left 1.5s
+  cubic-bezier(.4,0,.2,1),
+
+  top .8s
+  ease;
+
+}
+
+
+
+.srt-train {
+
+  left: 4vw;
+
+  top: 22.2vh;
+
+  height: 5.7vh;
+
+}
+
+
+
+.srt-nose {
+
+  position: relative;
+
+  width: 5.5vw;
+
+  height: 5.7vh;
+
+  background:
+
+  linear-gradient(
+    180deg,
+    #fafafa
+    0%,
+    #dedee6
+    55%,
+    #6652bb
+    56%,
+    #4f3ca2
+    100%
+  );
+
+  clip-path:
+
+  polygon(
+    100% 0,
+    100% 100%,
+    18% 100%,
+    0 65%,
+    9% 30%,
+    36% 5%
+  );
+
+}
+
+
+
+.srt-front-window {
+
+  position: absolute;
+
+  left: 1.7vw;
+
+  top: .7vh;
+
+  width: 2.1vw;
+
+  height: 1.5vh;
+
+  background:
+
+  linear-gradient(
+    #7ed5ff,
+    #245a7a
+  );
+
+  transform:
+  skew(-20deg);
+
+  border-radius:
+  .3vw;
+
+}
+
+
+
+.srt-headlight {
+
+  position: absolute;
+
+  left: .8vw;
+
+  bottom: .7vh;
+
+  width: .55vw;
+
+  height: .55vw;
+
+  background:
+  #fff9a9;
+
+  border-radius: 50%;
+
+  box-shadow:
+
+  0
+  0
+  10px
+  white;
+
+}
+
+
+
+.srt-car {
+
+  position: relative;
+
+  width: 9vw;
+
+  height: 5.7vh;
+
+  background:
+
+  linear-gradient(
+    180deg,
+    #fbfbfc
+    0%,
+    #e4e5eb
+    57%,
+    #6652bb
+    58%,
+    #4d3b98
+    100%
+  );
+
+  border-left:
+
+  2px solid
+  #aaa;
+
+}
+
+
+
+.train-logo {
+
+  position: absolute;
+
+  left: .7vw;
+
+  bottom: .6vh;
+
+  color: white;
+
+  font-weight: 1000;
+
+  font-size: .75vw;
+
+}
+
+
+
+.windows {
+
+  display: flex;
+
+  gap: .35vw;
+
+  position: absolute;
+
+  top: .9vh;
+
+  left: .8vw;
+
+}
+
+
+
+.windows span {
+
+  width: 1.3vw;
+
+  height: 1.2vh;
+
+  background:
+
+  linear-gradient(
+    #8bd9ff,
+    #386c8a
+  );
+
+  border-radius:
+  .2vw;
+
+  border:
+
+  1px solid
+  #365365;
+
+}
+
+
+
+/* =======================================
+   무궁화호
+======================================= */
+
+.mugunghwa-train {
+
+  left: 76vw;
+
+  top: 44.2vh;
+
+  height: 5.8vh;
+
+  flex-direction: row-reverse;
+
+}
+
+
+
+.mug-engine {
+
+  position: relative;
+
+  width: 5vw;
+
+  height: 5.8vh;
+
+  background:
+
+  linear-gradient(
+
+    180deg,
+
+    #e8e8e8
+    0%,
+
+    #d9d9d9
+    45%,
+
+    #d94747
+    46%,
+
+    #bb2f38
+    75%,
+
+    #384d72
+    76%
+
+  );
+
+  clip-path:
+
+  polygon(
+    0 0,
+    72% 0,
+    100% 26%,
+    100% 100%,
+    0 100%
+  );
+
+}
+
+
+
+.mug-front-window {
+
+  position: absolute;
+
+  right: .7vw;
+
+  top: .7vh;
+
+  width: 1.7vw;
+
+  height: 1.45vh;
+
+  background:
+
+  linear-gradient(
+    #8ed4ef,
+    #355d76
+  );
+
+  border:
+
+  2px solid
+  #454545;
+
+}
+
+
+
+.mug-headlight {
+
+  position: absolute;
+
+  right: .35vw;
+
+  bottom: 1vh;
+
+  width: .5vw;
+
+  height: .5vw;
+
+  background:
+  #fff4a3;
+
+  border-radius: 50%;
+
+  box-shadow:
+
+  0
+  0
+  9px
+  white;
+
+}
+
+
+
+.mug-blue-line {
+
+  position: absolute;
+
+  bottom: .3vh;
+
+  height: .7vh;
+
+  left: 0;
+
+  right: 0;
+
+  background:
+  #243f70;
+
+}
+
+
+
+.mug-car {
+
+  position: relative;
+
+  width: 8vw;
+
+  height: 5.8vh;
+
+  background:
+
+  linear-gradient(
+
+    180deg,
+
+    #eeeeee
+    0%,
+
+    #e3e3e3
+    48%,
+
+    #cf4652
+    49%,
+
+    #cf4652
+    63%,
+
+    #f3f3f3
+    64%,
+
+    #d9d9d9
+    100%
+
+  );
+
+  border-right:
+
+  2px solid
+  #aaa;
+
+}
+
+
+
+.mug-logo {
+
+  position: absolute;
+
+  left: .45vw;
+
+  bottom: .45vh;
+
+  font-size: .6vw;
+
+  font-weight: 1000;
+
+  color:
+  #374d75;
+
+}
+
+
+
+/* =======================================
+   관제 조작판
+======================================= */
+
+.rail-control-panel {
+
+  position: absolute;
+
+  bottom: .8vh;
+
+  left: 50%;
+
+  transform:
+  translateX(-50%);
+
+  width: 76vw;
+
+  padding:
+
+  .7vw
+  1vw;
+
+  border-radius:
+  1.2vw;
+
+  display: grid;
+
+  grid-template-columns:
+
+  repeat(
+    4,
+    1fr
+  );
+
+  gap: .8vw;
+
+  background:
+
+  linear-gradient(
+    #405568,
+    #253746
+  );
+
+  border:
+
+  4px solid
+  #1a2935;
+
+  box-shadow:
+
+  0
+  8px
+  15px
+  rgba(0,0,0,.3);
+
+  z-index: 40;
+
+}
+
+
+
+.rail-button {
+
+  border:
+
+  2px solid
+  rgba(255,255,255,.35);
+
+  border-radius:
+  .8vw;
+
+  min-height: 4.8vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: .4vw;
+
+  font-weight: 1000;
+
+  font-size: .95vw;
+
+  box-shadow:
+
+  inset
+  0
+  2px
+  4px
+  rgba(255,255,255,.5),
+
+  0
+  4px
+  0
+  rgba(0,0,0,.25);
+
+}
+
+
+
+.rail-button:active {
+
+  transform:
+  translateY(3px);
+
+  box-shadow:
+
+  0
+  1px
+  0
+  rgba(0,0,0,.25);
+
+}
+
+
+
+.signal-control.red {
+
+  background:
+  #ffdada;
+
+}
+
+
+
+.signal-control.green {
+
+  background:
+  #d8f7df;
+
+}
+
+
+
+.srt-button {
+
+  background:
+
+  linear-gradient(
+    #ede9ff,
+    #b9acf6
+  );
+
+}
+
+
+
+.mug-button {
+
+  background:
+
+  linear-gradient(
+    #ffe5e6,
+    #ffb2b8
+  );
+
+}
+
+
+
+/* =======================================
+   아래 화용언어
+======================================= */
+
+.language-zone {
+
+  background:
+  #eef3f8;
+
+  display: grid;
+
+  grid-template-columns:
+
+  39%
+  61%;
+
+  border-top:
+
+  4px solid
+  #b7c8d7;
+
+}
+
+
+
+.radio-panel {
+
+  background:
+  white;
+
+  border-right:
+
+  3px solid
+  #cad6e0;
+
+  padding:
+
+  1vh
+  1vw;
+
+  overflow: hidden;
+
+}
+
+
+
+.panel-title {
+
+  color:
+  #1a426a;
+
+  font-size: 1.05vw;
+
+  font-weight: 1000;
+
+  margin-bottom:
+  .6vh;
+
+}
+
+
+
+.dialogue-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: .6vh;
+
+}
+
+
+
+.dialogue-row {
+
+  display: grid;
+
+  grid-template-columns:
+
+  3vw
+  1fr;
+
+  gap: .6vw;
+
+  background:
+  #f4f7fa;
+
+  padding:
+
+  .65vh
+  .65vw;
+
+  border-radius:
+  .7vw;
+
+}
+
+
+
+.dialogue-icon {
+
+  width: 2.7vw;
+
+  height: 2.7vw;
+
+  border-radius:
+  50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+  #dcecff;
+
+  font-size: 1.25vw;
+
+}
+
+
+
+.dialogue-name {
+
+  font-size: .9vw;
+
+  font-weight: 1000;
+
+}
+
+
+
+.dialogue-text {
+
+  font-size: 1vw;
+
+  margin-top: .1vh;
+
+  line-height: 1.4;
+
+}
+
+
+
+.mission-panel {
+
+  padding:
+
+  .9vh
+  1.2vw;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: .6vh;
+
+}
+
+
+
+.mission-tag {
+
+  display: inline-block;
+
+  align-self: flex-start;
+
+  background:
+  #3177c7;
+
+  color: white;
+
+  border-radius:
+  999px;
+
+  padding:
+
+  .2vw
+  .65vw;
+
+  font-size: .8vw;
+
+  font-weight: 1000;
+
+}
+
+
+
+.mission-question {
+
+  background:
+  white;
+
+  border:
+
+  3px solid
+  #c5d9eb;
+
+  padding:
+
+  .7vw
+  .9vw;
+
+  border-radius:
+  .8vw;
+
+  font-size: 1.1vw;
+
+  font-weight: 1000;
+
+}
+
+
+
+.choice-area {
+
+  display: grid;
+
+  grid-template-columns:
+
+  1fr
+  1fr;
+
+  gap: .55vw;
+
+}
+
+
+
+.choice {
+
+  border:
+
+  2px solid
+  #c5d2de;
+
+  border-radius:
+  .75vw;
+
+  padding:
+  .65vw;
+
+  background:
+  white;
+
+  font-size: .97vw;
+
+  font-weight: 800;
+
+  text-align: left;
+
+}
+
+
+
+.choice.correct {
+
+  background:
+  #d8f7e4;
+
+  border:
+
+  3px solid
+  #2fb46c;
+
+}
+
+
+
+.choice.wrong {
+
+  background:
+  #ffe2e2;
+
+  border:
+
+  3px solid
+  #e55353;
+
+}
+
+
+
+.speech-area {
+
+  background:
+  #fff6cf;
+
+  border:
+
+  2px solid
+  #e6ca5b;
+
+  border-radius:
+  .8vw;
+
+  display: grid;
+
+  grid-template-columns:
+
+  1fr
+  auto;
+
+  align-items: center;
+
+  padding:
+
+  .55vw
+  .75vw;
+
+}
+
+
+
+.speech-text {
+
+  display: flex;
+
+  flex-direction: column;
+
+  font-size: .9vw;
+
+}
+
+
+
+.speech-text span {
+
+  margin-top:
+  .15vh;
+
+}
+
+
+
+#speakDoneBtn {
+
+  border: 0;
+
+  border-radius:
+  .7vw;
+
+  padding:
+
+  .65vw
+  .8vw;
+
+  background:
+
+  linear-gradient(
+    #ffd85e,
+    #ecb72e
+  );
+
+  font-weight: 1000;
+
+}
+
+
+
+#speakDoneBtn:disabled {
+
+  opacity: .45;
+
+}
+
+
+
+.next-area {
+
+  margin-top: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+  space-between;
+
+}
+
+
+
+#feedback {
+
+  font-size: .9vw;
+
+  font-weight: 900;
+
+  color:
+  #47627c;
+
+}
+
+
+
+#nextBtn {
+
+  border: none;
+
+  border-radius:
+  .7vw;
+
+  padding:
+
+  .65vw
+  1vw;
+
+  background:
+
+  linear-gradient(
+    #3c89e8,
+    #2568bb
+  );
+
+  color:
+  white;
+
+  font-weight: 1000;
+
+}
+
+
+
+#nextBtn:disabled {
+
+  opacity: .4;
+
+}
+
+
+
+/* =======================================
+   종료
+======================================= */
+
+.finish-modal {
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+
+  rgba(6,21,38,.78);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 100;
+
+}
+
+
+
+.hidden {
+
+  display: none;
+
+}
+
+
+
+.finish-card {
+
+  width: 42vw;
+
+  padding: 2vw;
+
+  border-radius:
+  2vw;
+
+  background:
+  white;
+
+  text-align: center;
+
+}
+
+
+
+.finish-train {
+
+  font-size: 5vw;
+
+}
+
+
+
+.finish-card h1 {
+
+  font-size: 2vw;
+
+}
+
+
+
+.finish-card button {
+
+  border: none;
+
+  margin-top: 1vw;
+
+  padding:
+
+  .8vw
+  1.4vw;
+
+  background:
+  #2872cc;
+
+  color: white;
+
+  border-radius:
+  .8vw;
+
+  font-weight: 1000;
+
+}
+
+
+
+/* =======================================
+   iPad landscape
+======================================= */
+
+@media
+(max-width: 1200px)
+and
+(orientation: landscape) {
+
+  .main-title {
+
+    font-size: 2vw;
+
+  }
+
+
+  .station-name {
+
+    font-size: 1.2vw;
+
+  }
+
+
+  .mission-question {
+
+    font-size: 1.3vw;
+
+  }
+
+
+  .choice {
+
+    font-size: 1.1vw;
+
+  }
+
+
+  .dialogue-text {
+
+    font-size: 1.1vw;
+
+  }
+
+
+  .rail-button {
+
+    font-size: 1.1vw;
+
+  }
+
+}
