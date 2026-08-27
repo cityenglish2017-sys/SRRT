@@ -1,7 +1,6 @@
 const $ = id =>
   document.getElementById(id);
 
-
 const random = array =>
   array[
     Math.floor(
@@ -10,17 +9,14 @@ const random = array =>
     )
   ];
 
-
 const shuffle = array =>
-  [...array]
-    .sort(
-      () =>
+  [...array].sort(
+    () =>
       Math.random() - 0.5
-    );
+  );
 
 
 const TOTAL_ROUNDS = 12;
-
 
 let round = 1;
 
@@ -34,13 +30,11 @@ let spoken = false;
 
 let currentScenario;
 
-
 let signalA = "red";
 
 let signalB = "green";
 
 let switchMode = "straight";
-
 
 let usedTypes = [];
 
@@ -58,7 +52,6 @@ const stations = [
 ];
 
 
-
 function otherTrain(train) {
 
   return train === "SRT"
@@ -66,7 +59,6 @@ function otherTrain(train) {
     : "SRT";
 
 }
-
 
 
 function iconFor(name) {
@@ -80,14 +72,12 @@ function iconFor(name) {
   }
 
   return "🎛️";
-
 }
 
 
-
-/* =======================================
+/* =========================
    신호
-======================================= */
+========================= */
 
 function setSignal(
   name,
@@ -115,37 +105,24 @@ function setSignal(
 
 
   button.className =
-    `rail-button signal-control ${state}`;
+    `rail-button ${state}`;
 
 
-  button.innerHTML = `
-    <span>
-      🚦
-    </span>
-
-    <span>
-      신호 ${name}
-    </span>
-
-    <strong>
-      ${
-        state === "red"
-          ? "🔴"
-          : state === "yellow"
-          ? "🟡"
-          : "🟢"
-      }
-    </strong>
-  `;
+  button.textContent =
+    `🚦 신호 ${name} ${
+      state === "red"
+        ? "🔴"
+        : state === "yellow"
+        ? "🟡"
+        : "🟢"
+    }`;
 
 
   if (name === "A") {
 
     signalA = state;
 
-  }
-
-  else {
+  } else {
 
     signalB = state;
 
@@ -154,16 +131,13 @@ function setSignal(
 }
 
 
-
-/* =======================================
-   분기기
-======================================= */
+/* =========================
+   분기
+========================= */
 
 function updateSwitch() {
 
-  $("switchText")
-    .textContent =
-
+  $("switchText").textContent =
     switchMode === "straight"
       ? "직진"
       : "옆선로";
@@ -171,62 +145,49 @@ function updateSwitch() {
 }
 
 
-
-/* =======================================
-   초기 위치
-======================================= */
+/* =========================
+   초기 화면
+========================= */
 
 function resetWorld() {
 
-  $("srt")
-    .style.left =
+  $("srt").style.left =
     "4vw";
 
-
-  $("srt")
-    .style.top =
-    "20.4vh";
+  $("srt").style.top =
+    "18.3vh";
 
 
-  $("mugunghwa")
-    .style.left =
-    "76vw";
+  $("mugunghwa").style.left =
+    "77vw";
 
-
-  $("mugunghwa")
-    .style.top =
-    "40.4vh";
+  $("mugunghwa").style.top =
+    "36.3vh";
 
 
   setSignal(
     "A",
-    random(
-      [
-        "red",
-        "green"
-      ]
-    )
+    random([
+      "red",
+      "green"
+    ])
   );
 
 
   setSignal(
     "B",
-    random(
-      [
-        "red",
-        "green"
-      ]
-    )
+    random([
+      "red",
+      "green"
+    ])
   );
 
 
   switchMode =
-    random(
-      [
-        "straight",
-        "branch"
-      ]
-    );
+    random([
+      "straight",
+      "branch"
+    ]);
 
 
   updateSwitch();
@@ -234,14 +195,11 @@ function resetWorld() {
 }
 
 
+/* =========================
+   대화
+========================= */
 
-/* =======================================
-   대화 표시
-======================================= */
-
-function renderDialogue(
-  dialogue
-) {
+function renderDialogue(dialogue) {
 
   const list =
     $("dialogueList");
@@ -290,10 +248,9 @@ function renderDialogue(
 }
 
 
-
-/* =======================================
+/* =========================
    터널
-======================================= */
+========================= */
 
 function tunnelScenario() {
 
@@ -367,10 +324,9 @@ function tunnelScenario() {
 }
 
 
-
-/* =======================================
+/* =========================
    신호
-======================================= */
+========================= */
 
 function signalScenario() {
 
@@ -379,12 +335,10 @@ function signalScenario() {
 
 
   const signal =
-    random(
-      [
-        "A",
-        "B"
-      ]
-    );
+    random([
+      "A",
+      "B"
+    ]);
 
 
   setSignal(
@@ -449,10 +403,9 @@ function signalScenario() {
 }
 
 
-
-/* =======================================
+/* =========================
    역
-======================================= */
+========================= */
 
 function stationScenario() {
 
@@ -520,10 +473,9 @@ function stationScenario() {
 }
 
 
-
-/* =======================================
-   차례 지키기
-======================================= */
+/* =========================
+   차례
+========================= */
 
 function turnScenario() {
 
@@ -583,10 +535,8 @@ function turnScenario() {
 
 
     action: {
-
       type:
         "none"
-
     }
 
   };
@@ -594,10 +544,9 @@ function turnScenario() {
 }
 
 
-
-/* =======================================
+/* =========================
    다시 묻기
-======================================= */
+========================= */
 
 function askAgainScenario() {
 
@@ -648,10 +597,8 @@ function askAgainScenario() {
 
 
     action: {
-
       type:
         "none"
-
     }
 
   };
@@ -659,10 +606,9 @@ function askAgainScenario() {
 }
 
 
-
-/* =======================================
+/* =========================
    정보 알려주기
-======================================= */
+========================= */
 
 function informationScenario() {
 
@@ -675,15 +621,11 @@ function informationScenario() {
 
 
   const issue =
-    random(
-      [
-        "터널 안에 다른 열차가 있어요",
-
-        "앞 신호가 빨간색이에요",
-
-        "앞 역에서 승객이 타고 있어요"
-      ]
-    );
+    random([
+      "터널 안에 다른 열차가 있어요",
+      "앞 신호가 빨간색이에요",
+      "앞 역에서 승객이 타고 있어요"
+    ]);
 
 
   return {
@@ -734,10 +676,8 @@ function informationScenario() {
 
 
     action: {
-
       type:
         "none"
-
     }
 
   };
@@ -745,10 +685,9 @@ function informationScenario() {
 }
 
 
-
-/* =======================================
+/* =========================
    분기기
-======================================= */
+========================= */
 
 function switchScenario() {
 
@@ -757,12 +696,10 @@ function switchScenario() {
 
 
   const direction =
-    random(
-      [
-        "직진",
-        "옆선로"
-      ]
-    );
+    random([
+      "직진",
+      "옆선로"
+    ]);
 
 
   return {
@@ -825,10 +762,9 @@ function switchScenario() {
 }
 
 
-
-/* =======================================
-   종합 상황
-======================================= */
+/* =========================
+   종합
+========================= */
 
 function combinedScenario() {
 
@@ -837,12 +773,10 @@ function combinedScenario() {
 
 
   const signal =
-    random(
-      [
-        "A",
-        "B"
-      ]
-    );
+    random([
+      "A",
+      "B"
+    ]);
 
 
   setSignal(
@@ -912,31 +846,16 @@ function combinedScenario() {
 }
 
 
-
-/* =======================================
-   시나리오 목록
-======================================= */
-
 const scenarios = [
-
   tunnelScenario,
-
   signalScenario,
-
   stationScenario,
-
   turnScenario,
-
   askAgainScenario,
-
   informationScenario,
-
   switchScenario,
-
   combinedScenario
-
 ];
-
 
 
 function getScenario() {
@@ -981,10 +900,9 @@ function getScenario() {
 }
 
 
-
-/* =======================================
-   라운드 렌더링
-======================================= */
+/* =========================
+   렌더링
+========================= */
 
 function renderScenario() {
 
@@ -1000,48 +918,39 @@ function renderScenario() {
     getScenario();
 
 
-  $("roundText")
-    .textContent =
+  $("roundText").textContent =
     round;
 
 
-  $("mapBadge")
-    .textContent =
+  $("mapBadge").textContent =
     currentScenario.badge;
 
 
-  $("missionType")
-    .textContent =
+  $("missionType").textContent =
     currentScenario.type;
 
 
-  $("question")
-    .textContent =
+  $("question").textContent =
     currentScenario.question;
 
 
-  $("feedback")
-    .textContent =
+  $("feedback").textContent =
     "기관사의 이야기를 잘 들어보세요.";
 
 
-  $("speakPrompt")
-    .textContent =
+  $("speakPrompt").textContent =
     "정답을 고른 뒤 직접 말해봐요.";
 
 
-  $("speakDoneBtn")
-    .disabled =
+  $("speakDoneBtn").disabled =
     true;
 
 
-  $("speakDoneBtn")
-    .textContent =
+  $("speakDoneBtn").textContent =
     "말했어요!";
 
 
-  $("nextBtn")
-    .disabled =
+  $("nextBtn").disabled =
     true;
 
 
@@ -1051,17 +960,13 @@ function renderScenario() {
 
 
   const choices =
-    shuffle(
-      [
-        currentScenario.correct,
-        ...currentScenario.wrong
-      ]
-    );
+    shuffle([
+      currentScenario.correct,
+      ...currentScenario.wrong
+    ]);
 
 
-  $("choices")
-    .innerHTML =
-    "";
+  $("choices").innerHTML = "";
 
 
   choices.forEach(
@@ -1083,10 +988,10 @@ function renderScenario() {
 
       button.onclick =
         () =>
-        selectAnswer(
-          button,
-          text
-        );
+          selectAnswer(
+            button,
+            text
+          );
 
 
       $("choices")
@@ -1100,10 +1005,9 @@ function renderScenario() {
 }
 
 
-
-/* =======================================
-   정답 선택
-======================================= */
+/* =========================
+   답
+========================= */
 
 function selectAnswer(
   button,
@@ -1131,29 +1035,24 @@ function selectAnswer(
     currentScenario.correct
   ) {
 
-    button
-      .classList
-      .add(
-        "correct"
-      );
+    button.classList.add(
+      "correct"
+    );
 
 
     stars += 2;
 
 
-    $("feedback")
-      .textContent =
+    $("feedback").textContent =
       "✅ 좋아요! 안전한 선택이에요.";
 
   }
 
   else {
 
-    button
-      .classList
-      .add(
-        "wrong"
-      );
+    button.classList.add(
+      "wrong"
+    );
 
 
     const correctButton =
@@ -1166,11 +1065,9 @@ function selectAnswer(
 
     if (correctButton) {
 
-      correctButton
-        .classList
-        .add(
-          "correct"
-        );
+      correctButton.classList.add(
+        "correct"
+      );
 
     }
 
@@ -1178,25 +1075,21 @@ function selectAnswer(
     stars += 1;
 
 
-    $("feedback")
-      .textContent =
+    $("feedback").textContent =
       "💡 초록색 답을 다시 한번 볼까요?";
 
   }
 
 
-  $("starText")
-    .textContent =
+  $("starText").textContent =
     stars;
 
 
-  $("speakPrompt")
-    .textContent =
+  $("speakPrompt").textContent =
     currentScenario.speak;
 
 
-  $("speakDoneBtn")
-    .disabled =
+  $("speakDoneBtn").disabled =
     false;
 
 
@@ -1207,14 +1100,16 @@ function selectAnswer(
 }
 
 
+/* =========================
+   움직임
+========================= */
 
-/* =======================================
-   화면 동작
-======================================= */
+function runAction(action) {
 
-function runAction(
-  action
-) {
+  if (!action) {
+    return;
+  }
+
 
   if (
     action.type ===
@@ -1225,16 +1120,14 @@ function runAction(
       action.train === "SRT"
     ) {
 
-      $("srt")
-        .style.left =
+      $("srt").style.left =
         "64vw";
 
     }
 
     else {
 
-      $("mugunghwa")
-        .style.left =
+      $("mugunghwa").style.left =
         "18vw";
 
     }
@@ -1256,7 +1149,7 @@ function runAction(
         );
 
       },
-      700
+      650
     );
 
   }
@@ -1280,18 +1173,16 @@ function runAction(
       action.train === "SRT"
     ) {
 
-      $("srt")
-        .style.left =
-        "61vw";
+      $("srt").style.left =
+        "60vw";
 
 
       if (
         switchMode === "branch"
       ) {
 
-        $("srt")
-          .style.top =
-          "30vh";
+        $("srt").style.top =
+          "27vh";
 
       }
 
@@ -1299,8 +1190,7 @@ function runAction(
 
     else {
 
-      $("mugunghwa")
-        .style.left =
+      $("mugunghwa").style.left =
         "58vw";
 
 
@@ -1308,9 +1198,8 @@ function runAction(
         switchMode === "branch"
       ) {
 
-        $("mugunghwa")
-          .style.top =
-          "32vh";
+        $("mugunghwa").style.top =
+          "29vh";
 
       }
 
@@ -1321,10 +1210,9 @@ function runAction(
 }
 
 
-
-/* =======================================
-   말하기 완료
-======================================= */
+/* =========================
+   말했어요
+========================= */
 
 $("speakDoneBtn")
 .onclick =
@@ -1341,37 +1229,31 @@ function() {
   talkScore += 2;
 
 
-  $("talkText")
-    .textContent =
+  $("talkText").textContent =
     talkScore;
 
 
-  $("speakDoneBtn")
-    .textContent =
+  $("speakDoneBtn").textContent =
     "👍 잘했어요";
 
 
-  $("speakDoneBtn")
-    .disabled =
+  $("speakDoneBtn").disabled =
     true;
 
 
-  $("nextBtn")
-    .disabled =
+  $("nextBtn").disabled =
     false;
 
 
-  $("feedback")
-    .textContent =
+  $("feedback").textContent =
     "🌟 좋아요! 다음 운행으로 가요.";
 
 };
 
 
-
-/* =======================================
-   다음 상황
-======================================= */
+/* =========================
+   다음
+========================= */
 
 $("nextBtn")
 .onclick =
@@ -1396,10 +1278,9 @@ function() {
 };
 
 
-
-/* =======================================
-   직접 신호 조작
-======================================= */
+/* =========================
+   직접 신호
+========================= */
 
 $("signalABtn")
 .onclick =
@@ -1413,7 +1294,6 @@ function() {
   );
 
 };
-
 
 
 $("signalBBtn")
@@ -1430,10 +1310,9 @@ function() {
 };
 
 
-
-/* =======================================
-   직접 분기 조작
-======================================= */
+/* =========================
+   분기 버튼
+========================= */
 
 $("switchBtn")
 .onclick =
@@ -1450,18 +1329,15 @@ function() {
 };
 
 
-
-/* =======================================
-   SRT 직접 출발
-======================================= */
+/* =========================
+   열차 직접 출발
+========================= */
 
 $("departSrtBtn")
 .onclick =
 function() {
 
-  $("srt")
-    .style.left =
-
+  $("srt").style.left =
     $("srt").style.left === "64vw"
       ? "4vw"
       : "64vw";
@@ -1469,41 +1345,32 @@ function() {
 };
 
 
-
-/* =======================================
-   무궁화 직접 출발
-======================================= */
-
 $("departMugBtn")
 .onclick =
 function() {
 
-  $("mugunghwa")
-    .style.left =
-
+  $("mugunghwa").style.left =
     $("mugunghwa").style.left === "18vw"
-      ? "76vw"
+      ? "77vw"
       : "18vw";
 
 };
 
 
-
-/* =======================================
-   게임 종료
-======================================= */
+/* =========================
+   종료
+========================= */
 
 function finishGame() {
 
-  $("resultText")
-    .innerHTML = `
-      ⭐ 안전운행 점수
-      <b>${stars}</b>
-      <br><br>
+  $("resultText").innerHTML = `
+    ⭐ 안전운행 점수
+    <b>${stars}</b>
+    <br><br>
 
-      💬 관제 대화 점수
-      <b>${talkScore}</b>
-    `;
+    💬 관제 대화 점수
+    <b>${talkScore}</b>
+  `;
 
 
   $("finishModal")
@@ -1515,10 +1382,9 @@ function finishGame() {
 }
 
 
-
-/* =======================================
+/* =========================
    재시작
-======================================= */
+========================= */
 
 $("restartBtn")
 .onclick =
@@ -1533,13 +1399,11 @@ function() {
   usedTypes = [];
 
 
-  $("starText")
-    .textContent =
+  $("starText").textContent =
     0;
 
 
-  $("talkText")
-    .textContent =
+  $("talkText").textContent =
     0;
 
 
@@ -1554,8 +1418,5 @@ function() {
 
 };
 
-
-
-/* 게임 시작 */
 
 renderScenario();
