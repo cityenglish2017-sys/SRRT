@@ -20,12 +20,14 @@ body {
   height: 100%;
   overflow: hidden;
   overscroll-behavior: none;
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     "Apple SD Gothic Neo",
     "Noto Sans KR",
     sans-serif;
+
   background: #dcefff;
 }
 
@@ -43,14 +45,18 @@ button {
 
   grid-template-rows:
     7dvh
-    47dvh
-    46dvh;
+    44dvh
+    49dvh;
 
   overflow: hidden;
 
-  padding-bottom:
-    env(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
 }
+
+
+/* =========================
+   상단
+========================= */
 
 .top-bar {
   min-height: 0;
@@ -59,9 +65,7 @@ button {
   align-items: center;
   justify-content: space-between;
 
-  padding:
-    0
-    1.8vw;
+  padding: 0 1.8vw;
 
   background:
     linear-gradient(
@@ -71,9 +75,7 @@ button {
 
   color: white;
 
-  border-bottom:
-    3px solid
-    #061d32;
+  border-bottom: 3px solid #061d32;
 
   z-index: 50;
 }
@@ -85,11 +87,11 @@ button {
 }
 
 .title-icon {
-  font-size: 2vw;
+  font-size: 2.2vw;
 }
 
 .main-title {
-  font-size: 1.45vw;
+  font-size: 1.8vw;
   line-height: 1;
   font-weight: 1000;
   letter-spacing: .04em;
@@ -97,7 +99,7 @@ button {
 
 .sub-title {
   margin-top: .2vh;
-  font-size: .68vw;
+  font-size: .9vw;
   opacity: .78;
 }
 
@@ -107,25 +109,37 @@ button {
 }
 
 .score-chip {
-  min-width: 5vw;
+  min-width: 5.5vw;
+
   padding:
-    .36vw
-    .62vw;
+    .4vw
+    .7vw;
+
   text-align: center;
+
   border-radius: .7vw;
-  background:
-    rgba(255,255,255,.14);
-  border:
-    1px solid
-    rgba(255,255,255,.25);
-  font-size: .88vw;
+
+  background: rgba(255,255,255,.14);
+
+  border: 1px solid rgba(255,255,255,.25);
+
+  font-size: 1.05vw;
+
   font-weight: 900;
 }
 
+
+/* =========================
+   철도 화면
+========================= */
+
 .rail-world {
   position: relative;
+
   min-height: 0;
+
   overflow: hidden;
+
   background:
     linear-gradient(
       to bottom,
@@ -138,73 +152,93 @@ button {
 
 .sun {
   position: absolute;
+
   right: 9vw;
-  top: 2.5vh;
-  width: 3.1vw;
-  height: 3.1vw;
+  top: 2.3vh;
+
+  width: 3vw;
+  height: 3vw;
+
   border-radius: 50%;
+
   background:
     radial-gradient(
       circle,
       #fff9a0,
       #ffc526
     );
-  box-shadow:
-    0 0 28px #ffe569;
+
+  box-shadow: 0 0 28px #ffe569;
 }
 
 .cloud {
   position: absolute;
+
   height: 1.6vh;
+
   border-radius: 999px;
+
   background: white;
+
   opacity: .86;
 }
 
 .cloud::before,
 .cloud::after {
   content: "";
+
   position: absolute;
+
   bottom: 0;
+
   border-radius: 50%;
+
   background: white;
 }
 
 .cloud::before {
   width: 2.2vw;
   height: 2.2vw;
+
   left: 1vw;
 }
 
 .cloud::after {
   width: 1.7vw;
   height: 1.7vw;
+
   right: 1vw;
 }
 
 .cloud-a {
   width: 7vw;
+
   left: 8vw;
   top: 4vh;
 }
 
 .cloud-b {
   width: 6vw;
+
   left: 61vw;
   top: 5vh;
 }
 
 .mountain {
   position: absolute;
-  bottom: 23vh;
+
+  bottom: 21vh;
+
   width: 29vw;
-  height: 15vh;
+  height: 14vh;
+
   background:
     linear-gradient(
       135deg,
       #6aa064,
       #477c4c
     );
+
   clip-path:
     polygon(
       50% 0,
@@ -219,46 +253,62 @@ button {
 
 .mountain-b {
   left: 15vw;
-  height: 11vh;
+  height: 10vh;
   opacity: .78;
 }
 
 .mountain-c {
   right: -7vw;
-  height: 13vh;
+  height: 12vh;
 }
 
 .map-badge {
   position: absolute;
+
   left: 50%;
-  top: .8vh;
-  transform:
-    translateX(-50%);
+  top: .7vh;
+
+  transform: translateX(-50%);
+
   z-index: 30;
+
   padding:
     .35vw
-    .9vw;
+    1vw;
+
   border-radius: 999px;
+
   background:
     linear-gradient(
       #fffceb,
       #ffe47e
     );
-  border:
-    2px solid
-    #d8a826;
+
+  border: 2px solid #d8a826;
+
   color: #554100;
-  font-size: .88vw;
+
+  font-size: 1.05vw;
+
   font-weight: 1000;
+
   box-shadow:
     0 4px 9px
     rgba(0,0,0,.17);
 }
 
+
+/* =========================
+   역
+========================= */
+
 .station {
   position: absolute;
-  top: 5.5vh;
+
+  top: 5vh;
+
   width: 10.5vw;
+
   z-index: 5;
 }
 
@@ -276,8 +326,11 @@ button {
 
 .station-roof {
   width: 11.5vw;
+
   margin-left: -.5vw;
-  height: .9vh;
+
+  height: .8vh;
+
   background:
     linear-gradient(
       #485d70,
@@ -287,17 +340,26 @@ button {
 
 .station-name {
   width: 6vw;
+
   margin:
-    -.1vh auto .25vh;
-  padding:
-    .15vw;
+    -.1vh
+    auto
+    .25vh;
+
+  padding: .16vw;
+
   background: #195b93;
-  border:
-    2px solid white;
+
+  border: 2px solid white;
+
   color: white;
+
   text-align: center;
-  font-size: .76vw;
+
+  font-size: .85vw;
+
   font-weight: 1000;
+
   box-shadow:
     0 2px 5px
     rgba(0,0,0,.25);
@@ -305,22 +367,30 @@ button {
 
 .station-name small {
   display: block;
-  font-size: .35vw;
+
+  font-size: .4vw;
+
   opacity: .75;
 }
 
 .station-building {
-  height: 3.7vh;
+  height: 3.5vh;
+
   display: flex;
+
   align-items: flex-end;
   justify-content: center;
+
   gap: .7vw;
+
   padding-bottom: .3vh;
+
   background:
     linear-gradient(
       white,
       #dfe9ef
     );
+
   border:
     2px solid
     #6b7e8d;
@@ -328,7 +398,8 @@ button {
 
 .station-door {
   width: 1.1vw;
-  height: 2.3vh;
+  height: 2.1vh;
+
   background:
     linear-gradient(
       #83bad9,
@@ -338,8 +409,10 @@ button {
 
 .station-window {
   width: 1.2vw;
-  height: 1.3vh;
+  height: 1.2vh;
+
   background: #91d4f4;
+
   border:
     1px solid
     #607788;
@@ -347,27 +420,35 @@ button {
 
 .platform {
   width: 13vw;
-  height: 1vh;
+  height: .9vh;
+
   margin-left: -1.25vw;
+
   background:
     repeating-linear-gradient(
       90deg,
-      #5b6167
-      0
-      2vw,
-      #f2d643
-      2vw
-      2.25vw
+      #5b6167 0 2vw,
+      #f2d643 2vw 2.25vw
     );
+
   border-top:
-    2px solid #34383b;
+    2px solid
+    #34383b;
 }
+
+
+/* =========================
+   선로
+========================= */
 
 .rail-track {
   position: absolute;
+
   left: 2vw;
+
   width: 96vw;
-  height: 3.2vh;
+  height: 3vh;
+
   background:
     repeating-linear-gradient(
       90deg,
@@ -375,30 +456,37 @@ button {
       #6b4e32 1.5vw 1.85vw,
       transparent 1.85vw 3vw
     );
+
   z-index: 2;
 }
 
 .track-upper {
-  top: 20.5vh;
+  top: 19vh;
 }
 
 .track-middle {
-  top: 29.5vh;
+  top: 27vh;
 }
 
 .track-lower {
-  top: 38.5vh;
+  top: 35vh;
 }
 
 .rail-track::before {
   content: "";
+
   position: absolute;
+
   inset:
     -.3vh
     -1vw;
-  height: 3.8vh;
+
+  height: 3.6vh;
+
   z-index: -1;
+
   opacity: .42;
+
   background:
     repeating-radial-gradient(
       circle,
@@ -409,77 +497,107 @@ button {
 
 .rail {
   position: absolute;
+
   left: 0;
+
   width: 100%;
+
   height: .34vh;
+
   background:
     linear-gradient(
       #e2e2e2,
       #555e66,
       #252a2f
     );
+
   box-shadow:
     0 1px 2px black;
 }
 
 .rail-top {
-  top: .45vh;
+  top: .4vh;
 }
 
 .rail-bottom {
-  top: 2.35vh;
+  top: 2.2vh;
 }
+
+
+/* =========================
+   터널
+========================= */
 
 .tunnel-area {
   position: absolute;
+
   left: 34vw;
-  top: 14vh;
+  top: 12.5vh;
+
   width: 32vw;
-  height: 13vh;
+  height: 12vh;
+
   z-index: 9;
 }
 
 .tunnel-sign {
   position: absolute;
-  top: -1.3vh;
+
+  top: -1.2vh;
+
   width: 100%;
+
   text-align: center;
+
   color: #222;
-  font-size: .65vw;
+
+  font-size: .75vw;
+
   font-weight: 1000;
 }
 
 .tunnel-sign span {
   display: inline-block;
+
   margin-right: .35vw;
+
   padding:
     .05vw
     .25vw;
+
   background: white;
+
   border:
-    1px solid #333;
+    1px solid
+    #333;
 }
 
 .tunnel-shell {
   position: absolute;
+
   left: 6vw;
   top: .8vh;
+
   width: 20vw;
-  height: 11vh;
+  height: 10vh;
+
   border:
     .75vw solid
     #656b70;
+
   border-radius:
     10vw
     10vw
     .7vw
     .7vw;
+
   background:
     repeating-linear-gradient(
       90deg,
       #74797d 0 1.8vw,
       #888d90 1.8vw 2vw
     );
+
   box-shadow:
     0 5px 10px
     rgba(0,0,0,.3);
@@ -487,16 +605,21 @@ button {
 
 .tunnel-opening {
   position: absolute;
+
   left: 2.7vw;
   right: 2.7vw;
-  top: 1.1vh;
+
+  top: 1vh;
   bottom: 0;
+
   border-radius:
     7vw
     7vw
     0
     0;
+
   overflow: hidden;
+
   background:
     radial-gradient(
       ellipse,
@@ -507,54 +630,81 @@ button {
 
 .tunnel-inside-rail {
   position: absolute;
+
   left: 0;
   right: 0;
-  bottom: 1.5vh;
+
+  bottom: 1.4vh;
+
   height: .35vh;
+
   background: #a3a3a3;
 }
 
+
+/* =========================
+   신호
+========================= */
+
 .rail-signal {
   position: absolute;
+
   width: 3.4vw;
+
   text-align: center;
+
   z-index: 22;
 }
 
 .signal-a {
   left: 25vw;
-  top: 14.5vh;
+  top: 12.8vh;
 }
 
 .signal-b {
   right: 23vw;
-  top: 28.5vh;
+  top: 25.3vh;
 }
 
 .signal-label {
   display: inline-block;
+
   min-width: 1.5vw;
+
   margin-bottom: .1vh;
+
   background: white;
+
   border:
     1px solid #222;
-  font-size: .58vw;
+
+  font-size: .65vw;
+
   font-weight: 1000;
 }
 
 .signal-head {
   width: 2.15vw;
-  height: 6.1vh;
+  height: 5.8vh;
+
   margin: auto;
+
   padding:
     .25vh
     .25vw;
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: space-around;
+
   border:
-    2px solid #070909;
+    2px solid
+    #070909;
+
   border-radius: .55vw;
+
   background:
     linear-gradient(
       90deg,
@@ -567,112 +717,154 @@ button {
 .signal-light {
   width: .9vw;
   height: .9vw;
+
   margin: auto;
+
   border-radius: 50%;
+
   background: #292929;
+
   border:
     1px solid #050505;
 }
 
 .rail-signal.red .red-light {
   background: #ff3232;
+
   box-shadow:
     0 0 10px #ff3232;
 }
 
 .rail-signal.yellow .yellow-light {
   background: #ffd033;
+
   box-shadow:
     0 0 10px #ffd033;
 }
 
 .rail-signal.green .green-light {
   background: #32ee78;
+
   box-shadow:
     0 0 10px #32ee78;
 }
 
 .signal-pole {
   width: .3vw;
-  height: 4.3vh;
+  height: 4vh;
+
   margin: auto;
+
   background:
     repeating-linear-gradient(
       180deg,
-      #222 0 .55vh,
-      white .55vh 1.1vh
+      #222 0 .5vh,
+      white .5vh 1vh
     );
 }
 
 .signal-base {
   width: 1.6vw;
   height: .5vh;
+
   margin: auto;
+
   background: #444;
 }
 
+
+/* =========================
+   분기기
+========================= */
+
 .branch-track {
   position: absolute;
+
   left: 56vw;
-  top: 31.5vh;
+  top: 29vh;
+
   width: 18vw;
   height: .5vh;
+
   background: #646a6f;
+
   transform-origin: left center;
+
   z-index: 3;
 }
 
 .branch-up {
-  transform:
-    rotate(-17deg);
+  transform: rotate(-17deg);
 }
 
 .branch-down {
-  transform:
-    rotate(17deg);
+  transform: rotate(17deg);
 }
 
 .switch-area {
   position: absolute;
+
   left: 57vw;
-  top: 34vh;
+  top: 31vh;
+
   z-index: 25;
 }
 
 .switch-sign {
   padding: .1vw;
+
   background: #1f2932;
+
   color: white;
+
   text-align: center;
-  font-size: .48vw;
+
+  font-size: .55vw;
+
   font-weight: 1000;
 }
 
 #switchBtn {
   border: none;
+
   padding:
     .34vw
     .55vw;
+
   border-radius:
     0 0 .5vw .5vw;
+
   background:
     linear-gradient(
       #ffe56c,
       #eab529
     );
+
   box-shadow:
-    0 3px 0 #947215;
-  font-size: .68vw;
+    0 3px 0
+    #947215;
+
+  font-size: .75vw;
+
   font-weight: 1000;
 }
 
+
+/* =========================
+   SRT
+========================= */
+
 .train {
   position: absolute;
+
   display: flex;
+
   z-index: 18;
+
   transition:
     left 1.4s ease,
     top .7s ease;
+
   filter:
     drop-shadow(
       0 .35vh .35vh
@@ -682,20 +874,23 @@ button {
 
 .srt-train {
   left: 4vw;
-  top: 18.3vh;
-  height: 4.8vh;
+  top: 16.8vh;
+  height: 4.6vh;
 }
 
 .srt-nose {
   position: relative;
+
   width: 4.6vw;
-  height: 4.8vh;
+  height: 4.6vh;
+
   background:
     linear-gradient(
       #fcfcfc 0 54%,
       #6a55bb 55%,
       #4b3b97 100%
     );
+
   clip-path:
     polygon(
       100% 0,
@@ -709,13 +904,17 @@ button {
 
 .srt-front-window {
   position: absolute;
+
   left: 1.45vw;
   top: .55vh;
+
   width: 1.8vw;
-  height: 1.15vh;
+  height: 1.1vh;
+
   border-radius: .25vw;
-  transform:
-    skew(-20deg);
+
+  transform: skew(-20deg);
+
   background:
     linear-gradient(
       #7ed5ff,
@@ -725,22 +924,30 @@ button {
 
 .srt-headlight {
   position: absolute;
+
   left: .7vw;
   bottom: .55vh;
+
   width: .42vw;
   height: .42vw;
+
   border-radius: 50%;
+
   background: #fff9a9;
+
   box-shadow:
     0 0 8px white;
 }
 
 .srt-car {
   position: relative;
+
   width: 7.5vw;
-  height: 4.8vh;
+  height: 4.6vh;
+
   border-left:
     1px solid #aaa;
+
   background:
     linear-gradient(
       #fafafa 0 56%,
@@ -751,24 +958,62 @@ button {
 
 .train-logo {
   position: absolute;
+
   left: .5vw;
-  bottom: .45vh;
+  bottom: .4vh;
+
   color: white;
-  font-size: .55vw;
+
+  font-size: .6vw;
+
   font-weight: 1000;
 }
 
+.train-windows {
+  position: absolute;
+
+  top: .65vh;
+  left: .6vw;
+
+  display: flex;
+
+  gap: .25vw;
+}
+
+.train-windows span {
+  width: 1vw;
+  height: .85vh;
+
+  border-radius: .15vw;
+
+  border:
+    1px solid #365365;
+
+  background:
+    linear-gradient(
+      #8bd9ff,
+      #386c8a
+    );
+}
+
+
+/* =========================
+   무궁화호
+========================= */
+
 .mugunghwa-train {
   left: 77vw;
-  top: 36.3vh;
-  height: 4.8vh;
+  top: 32.8vh;
+  height: 4.6vh;
   flex-direction: row-reverse;
 }
 
 .mug-engine {
   position: relative;
+
   width: 4.3vw;
-  height: 4.8vh;
+  height: 4.6vh;
+
   background:
     linear-gradient(
       #eeeeee 0 44%,
@@ -776,6 +1021,7 @@ button {
       #ba3039 74%,
       #3a4c71 75%
     );
+
   clip-path:
     polygon(
       0 0,
@@ -788,44 +1034,59 @@ button {
 
 .mug-front-window {
   position: absolute;
+
   right: .6vw;
   top: .55vh;
+
   width: 1.4vw;
-  height: 1.15vh;
+  height: 1.1vh;
+
   background:
     linear-gradient(
       #8ed4ef,
       #355d76
     );
+
   border:
     1px solid #454545;
 }
 
 .mug-headlight {
   position: absolute;
+
   right: .3vw;
-  bottom: .8vh;
+  bottom: .75vh;
+
   width: .38vw;
   height: .38vw;
+
   border-radius: 50%;
+
   background: #fff4a3;
+
   box-shadow:
     0 0 7px white;
 }
 
 .mug-blue-line {
   position: absolute;
+
   left: 0;
   right: 0;
+
   bottom: .25vh;
-  height: .52vh;
+
+  height: .5vh;
+
   background: #283f70;
 }
 
 .mug-car {
   position: relative;
+
   width: 7vw;
-  height: 4.8vh;
+  height: 4.6vh;
+
   background:
     linear-gradient(
       #eeeeee 0 47%,
@@ -834,76 +1095,81 @@ button {
       #f2f2f2 63%,
       #d8d8d8 100%
     );
+
   border-right:
     1px solid #aaa;
 }
 
 .mug-logo {
   position: absolute;
+
   left: .35vw;
-  bottom: .35vh;
+  bottom: .3vh;
+
   color: #374d75;
-  font-size: .45vw;
+
+  font-size: .5vw;
+
   font-weight: 1000;
 }
 
-.train-windows {
-  position: absolute;
-  top: .7vh;
-  left: .6vw;
-  display: flex;
-  gap: .25vw;
-}
 
-.train-windows span {
-  width: 1vw;
-  height: .88vh;
-  border-radius: .15vw;
-  border:
-    1px solid #365365;
-  background:
-    linear-gradient(
-      #8bd9ff,
-      #386c8a
-    );
-}
+/* =========================
+   관제 조작판
+========================= */
 
 .rail-control-panel {
   position: absolute;
+
   left: 50%;
-  bottom: .35vh;
+  bottom: .3vh;
+
   width: 74vw;
-  transform:
-    translateX(-50%);
+
+  transform: translateX(-50%);
+
   display: grid;
+
   grid-template-columns:
     repeat(4, 1fr);
+
   gap: .55vw;
+
   padding:
-    .38vw
-    .65vw;
+    .35vw
+    .6vw;
+
   border:
     2px solid #1a2935;
+
   border-radius: .8vw;
+
   z-index: 40;
+
   background:
     linear-gradient(
       #405568,
       #253746
     );
+
   box-shadow:
     0 5px 10px
     rgba(0,0,0,.28);
 }
 
 .rail-button {
-  min-height: 3.3vh;
+  min-height: 3.1vh;
+
   border:
     1px solid
     rgba(255,255,255,.35);
+
   border-radius: .6vw;
-  font-size: .73vw;
+
+  font-size: .8vw;
+
   font-weight: 1000;
+
   box-shadow:
     inset
     0 1px 3px
@@ -936,19 +1202,21 @@ button {
     );
 }
 
+
 /* =========================
    아래 화용언어 영역
 ========================= */
 
 .language-zone {
   min-height: 0;
+
   overflow: hidden;
 
   display: grid;
 
   grid-template-columns:
-    36%
-    64%;
+    34%
+    66%;
 
   background: #eef3f8;
 
@@ -962,12 +1230,14 @@ button {
     );
 }
 
+
 /* =========================
    기관사 무전
 ========================= */
 
 .radio-panel {
   min-height: 0;
+
   overflow: hidden;
 
   padding:
@@ -981,18 +1251,20 @@ button {
 }
 
 .panel-title {
-  margin-bottom: .55vh;
+  margin-bottom: .65vh;
 
   color: #1b466e;
 
-  font-size: 1.45vw;
+  font-size: 2.2vw;
+
+  line-height: 1;
 
   font-weight: 1000;
 }
 
 .dialogue-list {
   max-height:
-    calc(46dvh - 4.5vh);
+    calc(49dvh - 5vh);
 
   overflow-y: auto;
 
@@ -1000,32 +1272,32 @@ button {
 
   flex-direction: column;
 
-  gap: .55vh;
+  gap: .7vh;
 }
 
 .dialogue-row {
   display: grid;
 
   grid-template-columns:
-    3.6vw
+    4.5vw
     1fr;
 
-  gap: .75vw;
+  gap: .9vw;
 
   align-items: start;
 
   padding:
-    .6vh
-    .75vw;
+    .75vh
+    .8vw;
 
-  border-radius: .8vw;
+  border-radius: 1vw;
 
   background: #f3f7fa;
 }
 
 .dialogue-icon {
-  width: 3.2vw;
-  height: 3.2vw;
+  width: 4vw;
+  height: 4vw;
 
   display: flex;
 
@@ -1036,24 +1308,27 @@ button {
 
   background: #dcecff;
 
-  font-size: 1.55vw;
+  font-size: 2vw;
 }
 
 .dialogue-name {
-  font-size: 1.15vw;
+  font-size: 1.75vw;
+
+  line-height: 1.05;
 
   font-weight: 1000;
 }
 
 .dialogue-text {
-  margin-top: .1vh;
+  margin-top: .2vh;
 
-  font-size: 1.3vw;
+  font-size: 1.95vw;
 
-  line-height: 1.25;
+  line-height: 1.23;
 
-  font-weight: 750;
+  font-weight: 800;
 }
+
 
 /* =========================
    오른쪽 미션
@@ -1061,6 +1336,7 @@ button {
 
 .mission-panel {
   min-height: 0;
+
   overflow: hidden;
 
   display: grid;
@@ -1070,7 +1346,7 @@ button {
     minmax(0, 1fr)
     auto;
 
-  gap: .55vh;
+  gap: .65vh;
 
   padding:
     .7vh
@@ -1085,7 +1361,7 @@ button {
     auto
     1fr;
 
-  gap: .8vw;
+  gap: .9vw;
 
   align-items: center;
 }
@@ -1094,8 +1370,8 @@ button {
   white-space: nowrap;
 
   padding:
-    .22vw
-    .7vw;
+    .28vw
+    .75vw;
 
   border-radius: 999px;
 
@@ -1103,7 +1379,9 @@ button {
 
   color: white;
 
-  font-size: 1.02vw;
+  font-size: 1.4vw;
+
+  line-height: 1;
 
   font-weight: 1000;
 }
@@ -1112,22 +1390,23 @@ button {
   min-width: 0;
 
   padding:
-    .55vw
-    .8vw;
+    .65vw
+    .85vw;
 
   border:
-    2px solid #c5d9eb;
+    3px solid #c5d9eb;
 
-  border-radius: .75vw;
+  border-radius: .9vw;
 
   background: white;
 
-  font-size: 1.5vw;
+  font-size: 2.15vw;
 
-  line-height: 1.22;
+  line-height: 1.18;
 
   font-weight: 1000;
 }
+
 
 /* =========================
    선택지
@@ -1135,6 +1414,7 @@ button {
 
 .choice-area {
   min-height: 0;
+
   overflow-y: auto;
 
   display: grid;
@@ -1145,28 +1425,28 @@ button {
 
   align-content: start;
 
-  gap: .5vw;
+  gap: .65vw;
 }
 
 .choice {
-  min-height: 4.5vh;
+  min-height: 6vh;
 
   padding:
-    .55vw
-    .7vw;
+    .75vw
+    .9vw;
 
   border:
-    2px solid #c3d0dd;
+    3px solid #c3d0dd;
 
-  border-radius: .75vw;
+  border-radius: .9vw;
 
   background: white;
 
   text-align: left;
 
-  font-size: 1.28vw;
+  font-size: 1.85vw;
 
-  line-height: 1.22;
+  line-height: 1.2;
 
   font-weight: 900;
 }
@@ -1175,18 +1455,19 @@ button {
   background: #daf7e4;
 
   border:
-    3px solid #2eaf68;
+    4px solid #2eaf68;
 }
 
 .choice.wrong {
   background: #ffe1e1;
 
   border:
-    3px solid #df4e4e;
+    4px solid #df4e4e;
 }
 
+
 /* =========================
-   직접 말하기 + 다음
+   하단 고정 영역
 ========================= */
 
 .mission-footer {
@@ -1196,16 +1477,16 @@ button {
     1fr
     1fr;
 
-  gap: .7vw;
+  gap: .85vw;
 
   min-height: 0;
 }
 
 .speech-box,
 .next-box {
-  min-height: 6vh;
+  min-height: 7.4vh;
 
-  border-radius: .8vw;
+  border-radius: 1vw;
 
   display: grid;
 
@@ -1215,25 +1496,25 @@ button {
 
   align-items: center;
 
-  gap: .7vw;
+  gap: .8vw;
 
   padding:
-    .55vw
-    .75vw;
+    .7vw
+    .9vw;
 }
 
 .speech-box {
   background: #fff6cf;
 
   border:
-    2px solid #e5c85b;
+    3px solid #e5c85b;
 }
 
 .next-box {
   background: #e9f2ff;
 
   border:
-    2px solid #b5cee9;
+    3px solid #b5cee9;
 }
 
 .speech-copy {
@@ -1243,38 +1524,47 @@ button {
 
   min-width: 0;
 
-  font-size: 1.12vw;
+  font-size: 1.55vw;
 
-  line-height: 1.2;
+  line-height: 1.18;
 }
 
 .speech-copy b {
-  font-size: 1.22vw;
+  font-size: 1.75vw;
+
+  font-weight: 1000;
 }
 
 .speech-copy span {
-  margin-top: .12vh;
+  margin-top: .15vh;
 
-  font-size: 1.15vw;
+  font-size: 1.55vw;
 
-  line-height: 1.22;
+  line-height: 1.18;
 
-  font-weight: 750;
+  font-weight: 800;
 }
+
+
+/* =========================
+   버튼
+========================= */
 
 #speakDoneBtn,
 #nextBtn {
   border: none;
 
-  border-radius: .7vw;
+  border-radius: .9vw;
 
-  min-height: 4.4vh;
+  min-height: 5.5vh;
 
   padding:
-    .55vw
-    .85vw;
+    .7vw
+    1vw;
 
-  font-size: 1.12vw;
+  font-size: 1.65vw;
+
+  line-height: 1;
 
   font-weight: 1000;
 
@@ -1309,7 +1599,7 @@ button {
 #feedback {
   min-width: 0;
 
-  font-size: 1.08vw;
+  font-size: 1.5vw;
 
   line-height: 1.2;
 
@@ -1318,17 +1608,23 @@ button {
   color: #49647c;
 }
 
+
 /* =========================
    종료
 ========================= */
 
 .finish-modal {
   position: fixed;
+
   inset: 0;
+
   z-index: 100;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   background:
     rgba(7,20,36,.78);
 }
@@ -1339,9 +1635,13 @@ button {
 
 .finish-card {
   width: 38vw;
+
   padding: 1.8vw;
+
   border-radius: 1.6vw;
+
   background: white;
+
   text-align: center;
 }
 
@@ -1350,20 +1650,29 @@ button {
 }
 
 .finish-card h1 {
-  font-size: 1.6vw;
+  font-size: 2vw;
 }
 
 .finish-card button {
   margin-top: 1vw;
+
   border: none;
+
   border-radius: .7vw;
+
   padding:
     .7vw
     1.1vw;
+
   background: #2872cc;
+
   color: white;
+
+  font-size: 1.4vw;
+
   font-weight: 1000;
 }
+
 
 /* =========================
    iPad Air 가로
@@ -1379,54 +1688,54 @@ and
   #app {
     grid-template-rows:
       7dvh
-      46dvh
-      47dvh;
+      43dvh
+      50dvh;
   }
 
   .panel-title {
-    font-size: 1.5vw;
+    font-size: 2.25vw;
   }
 
   .dialogue-name {
-    font-size: 1.18vw;
+    font-size: 1.8vw;
   }
 
   .dialogue-text {
-    font-size: 1.32vw;
+    font-size: 2vw;
   }
 
   .mission-tag {
-    font-size: 1.05vw;
+    font-size: 1.45vw;
   }
 
   .mission-question {
-    font-size: 1.5vw;
+    font-size: 2.2vw;
   }
 
   .choice {
-    font-size: 1.28vw;
-    min-height: 4.35vh;
+    font-size: 1.9vw;
+    min-height: 6vh;
   }
 
   .speech-copy {
-    font-size: 1.1vw;
+    font-size: 1.6vw;
   }
 
   .speech-copy b {
-    font-size: 1.2vw;
+    font-size: 1.8vw;
   }
 
   .speech-copy span {
-    font-size: 1.14vw;
+    font-size: 1.6vw;
   }
 
   #feedback {
-    font-size: 1.05vw;
+    font-size: 1.55vw;
   }
 
   #speakDoneBtn,
   #nextBtn {
-    font-size: 1.1vw;
-    min-height: 4.3vh;
+    font-size: 1.7vw;
+    min-height: 5.6vh;
   }
 }
