@@ -24,8 +24,7 @@
 
   box-sizing: border-box;
 
-  -webkit-tap-highlight-color:
-  transparent;
+  -webkit-tap-highlight-color: transparent;
 
   user-select: none;
 
@@ -42,15 +41,20 @@ body {
 
   height: 100%;
 
+  min-height: 100%;
+
   overflow: hidden;
 
-  font-family:
+  overscroll-behavior: none;
 
-  -apple-system,
-  BlinkMacSystemFont,
-  "Apple SD Gothic Neo",
-  "Noto Sans KR",
-  sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    sans-serif;
+
+  background: #dff0ff;
 
 }
 
@@ -66,19 +70,29 @@ button {
 
 
 
+/* =======================================
+   전체 화면
+======================================= */
+
 #app {
 
   width: 100vw;
 
   height: 100vh;
 
+  height: 100dvh;
+
   display: grid;
 
   grid-template-rows:
+    8dvh
+    54dvh
+    38dvh;
 
-  9vh
-  58vh
-  33vh;
+  overflow: hidden;
+
+  padding-bottom:
+    env(safe-area-inset-bottom);
 
 }
 
@@ -94,35 +108,30 @@ button {
 
   align-items: center;
 
-  justify-content:
-  space-between;
+  justify-content: space-between;
 
   padding:
-
-  0
-  2vw;
+    0
+    2vw;
 
   color: white;
 
   background:
-
-  linear-gradient(
-    180deg,
-    #184d80,
-    #102f50
-  );
+    linear-gradient(
+      180deg,
+      #184d80,
+      #102f50
+    );
 
   border-bottom:
-
-  4px solid
-  #071f36;
+    3px solid
+    #071f36;
 
   box-shadow:
-
-  0
-  4px
-  12px
-  rgba(0,0,0,.25);
+    0
+    4px
+    12px
+    rgba(0,0,0,.25);
 
   z-index: 50;
 
@@ -144,7 +153,7 @@ button {
 
 .title-signal {
 
-  font-size: 2.5vw;
+  font-size: 2.2vw;
 
 }
 
@@ -154,10 +163,9 @@ button {
 
   font-weight: 1000;
 
-  font-size: 1.75vw;
+  font-size: 1.65vw;
 
-  letter-spacing:
-  .07em;
+  letter-spacing: .07em;
 
 }
 
@@ -165,7 +173,7 @@ button {
 
 .sub-title {
 
-  font-size: .9vw;
+  font-size: .8vw;
 
   opacity: .8;
 
@@ -179,7 +187,7 @@ button {
 
   display: flex;
 
-  gap: .8vw;
+  gap: .7vw;
 
 }
 
@@ -187,32 +195,24 @@ button {
 
 .score-item {
 
-  min-width: 6vw;
+  min-width: 5.7vw;
 
   padding:
+    .45vw
+    .75vw;
 
-  .55vw
-  .8vw;
-
-  border-radius:
-  .9vw;
+  border-radius: .8vw;
 
   background:
-
-  linear-gradient(
-    180deg,
-    rgba(255,255,255,.2),
-    rgba(255,255,255,.07)
-  );
+    rgba(255,255,255,.14);
 
   border:
-
-  1px solid
-  rgba(255,255,255,.35);
+    1px solid
+    rgba(255,255,255,.3);
 
   text-align: center;
 
-  font-size: 1.1vw;
+  font-size: 1vw;
 
   font-weight: 900;
 
@@ -230,25 +230,20 @@ button {
 
   overflow: hidden;
 
+  min-height: 0;
+
   background:
-
-  linear-gradient(
-
-    to bottom,
-
-    var(--sky1)
-    0%,
-
-    var(--sky2)
-    39%,
-
-    #8bc46d
-    40%,
-
-    #6fa654
-    100%
-
-  );
+    linear-gradient(
+      to bottom,
+      var(--sky1)
+      0%,
+      var(--sky2)
+      39%,
+      #8bc46d
+      40%,
+      #6fa654
+      100%
+    );
 
 }
 
@@ -264,26 +259,24 @@ button {
 
   top: 3vh;
 
-  width: 4vw;
+  width: 3.5vw;
 
-  height: 4vw;
+  height: 3.5vw;
 
   border-radius: 50%;
 
   background:
-
-  radial-gradient(
-    circle,
-    #fff9a2,
-    #ffc932
-  );
+    radial-gradient(
+      circle,
+      #fff9a2,
+      #ffc932
+    );
 
   box-shadow:
-
-  0
-  0
-  35px
-  #ffe66a;
+    0
+    0
+    30px
+    #ffe66a;
 
 }
 
@@ -295,7 +288,7 @@ button {
 
   position: absolute;
 
-  height: 2.4vh;
+  height: 2.1vh;
 
   border-radius: 999px;
 
@@ -324,9 +317,9 @@ button {
 
 .cloud::before {
 
-  width: 3vw;
+  width: 2.6vw;
 
-  height: 3vw;
+  height: 2.6vw;
 
   left: 1vw;
 
@@ -338,9 +331,9 @@ button {
 
 .cloud::after {
 
-  width: 2.2vw;
+  width: 2vw;
 
-  height: 2.2vw;
+  height: 2vw;
 
   right: 1vw;
 
@@ -352,11 +345,11 @@ button {
 
 .cloud-a {
 
-  width: 9vw;
+  width: 8vw;
 
   left: 8vw;
 
-  top: 5vh;
+  top: 4vh;
 
 }
 
@@ -368,7 +361,7 @@ button {
 
   left: 58vw;
 
-  top: 6vh;
+  top: 5vh;
 
 }
 
@@ -380,7 +373,7 @@ button {
 
   right: 4vw;
 
-  top: 12vh;
+  top: 11vh;
 
 }
 
@@ -392,27 +385,25 @@ button {
 
   position: absolute;
 
-  bottom: 28vh;
+  bottom: 26vh;
 
   width: 30vw;
 
-  height: 18vh;
+  height: 17vh;
 
   background:
-
-  linear-gradient(
-    135deg,
-    #6c9f68,
-    #4f8152
-  );
+    linear-gradient(
+      135deg,
+      #6c9f68,
+      #4f8152
+    );
 
   clip-path:
-
-  polygon(
-    50% 0,
-    100% 100%,
-    0 100%
-  );
+    polygon(
+      50% 0,
+      100% 100%,
+      0 100%
+    );
 
 }
 
@@ -430,7 +421,7 @@ button {
 
   left: 15vw;
 
-  height: 14vh;
+  height: 13vh;
 
   opacity: .8;
 
@@ -442,7 +433,7 @@ button {
 
   right: -6vw;
 
-  height: 15vh;
+  height: 14vh;
 
 }
 
@@ -470,20 +461,18 @@ button {
 
   position: absolute;
 
-  width: 3vw;
+  width: 2.7vw;
 
-  height: 3vw;
+  height: 2.7vw;
 
-  border-radius:
-  50%;
+  border-radius: 50%;
 
   background:
-
-  radial-gradient(
-    circle at 35% 30%,
-    #75c85c,
-    #33843f
-  );
+    radial-gradient(
+      circle at 35% 30%,
+      #75c85c,
+      #33843f
+    );
 
 }
 
@@ -493,16 +482,15 @@ button {
 
   position: absolute;
 
-  width: .5vw;
+  width: .45vw;
 
-  height: 4vh;
+  height: 3.5vh;
 
-  left: 1.25vw;
+  left: 1.15vw;
 
-  top: 2.4vw;
+  top: 2.3vw;
 
-  background:
-  #734924;
+  background: #734924;
 
 }
 
@@ -512,7 +500,7 @@ button {
 
   left: 18vw;
 
-  top: 16vh;
+  top: 15vh;
 
 }
 
@@ -522,7 +510,7 @@ button {
 
   right: 17vw;
 
-  top: 18vh;
+  top: 17vh;
 
 }
 
@@ -532,7 +520,7 @@ button {
 
   right: 4vw;
 
-  top: 20vh;
+  top: 19vh;
 
 }
 
@@ -548,44 +536,38 @@ button {
 
   left: 50%;
 
-  top: 1.3vh;
+  top: 1vh;
 
-  transform:
-  translateX(-50%);
+  transform: translateX(-50%);
 
   padding:
+    .45vw
+    1.15vw;
 
-  .55vw
-  1.3vw;
-
-  border-radius:
-  999px;
+  border-radius: 999px;
 
   background:
-
-  linear-gradient(
-    180deg,
-    #fffcec,
-    #ffe487
-  );
+    linear-gradient(
+      180deg,
+      #fffcec,
+      #ffe487
+    );
 
   border:
+    3px solid
+    #dba822;
 
-  3px solid
-  #dba822;
-
-  font-size: 1.15vw;
+  font-size: 1.05vw;
 
   font-weight: 1000;
 
   color: #513d00;
 
   box-shadow:
-
-  0
-  5px
-  12px
-  rgba(0,0,0,.18);
+    0
+    5px
+    12px
+    rgba(0,0,0,.18);
 
   z-index: 25;
 
@@ -601,9 +583,9 @@ button {
 
   position: absolute;
 
-  width: 12vw;
+  width: 11vw;
 
-  top: 8vh;
+  top: 6.5vh;
 
   z-index: 5;
 
@@ -621,7 +603,7 @@ button {
 
 .station-daejeon {
 
-  left: 44vw;
+  left: 44.5vw;
 
 }
 
@@ -637,25 +619,23 @@ button {
 
 .station-roof {
 
-  height: 1.3vh;
+  height: 1.1vh;
 
-  width: 13vw;
+  width: 12vw;
 
   margin-left: -.5vw;
 
   background:
-
-  linear-gradient(
-    #445970,
-    #24364a
-  );
+    linear-gradient(
+      #445970,
+      #24364a
+    );
 
   border-radius:
-
-  .5vw
-  .5vw
-  0
-  0;
+    .5vw
+    .5vw
+    0
+    0;
 
 }
 
@@ -663,39 +643,34 @@ button {
 
 .station-name {
 
-  width: 7vw;
+  width: 6.5vw;
 
   margin:
+    -.2vh
+    auto
+    .3vh;
 
-  -.2vh
-  auto
-  .4vh;
-
-  background:
-  #195990;
+  background: #195990;
 
   color: white;
 
-  font-size: 1vw;
+  font-size: .9vw;
 
   font-weight: 1000;
 
   text-align: center;
 
-  padding:
-  .25vw;
+  padding: .2vw;
 
   border:
-
-  3px solid
-  white;
+    2px solid
+    white;
 
   box-shadow:
-
-  0
-  2px
-  6px
-  rgba(0,0,0,.3);
+    0
+    2px
+    6px
+    rgba(0,0,0,.3);
 
 }
 
@@ -705,7 +680,7 @@ button {
 
   display: block;
 
-  font-size: .48vw;
+  font-size: .42vw;
 
   font-weight: 600;
 
@@ -717,19 +692,17 @@ button {
 
 .station-building {
 
-  height: 5vh;
+  height: 4.3vh;
 
   background:
-
-  linear-gradient(
-    #fefefe,
-    #dce6ed
-  );
+    linear-gradient(
+      #fefefe,
+      #dce6ed
+    );
 
   border:
-
-  3px solid
-  #6d7f8f;
+    3px solid
+    #6d7f8f;
 
   display: flex;
 
@@ -737,9 +710,9 @@ button {
 
   justify-content: center;
 
-  gap: 1vw;
+  gap: .8vw;
 
-  padding-bottom: .4vh;
+  padding-bottom: .35vh;
 
 }
 
@@ -747,16 +720,15 @@ button {
 
 .station-door {
 
-  width: 1.4vw;
+  width: 1.2vw;
 
-  height: 3vh;
+  height: 2.6vh;
 
   background:
-
-  linear-gradient(
-    #7da7c8,
-    #3f6b8a
-  );
+    linear-gradient(
+      #7da7c8,
+      #3f6b8a
+    );
 
 }
 
@@ -764,17 +736,15 @@ button {
 
 .station-window {
 
-  width: 1.5vw;
+  width: 1.4vw;
 
-  height: 1.7vh;
+  height: 1.5vh;
 
-  background:
-  #91d2f4;
+  background: #91d2f4;
 
   border:
-
-  2px solid
-  #667b8b;
+    2px solid
+    #667b8b;
 
 }
 
@@ -782,39 +752,33 @@ button {
 
 .platform {
 
-  width: 15vw;
+  width: 14vw;
 
   margin-left: -1.5vw;
 
-  height: 1.5vh;
+  height: 1.2vh;
 
   background:
-
-  repeating-linear-gradient(
-
-    90deg,
-
-    #5d6268
-    0
-    2vw,
-
-    #f3d54a
-    2vw
-    2.3vw
-
-  );
+    repeating-linear-gradient(
+      90deg,
+      #5d6268
+      0
+      2vw,
+      #f3d54a
+      2vw
+      2.3vw
+    );
 
   border-top:
-
-  3px solid
-  #34383c;
+    3px solid
+    #34383c;
 
 }
 
 
 
 /* =======================================
-   철도 선로
+   선로
 ======================================= */
 
 .rail-track {
@@ -825,27 +789,21 @@ button {
 
   width: 96vw;
 
-  height: 4vh;
+  height: 3.6vh;
 
   background:
-
-  repeating-linear-gradient(
-
-    90deg,
-
-    transparent
-    0
-    1.5vw,
-
-    #674c31
-    1.5vw
-    1.9vw,
-
-    transparent
-    1.9vw
-    3vw
-
-  );
+    repeating-linear-gradient(
+      90deg,
+      transparent
+      0
+      1.5vw,
+      #674c31
+      1.5vw
+      1.9vw,
+      transparent
+      1.9vw
+      3vw
+    );
 
   z-index: 2;
 
@@ -855,7 +813,7 @@ button {
 
 .track-upper {
 
-  top: 25vh;
+  top: 23vh;
 
 }
 
@@ -863,7 +821,7 @@ button {
 
 .track-middle {
 
-  top: 36vh;
+  top: 33vh;
 
 }
 
@@ -871,7 +829,7 @@ button {
 
 .track-lower {
 
-  top: 47vh;
+  top: 43vh;
 
 }
 
@@ -885,22 +843,20 @@ button {
 
   width: 100%;
 
-  height: .45vh;
+  height: .4vh;
 
   background:
-
-  linear-gradient(
-    #d8d9dc,
-    #555d65,
-    #20262c
-  );
+    linear-gradient(
+      #d8d9dc,
+      #555d65,
+      #20262c
+    );
 
   box-shadow:
-
-  0
-  1px
-  2px
-  black;
+    0
+    1px
+    2px
+    black;
 
 }
 
@@ -908,7 +864,7 @@ button {
 
 .rail-one {
 
-  top: .5vh;
+  top: .45vh;
 
 }
 
@@ -916,13 +872,11 @@ button {
 
 .rail-two {
 
-  top: 2.9vh;
+  top: 2.6vh;
 
 }
 
 
-
-/* 자갈 */
 
 .rail-track::before {
 
@@ -936,25 +890,20 @@ button {
 
   right: -1vw;
 
-  height: 4.7vh;
+  height: 4.2vh;
 
   background:
+    repeating-radial-gradient(
+      circle,
+      #73777b
+      0
+      2px,
+      #999d9f
+      2px
+      4px
+    );
 
-  repeating-radial-gradient(
-
-    circle,
-
-    #73777b
-    0
-    2px,
-
-    #999d9f
-    2px
-    4px
-
-  );
-
-  opacity: .45;
+  opacity: .4;
 
   z-index: -1;
 
@@ -972,11 +921,11 @@ button {
 
   left: 33vw;
 
-  top: 18vh;
+  top: 16vh;
 
   width: 34vw;
 
-  height: 17vh;
+  height: 15vh;
 
   z-index: 10;
 
@@ -988,13 +937,13 @@ button {
 
   position: absolute;
 
-  top: -2vh;
+  top: -1.5vh;
 
   width: 100%;
 
   text-align: center;
 
-  font-size: .85vw;
+  font-size: .75vw;
 
   font-weight: 1000;
 
@@ -1008,20 +957,17 @@ button {
 
   display: inline-block;
 
-  background:
-  #fff;
+  background: white;
 
   border:
+    2px solid
+    #333;
 
-  2px solid
-  #333;
-
-  margin-right: .5vw;
+  margin-right: .4vw;
 
   padding:
-
-  .1vw
-  .35vw;
+    .08vw
+    .3vw;
 
 }
 
@@ -1037,48 +983,40 @@ button {
 
   width: 20vw;
 
-  height: 14vh;
+  height: 12.5vh;
 
   background:
-
-  repeating-linear-gradient(
-
-    90deg,
-
-    #73777a
-    0
-    2vw,
-
-    #858a8e
-    2vw
-    2.2vw
-
-  );
+    repeating-linear-gradient(
+      90deg,
+      #73777a
+      0
+      2vw,
+      #858a8e
+      2vw
+      2.2vw
+    );
 
   border:
-
-  1vw solid
-  #64696d;
+    .9vw solid
+    #64696d;
 
   border-radius:
-
-  10vw
-  10vw
-  1vw
-  1vw;
+    10vw
+    10vw
+    1vw
+    1vw;
 
   box-shadow:
+    inset
+    0
+    0
+    18px
+    #3b3e40,
 
-  inset
-  0
-  0
-  18px
-  #3b3e40,
-
-  0
-  6px
-  12px
-  rgba(0,0,0,.3);
+    0
+    6px
+    12px
+    rgba(0,0,0,.3);
 
 }
 
@@ -1092,16 +1030,15 @@ button {
 
   right: 3vw;
 
-  top: 1.5vh;
+  top: 1.2vh;
 
   bottom: 0;
 
   border-radius:
-
-  7vw
-  7vw
-  0
-  0;
+    7vw
+    7vw
+    0
+    0;
 
   overflow: hidden;
 
@@ -1116,21 +1053,15 @@ button {
   height: 100%;
 
   background:
-
-  radial-gradient(
-
-    ellipse at center,
-
-    #373b3d
-    0%,
-
-    #121416
-    65%,
-
-    #050606
-    100%
-
-  );
+    radial-gradient(
+      ellipse at center,
+      #373b3d
+      0%,
+      #121416
+      65%,
+      #050606
+      100%
+    );
 
 }
 
@@ -1144,12 +1075,11 @@ button {
 
   right: 0;
 
-  bottom: 2vh;
+  bottom: 1.8vh;
 
-  height: .5vh;
+  height: .45vh;
 
-  background:
-  #aaa;
+  background: #aaa;
 
 }
 
@@ -1163,27 +1093,25 @@ button {
 
   width: 9vw;
 
-  height: 8vh;
+  height: 7vh;
 
   background:
-
-  radial-gradient(
-    circle,
-    #777,
-    #565a5d
-  );
+    radial-gradient(
+      circle,
+      #777,
+      #565a5d
+    );
 
   clip-path:
-
-  polygon(
-    10% 90%,
-    0 50%,
-    30% 20%,
-    55% 0,
-    80% 30%,
-    100% 70%,
-    90% 100%
-  );
+    polygon(
+      10% 90%,
+      0 50%,
+      30% 20%,
+      55% 0,
+      80% 30%,
+      100% 70%,
+      90% 100%
+    );
 
 }
 
@@ -1206,7 +1134,7 @@ button {
 
 
 /* =======================================
-   실제 느낌 신호기
+   철도 신호기
 ======================================= */
 
 .rail-signal {
@@ -1227,7 +1155,7 @@ button {
 
   left: 25vw;
 
-  top: 18vh;
+  top: 16vh;
 
 }
 
@@ -1237,7 +1165,7 @@ button {
 
   right: 23vw;
 
-  top: 36vh;
+  top: 32vh;
 
 }
 
@@ -1247,22 +1175,19 @@ button {
 
   display: inline-block;
 
-  min-width: 2vw;
+  min-width: 1.8vw;
 
-  margin-bottom: .3vh;
+  margin-bottom: .2vh;
 
-  background:
-  white;
+  background: white;
 
   border:
+    2px solid
+    #222;
 
-  2px solid
-  #222;
+  border-radius: .25vw;
 
-  border-radius:
-  .25vw;
-
-  font-size: .8vw;
+  font-size: .7vw;
 
   font-weight: 1000;
 
@@ -1272,40 +1197,35 @@ button {
 
 .signal-head {
 
-  width: 2.7vw;
+  width: 2.5vw;
 
-  height: 8vh;
+  height: 7.1vh;
 
   margin: auto;
 
   background:
-
-  linear-gradient(
-    90deg,
-    #0b0e10,
-    #34383b,
-    #0b0e10
-  );
+    linear-gradient(
+      90deg,
+      #0b0e10,
+      #34383b,
+      #0b0e10
+    );
 
   border:
+    3px solid
+    #070909;
 
-  3px solid
-  #070909;
-
-  border-radius:
-  .7vw;
+  border-radius: .65vw;
 
   padding:
-
-  .4vh
-  .35vw;
+    .3vh
+    .3vw;
 
   display: flex;
 
   flex-direction: column;
 
-  justify-content:
-  space-around;
+  justify-content: space-around;
 
 }
 
@@ -1313,73 +1233,61 @@ button {
 
 .signal-light {
 
-  width: 1.25vw;
+  width: 1.1vw;
 
-  height: 1.25vw;
+  height: 1.1vw;
 
-  border-radius:
-  50%;
+  border-radius: 50%;
 
   margin: auto;
 
-  background:
-  #282828;
+  background: #282828;
 
   border:
-
-  2px solid
-  #050505;
-
-}
-
-
-
-.rail-signal.red
-.red-light {
-
-  background:
-  #ff3131;
-
-  box-shadow:
-
-  0
-  0
-  15px
-  #ff3131;
+    2px solid
+    #050505;
 
 }
 
 
 
-.rail-signal.yellow
-.yellow-light {
+.rail-signal.red .red-light {
 
-  background:
-  #ffca2e;
+  background: #ff3131;
 
   box-shadow:
-
-  0
-  0
-  15px
-  #ffca2e;
+    0
+    0
+    13px
+    #ff3131;
 
 }
 
 
 
-.rail-signal.green
-.green-light {
+.rail-signal.yellow .yellow-light {
 
-  background:
-  #32ee78;
+  background: #ffca2e;
 
   box-shadow:
+    0
+    0
+    13px
+    #ffca2e;
 
-  0
-  0
-  15px
-  #32ee78;
+}
+
+
+
+.rail-signal.green .green-light {
+
+  background: #32ee78;
+
+  box-shadow:
+    0
+    0
+    13px
+    #32ee78;
 
 }
 
@@ -1387,27 +1295,22 @@ button {
 
 .signal-pole {
 
-  width: .38vw;
+  width: .35vw;
 
-  height: 6vh;
+  height: 5vh;
 
   margin: auto;
 
   background:
-
-  repeating-linear-gradient(
-
-    180deg,
-
-    #222
-    0
-    .7vh,
-
-    white
-    .7vh
-    1.4vh
-
-  );
+    repeating-linear-gradient(
+      180deg,
+      #222
+      0
+      .6vh,
+      white
+      .6vh
+      1.2vh
+    );
 
 }
 
@@ -1415,24 +1318,22 @@ button {
 
 .signal-base {
 
-  width: 2vw;
+  width: 1.8vw;
 
-  height: .8vh;
+  height: .7vh;
 
   margin: auto;
 
-  background:
-  #444;
+  background: #444;
 
-  border-radius:
-  .2vw;
+  border-radius: .2vw;
 
 }
 
 
 
 /* =======================================
-   분기선
+   분기기
 ======================================= */
 
 .branch-track {
@@ -1441,17 +1342,15 @@ button {
 
   left: 56vw;
 
-  top: 38vh;
+  top: 35vh;
 
   width: 19vw;
 
-  height: .7vh;
+  height: .6vh;
 
-  background:
-  #656b70;
+  background: #656b70;
 
-  transform-origin:
-  left center;
+  transform-origin: left center;
 
   z-index: 3;
 
@@ -1461,8 +1360,7 @@ button {
 
 .branch-up {
 
-  transform:
-  rotate(-17deg);
+  transform: rotate(-17deg);
 
 }
 
@@ -1470,8 +1368,7 @@ button {
 
 .branch-down {
 
-  transform:
-  rotate(17deg);
+  transform: rotate(17deg);
 
 }
 
@@ -1483,7 +1380,7 @@ button {
 
   left: 57vw;
 
-  top: 41vh;
+  top: 37.5vh;
 
   z-index: 25;
 
@@ -1493,19 +1390,17 @@ button {
 
 .switch-sign {
 
-  font-size: .65vw;
+  font-size: .58vw;
 
   font-weight: 1000;
 
-  background:
-  #1f2830;
+  background: #1f2830;
 
   color: white;
 
   text-align: center;
 
-  padding:
-  .2vw;
+  padding: .15vw;
 
 }
 
@@ -1516,32 +1411,28 @@ button {
   border: none;
 
   padding:
-
-  .55vw
-  .8vw;
+    .45vw
+    .7vw;
 
   border-radius:
-
-  0
-  0
-  .6vw
-  .6vw;
+    0
+    0
+    .6vw
+    .6vw;
 
   background:
-
-  linear-gradient(
-    #ffe66f,
-    #e9b729
-  );
+    linear-gradient(
+      #ffe66f,
+      #e9b729
+    );
 
   box-shadow:
+    0
+    4px
+    0
+    #9e7918;
 
-  0
-  4px
-  0
-  #9e7918;
-
-  font-size: .95vw;
+  font-size: .85vw;
 
   font-weight: 1000;
 
@@ -1562,21 +1453,19 @@ button {
   z-index: 18;
 
   filter:
-
-  drop-shadow(
-    0
-    .5vh
-    .45vh
-    rgba(0,0,0,.38)
-  );
+    drop-shadow(
+      0
+      .45vh
+      .4vh
+      rgba(0,0,0,.38)
+    );
 
   transition:
+    left 1.5s
+    cubic-bezier(.4,0,.2,1),
 
-  left 1.5s
-  cubic-bezier(.4,0,.2,1),
-
-  top .8s
-  ease;
+    top .8s
+    ease;
 
 }
 
@@ -1586,9 +1475,9 @@ button {
 
   left: 4vw;
 
-  top: 22.2vh;
+  top: 20.4vh;
 
-  height: 5.7vh;
+  height: 5.3vh;
 
 }
 
@@ -1598,34 +1487,32 @@ button {
 
   position: relative;
 
-  width: 5.5vw;
+  width: 5.2vw;
 
-  height: 5.7vh;
+  height: 5.3vh;
 
   background:
-
-  linear-gradient(
-    180deg,
-    #fafafa
-    0%,
-    #dedee6
-    55%,
-    #6652bb
-    56%,
-    #4f3ca2
-    100%
-  );
+    linear-gradient(
+      180deg,
+      #fafafa
+      0%,
+      #dedee6
+      55%,
+      #6652bb
+      56%,
+      #4f3ca2
+      100%
+    );
 
   clip-path:
-
-  polygon(
-    100% 0,
-    100% 100%,
-    18% 100%,
-    0 65%,
-    9% 30%,
-    36% 5%
-  );
+    polygon(
+      100% 0,
+      100% 100%,
+      18% 100%,
+      0 65%,
+      9% 30%,
+      36% 5%
+    );
 
 }
 
@@ -1635,26 +1522,23 @@ button {
 
   position: absolute;
 
-  left: 1.7vw;
+  left: 1.6vw;
 
-  top: .7vh;
+  top: .65vh;
 
-  width: 2.1vw;
+  width: 2vw;
 
-  height: 1.5vh;
+  height: 1.35vh;
 
   background:
+    linear-gradient(
+      #7ed5ff,
+      #245a7a
+    );
 
-  linear-gradient(
-    #7ed5ff,
-    #245a7a
-  );
+  transform: skew(-20deg);
 
-  transform:
-  skew(-20deg);
-
-  border-radius:
-  .3vw;
+  border-radius: .3vw;
 
 }
 
@@ -1666,23 +1550,21 @@ button {
 
   left: .8vw;
 
-  bottom: .7vh;
+  bottom: .6vh;
 
-  width: .55vw;
+  width: .5vw;
 
-  height: .55vw;
+  height: .5vw;
 
-  background:
-  #fff9a9;
+  background: #fff9a9;
 
   border-radius: 50%;
 
   box-shadow:
-
-  0
-  0
-  10px
-  white;
+    0
+    0
+    9px
+    white;
 
 }
 
@@ -1692,28 +1574,26 @@ button {
 
   position: relative;
 
-  width: 9vw;
+  width: 8.5vw;
 
-  height: 5.7vh;
+  height: 5.3vh;
 
   background:
-
-  linear-gradient(
-    180deg,
-    #fbfbfc
-    0%,
-    #e4e5eb
-    57%,
-    #6652bb
-    58%,
-    #4d3b98
-    100%
-  );
+    linear-gradient(
+      180deg,
+      #fbfbfc
+      0%,
+      #e4e5eb
+      57%,
+      #6652bb
+      58%,
+      #4d3b98
+      100%
+    );
 
   border-left:
-
-  2px solid
-  #aaa;
+    2px solid
+    #aaa;
 
 }
 
@@ -1723,15 +1603,15 @@ button {
 
   position: absolute;
 
-  left: .7vw;
+  left: .6vw;
 
-  bottom: .6vh;
+  bottom: .5vh;
 
   color: white;
 
   font-weight: 1000;
 
-  font-size: .75vw;
+  font-size: .65vw;
 
 }
 
@@ -1741,13 +1621,13 @@ button {
 
   display: flex;
 
-  gap: .35vw;
+  gap: .3vw;
 
   position: absolute;
 
-  top: .9vh;
+  top: .8vh;
 
-  left: .8vw;
+  left: .7vw;
 
 }
 
@@ -1755,24 +1635,21 @@ button {
 
 .windows span {
 
-  width: 1.3vw;
+  width: 1.2vw;
 
-  height: 1.2vh;
+  height: 1.05vh;
 
   background:
+    linear-gradient(
+      #8bd9ff,
+      #386c8a
+    );
 
-  linear-gradient(
-    #8bd9ff,
-    #386c8a
-  );
-
-  border-radius:
-  .2vw;
+  border-radius: .2vw;
 
   border:
-
-  1px solid
-  #365365;
+    1px solid
+    #365365;
 
 }
 
@@ -1786,9 +1663,9 @@ button {
 
   left: 76vw;
 
-  top: 44.2vh;
+  top: 40.4vh;
 
-  height: 5.8vh;
+  height: 5.3vh;
 
   flex-direction: row-reverse;
 
@@ -1800,42 +1677,33 @@ button {
 
   position: relative;
 
-  width: 5vw;
+  width: 4.8vw;
 
-  height: 5.8vh;
+  height: 5.3vh;
 
   background:
-
-  linear-gradient(
-
-    180deg,
-
-    #e8e8e8
-    0%,
-
-    #d9d9d9
-    45%,
-
-    #d94747
-    46%,
-
-    #bb2f38
-    75%,
-
-    #384d72
-    76%
-
-  );
+    linear-gradient(
+      180deg,
+      #e8e8e8
+      0%,
+      #d9d9d9
+      45%,
+      #d94747
+      46%,
+      #bb2f38
+      75%,
+      #384d72
+      76%
+    );
 
   clip-path:
-
-  polygon(
-    0 0,
-    72% 0,
-    100% 26%,
-    100% 100%,
-    0 100%
-  );
+    polygon(
+      0 0,
+      72% 0,
+      100% 26%,
+      100% 100%,
+      0 100%
+    );
 
 }
 
@@ -1847,23 +1715,21 @@ button {
 
   right: .7vw;
 
-  top: .7vh;
+  top: .65vh;
 
-  width: 1.7vw;
+  width: 1.6vw;
 
-  height: 1.45vh;
+  height: 1.3vh;
 
   background:
-
-  linear-gradient(
-    #8ed4ef,
-    #355d76
-  );
+    linear-gradient(
+      #8ed4ef,
+      #355d76
+    );
 
   border:
-
-  2px solid
-  #454545;
+    2px solid
+    #454545;
 
 }
 
@@ -1875,23 +1741,21 @@ button {
 
   right: .35vw;
 
-  bottom: 1vh;
+  bottom: .9vh;
 
-  width: .5vw;
+  width: .45vw;
 
-  height: .5vw;
+  height: .45vw;
 
-  background:
-  #fff4a3;
+  background: #fff4a3;
 
   border-radius: 50%;
 
   box-shadow:
-
-  0
-  0
-  9px
-  white;
+    0
+    0
+    8px
+    white;
 
 }
 
@@ -1903,14 +1767,13 @@ button {
 
   bottom: .3vh;
 
-  height: .7vh;
+  height: .6vh;
 
   left: 0;
 
   right: 0;
 
-  background:
-  #243f70;
+  background: #243f70;
 
 }
 
@@ -1920,40 +1783,30 @@ button {
 
   position: relative;
 
-  width: 8vw;
+  width: 7.7vw;
 
-  height: 5.8vh;
+  height: 5.3vh;
 
   background:
-
-  linear-gradient(
-
-    180deg,
-
-    #eeeeee
-    0%,
-
-    #e3e3e3
-    48%,
-
-    #cf4652
-    49%,
-
-    #cf4652
-    63%,
-
-    #f3f3f3
-    64%,
-
-    #d9d9d9
-    100%
-
-  );
+    linear-gradient(
+      180deg,
+      #eeeeee
+      0%,
+      #e3e3e3
+      48%,
+      #cf4652
+      49%,
+      #cf4652
+      63%,
+      #f3f3f3
+      64%,
+      #d9d9d9
+      100%
+    );
 
   border-right:
-
-  2px solid
-  #aaa;
+    2px solid
+    #aaa;
 
 }
 
@@ -1963,75 +1816,64 @@ button {
 
   position: absolute;
 
-  left: .45vw;
+  left: .4vw;
 
-  bottom: .45vh;
+  bottom: .4vh;
 
-  font-size: .6vw;
+  font-size: .55vw;
 
   font-weight: 1000;
 
-  color:
-  #374d75;
+  color: #374d75;
 
 }
 
 
 
 /* =======================================
-   관제 조작판
+   관제 패널
 ======================================= */
 
 .rail-control-panel {
 
   position: absolute;
 
-  bottom: .8vh;
+  bottom: .45vh;
 
   left: 50%;
 
-  transform:
-  translateX(-50%);
+  transform: translateX(-50%);
 
   width: 76vw;
 
   padding:
+    .5vw
+    .8vw;
 
-  .7vw
-  1vw;
-
-  border-radius:
-  1.2vw;
+  border-radius: 1vw;
 
   display: grid;
 
   grid-template-columns:
+    repeat(4, 1fr);
 
-  repeat(
-    4,
-    1fr
-  );
-
-  gap: .8vw;
+  gap: .7vw;
 
   background:
-
-  linear-gradient(
-    #405568,
-    #253746
-  );
+    linear-gradient(
+      #405568,
+      #253746
+    );
 
   border:
-
-  4px solid
-  #1a2935;
+    3px solid
+    #1a2935;
 
   box-shadow:
-
-  0
-  8px
-  15px
-  rgba(0,0,0,.3);
+    0
+    7px
+    13px
+    rgba(0,0,0,.3);
 
   z-index: 40;
 
@@ -2042,14 +1884,12 @@ button {
 .rail-button {
 
   border:
+    2px solid
+    rgba(255,255,255,.35);
 
-  2px solid
-  rgba(255,255,255,.35);
+  border-radius: .75vw;
 
-  border-radius:
-  .8vw;
-
-  min-height: 4.8vh;
+  min-height: 4.1vh;
 
   display: flex;
 
@@ -2061,20 +1901,19 @@ button {
 
   font-weight: 1000;
 
-  font-size: .95vw;
+  font-size: .9vw;
 
   box-shadow:
+    inset
+    0
+    2px
+    4px
+    rgba(255,255,255,.5),
 
-  inset
-  0
-  2px
-  4px
-  rgba(255,255,255,.5),
-
-  0
-  4px
-  0
-  rgba(0,0,0,.25);
+    0
+    4px
+    0
+    rgba(0,0,0,.25);
 
 }
 
@@ -2082,15 +1921,7 @@ button {
 
 .rail-button:active {
 
-  transform:
-  translateY(3px);
-
-  box-shadow:
-
-  0
-  1px
-  0
-  rgba(0,0,0,.25);
+  transform: translateY(3px);
 
 }
 
@@ -2098,8 +1929,7 @@ button {
 
 .signal-control.red {
 
-  background:
-  #ffdada;
+  background: #ffdada;
 
 }
 
@@ -2107,8 +1937,7 @@ button {
 
 .signal-control.green {
 
-  background:
-  #d8f7df;
+  background: #d8f7df;
 
 }
 
@@ -2117,11 +1946,10 @@ button {
 .srt-button {
 
   background:
-
-  linear-gradient(
-    #ede9ff,
-    #b9acf6
-  );
+    linear-gradient(
+      #ede9ff,
+      #b9acf6
+    );
 
 }
 
@@ -2130,57 +1958,64 @@ button {
 .mug-button {
 
   background:
-
-  linear-gradient(
-    #ffe5e6,
-    #ffb2b8
-  );
+    linear-gradient(
+      #ffe5e6,
+      #ffb2b8
+    );
 
 }
 
 
 
 /* =======================================
-   아래 화용언어
+   아래 언어 미션
 ======================================= */
 
 .language-zone {
 
-  background:
-  #eef3f8;
+  background: #eef3f8;
 
   display: grid;
 
   grid-template-columns:
-
-  39%
-  61%;
+    39%
+    61%;
 
   border-top:
+    3px solid
+    #b7c8d7;
 
-  4px solid
-  #b7c8d7;
+  min-height: 0;
+
+  overflow: hidden;
+
+  padding-bottom:
+    max(
+      .4vh,
+      env(safe-area-inset-bottom)
+    );
 
 }
 
 
 
+/* 왼쪽 무전 */
+
 .radio-panel {
 
-  background:
-  white;
+  background: white;
 
   border-right:
-
-  3px solid
-  #cad6e0;
+    3px solid
+    #cad6e0;
 
   padding:
-
-  1vh
-  1vw;
+    .7vh
+    .9vw;
 
   overflow: hidden;
+
+  min-height: 0;
 
 }
 
@@ -2188,15 +2023,13 @@ button {
 
 .panel-title {
 
-  color:
-  #1a426a;
+  color: #1a426a;
 
-  font-size: 1.05vw;
+  font-size: .95vw;
 
   font-weight: 1000;
 
-  margin-bottom:
-  .6vh;
+  margin-bottom: .4vh;
 
 }
 
@@ -2208,7 +2041,11 @@ button {
 
   flex-direction: column;
 
-  gap: .6vh;
+  gap: .45vh;
+
+  max-height: 30vh;
+
+  overflow: auto;
 
 }
 
@@ -2219,22 +2056,18 @@ button {
   display: grid;
 
   grid-template-columns:
+    2.7vw
+    1fr;
 
-  3vw
-  1fr;
+  gap: .5vw;
 
-  gap: .6vw;
-
-  background:
-  #f4f7fa;
+  background: #f4f7fa;
 
   padding:
+    .42vh
+    .55vw;
 
-  .65vh
-  .65vw;
-
-  border-radius:
-  .7vw;
+  border-radius: .65vw;
 
 }
 
@@ -2242,12 +2075,11 @@ button {
 
 .dialogue-icon {
 
-  width: 2.7vw;
+  width: 2.4vw;
 
-  height: 2.7vw;
+  height: 2.4vw;
 
-  border-radius:
-  50%;
+  border-radius: 50%;
 
   display: flex;
 
@@ -2255,10 +2087,9 @@ button {
 
   justify-content: center;
 
-  background:
-  #dcecff;
+  background: #dcecff;
 
-  font-size: 1.25vw;
+  font-size: 1.1vw;
 
 }
 
@@ -2266,7 +2097,7 @@ button {
 
 .dialogue-name {
 
-  font-size: .9vw;
+  font-size: .82vw;
 
   font-weight: 1000;
 
@@ -2276,28 +2107,39 @@ button {
 
 .dialogue-text {
 
-  font-size: 1vw;
+  font-size: .92vw;
 
-  margin-top: .1vh;
+  margin-top: .08vh;
 
-  line-height: 1.4;
+  line-height: 1.22;
 
 }
 
 
 
+/* 오른쪽 미션 */
+
 .mission-panel {
 
   padding:
+    .55vh
+    1vw
+    .4vh;
 
-  .9vh
-  1.2vw;
+  display: grid;
 
-  display: flex;
+  grid-template-rows:
+    auto
+    auto
+    minmax(0, 1fr)
+    auto
+    auto;
 
-  flex-direction: column;
+  gap: .35vh;
 
-  gap: .6vh;
+  min-height: 0;
+
+  overflow: hidden;
 
 }
 
@@ -2307,22 +2149,19 @@ button {
 
   display: inline-block;
 
-  align-self: flex-start;
+  justify-self: start;
 
-  background:
-  #3177c7;
+  background: #3177c7;
 
   color: white;
 
-  border-radius:
-  999px;
+  border-radius: 999px;
 
   padding:
+    .15vw
+    .55vw;
 
-  .2vw
-  .65vw;
-
-  font-size: .8vw;
+  font-size: .72vw;
 
   font-weight: 1000;
 
@@ -2332,23 +2171,21 @@ button {
 
 .mission-question {
 
-  background:
-  white;
+  background: white;
 
   border:
-
-  3px solid
-  #c5d9eb;
+    2px solid
+    #c5d9eb;
 
   padding:
+    .42vw
+    .65vw;
 
-  .7vw
-  .9vw;
+  border-radius: .7vw;
 
-  border-radius:
-  .8vw;
+  font-size: 1vw;
 
-  font-size: 1.1vw;
+  line-height: 1.2;
 
   font-weight: 1000;
 
@@ -2356,16 +2193,23 @@ button {
 
 
 
+/* 선택지 */
+
 .choice-area {
 
   display: grid;
 
   grid-template-columns:
+    1fr
+    1fr;
 
-  1fr
-  1fr;
+  gap: .4vw;
 
-  gap: .55vw;
+  min-height: 0;
+
+  overflow: auto;
+
+  align-content: start;
 
 }
 
@@ -2374,24 +2218,26 @@ button {
 .choice {
 
   border:
+    2px solid
+    #c5d2de;
 
-  2px solid
-  #c5d2de;
-
-  border-radius:
-  .75vw;
+  border-radius: .7vw;
 
   padding:
-  .65vw;
+    .38vw
+    .5vw;
 
-  background:
-  white;
+  background: white;
 
-  font-size: .97vw;
+  font-size: .88vw;
+
+  line-height: 1.18;
 
   font-weight: 800;
 
   text-align: left;
+
+  min-height: 3.6vh;
 
 }
 
@@ -2399,13 +2245,11 @@ button {
 
 .choice.correct {
 
-  background:
-  #d8f7e4;
+  background: #d8f7e4;
 
   border:
-
-  3px solid
-  #2fb46c;
+    3px solid
+    #2fb46c;
 
 }
 
@@ -2413,44 +2257,41 @@ button {
 
 .choice.wrong {
 
-  background:
-  #ffe2e2;
+  background: #ffe2e2;
 
   border:
-
-  3px solid
-  #e55353;
+    3px solid
+    #e55353;
 
 }
 
 
 
+/* 말하기 */
+
 .speech-area {
 
-  background:
-  #fff6cf;
+  background: #fff6cf;
 
   border:
+    2px solid
+    #e6ca5b;
 
-  2px solid
-  #e6ca5b;
-
-  border-radius:
-  .8vw;
+  border-radius: .7vw;
 
   display: grid;
 
   grid-template-columns:
-
-  1fr
-  auto;
+    1fr
+    auto;
 
   align-items: center;
 
   padding:
+    .32vw
+    .55vw;
 
-  .55vw
-  .75vw;
+  min-height: 0;
 
 }
 
@@ -2462,7 +2303,7 @@ button {
 
   flex-direction: column;
 
-  font-size: .9vw;
+  font-size: .78vw;
 
 }
 
@@ -2470,8 +2311,7 @@ button {
 
 .speech-text span {
 
-  margin-top:
-  .15vh;
+  margin-top: .08vh;
 
 }
 
@@ -2481,22 +2321,21 @@ button {
 
   border: 0;
 
-  border-radius:
-  .7vw;
+  border-radius: .65vw;
 
   padding:
-
-  .65vw
-  .8vw;
+    .45vw
+    .65vw;
 
   background:
-
-  linear-gradient(
-    #ffd85e,
-    #ecb72e
-  );
+    linear-gradient(
+      #ffd85e,
+      #ecb72e
+    );
 
   font-weight: 1000;
+
+  font-size: .8vw;
 
 }
 
@@ -2510,16 +2349,19 @@ button {
 
 
 
-.next-area {
+/* 다음 버튼 */
 
-  margin-top: auto;
+.next-area {
 
   display: flex;
 
   align-items: center;
 
-  justify-content:
-  space-between;
+  justify-content: space-between;
+
+  min-height: 3.8vh;
+
+  flex-shrink: 0;
 
 }
 
@@ -2527,12 +2369,11 @@ button {
 
 #feedback {
 
-  font-size: .9vw;
+  font-size: .78vw;
 
   font-weight: 900;
 
-  color:
-  #47627c;
+  color: #47627c;
 
 }
 
@@ -2542,25 +2383,27 @@ button {
 
   border: none;
 
-  border-radius:
-  .7vw;
+  border-radius: .65vw;
 
   padding:
-
-  .65vw
-  1vw;
+    .42vw
+    .8vw;
 
   background:
+    linear-gradient(
+      #3c89e8,
+      #2568bb
+    );
 
-  linear-gradient(
-    #3c89e8,
-    #2568bb
-  );
-
-  color:
-  white;
+  color: white;
 
   font-weight: 1000;
+
+  font-size: .82vw;
+
+  min-width: 8.5vw;
+
+  min-height: 3.6vh;
 
 }
 
@@ -2575,7 +2418,7 @@ button {
 
 
 /* =======================================
-   종료
+   종료 화면
 ======================================= */
 
 .finish-modal {
@@ -2585,8 +2428,7 @@ button {
   inset: 0;
 
   background:
-
-  rgba(6,21,38,.78);
+    rgba(6,21,38,.78);
 
   display: flex;
 
@@ -2614,11 +2456,9 @@ button {
 
   padding: 2vw;
 
-  border-radius:
-  2vw;
+  border-radius: 2vw;
 
-  background:
-  white;
+  background: white;
 
   text-align: center;
 
@@ -2649,17 +2489,14 @@ button {
   margin-top: 1vw;
 
   padding:
+    .8vw
+    1.4vw;
 
-  .8vw
-  1.4vw;
-
-  background:
-  #2872cc;
+  background: #2872cc;
 
   color: white;
 
-  border-radius:
-  .8vw;
+  border-radius: .8vw;
 
   font-weight: 1000;
 
@@ -2668,52 +2505,105 @@ button {
 
 
 /* =======================================
-   iPad landscape
+   iPad Air 가로 최적화
 ======================================= */
 
 @media
-(max-width: 1200px)
+(orientation: landscape)
 and
-(orientation: landscape) {
+(min-width: 1000px)
+and
+(max-width: 1400px) {
 
-  .main-title {
+  #app {
 
-    font-size: 2vw;
+    grid-template-rows:
+      8dvh
+      53dvh
+      39dvh;
 
   }
 
 
-  .station-name {
+  .main-title {
 
-    font-size: 1.2vw;
+    font-size: 1.7vw;
+
+  }
+
+
+  .sub-title {
+
+    font-size: .75vw;
+
+  }
+
+
+  .map-badge {
+
+    font-size: 1vw;
 
   }
 
 
   .mission-question {
 
-    font-size: 1.3vw;
+    font-size: .96vw;
 
   }
 
 
   .choice {
 
-    font-size: 1.1vw;
+    font-size: .86vw;
+
+    min-height: 3.4vh;
 
   }
 
 
   .dialogue-text {
 
-    font-size: 1.1vw;
+    font-size: .88vw;
 
   }
 
 
   .rail-button {
 
-    font-size: 1.1vw;
+    min-height: 3.9vh;
+
+    font-size: .85vw;
+
+  }
+
+
+  .speech-text {
+
+    font-size: .75vw;
+
+  }
+
+
+  #speakDoneBtn {
+
+    font-size: .78vw;
+
+  }
+
+
+  #feedback {
+
+    font-size: .75vw;
+
+  }
+
+
+  #nextBtn {
+
+    font-size: .8vw;
+
+    min-height: 3.5vh;
 
   }
 
