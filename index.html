@@ -20,10 +20,7 @@
 
   <title>SRT & 무궁화호 철도 관제 게임</title>
 
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -33,47 +30,26 @@
   <header class="top-bar">
 
     <div class="game-title">
-
-      <div class="title-signal">
-        🚦
-      </div>
+      <span class="title-icon">🚦</span>
 
       <div>
-
-        <div class="main-title">
-          KIDS RAIL CONTROL
-        </div>
-
-        <div class="sub-title">
-          SRT & 무궁화호 안전 운행
-        </div>
-
+        <div class="main-title">KIDS RAIL CONTROL</div>
+        <div class="sub-title">SRT & 무궁화호 안전 운행</div>
       </div>
-
     </div>
-
 
     <div class="score-area">
 
-      <div class="score-item">
-        🚆
-        <span>
-          <b id="roundText">1</b>/12
-        </span>
+      <div class="score-chip">
+        🚆 <b id="roundText">1</b>/12
       </div>
 
-      <div class="score-item">
-        ⭐
-        <span id="starText">
-          0
-        </span>
+      <div class="score-chip">
+        ⭐ <b id="starText">0</b>
       </div>
 
-      <div class="score-item">
-        💬
-        <span id="talkText">
-          0
-        </span>
+      <div class="score-chip">
+        💬 <b id="talkText">0</b>
       </div>
 
     </div>
@@ -81,38 +57,16 @@
   </header>
 
 
-
   <main class="rail-world">
-
 
     <div class="sun"></div>
 
     <div class="cloud cloud-a"></div>
     <div class="cloud cloud-b"></div>
-    <div class="cloud cloud-c"></div>
 
     <div class="mountain mountain-a"></div>
     <div class="mountain mountain-b"></div>
     <div class="mountain mountain-c"></div>
-
-
-
-    <div class="tree tree1">
-      <div class="tree-leaf"></div>
-      <div class="tree-body"></div>
-    </div>
-
-    <div class="tree tree2">
-      <div class="tree-leaf"></div>
-      <div class="tree-body"></div>
-    </div>
-
-    <div class="tree tree3">
-      <div class="tree-leaf"></div>
-      <div class="tree-body"></div>
-    </div>
-
-
 
     <div
       id="mapBadge"
@@ -122,6 +76,7 @@
     </div>
 
 
+    <!-- 서울역 -->
 
     <section class="station station-seoul">
 
@@ -133,12 +88,9 @@
       </div>
 
       <div class="station-building">
-
+        <div class="station-window"></div>
         <div class="station-door"></div>
-
         <div class="station-window"></div>
-        <div class="station-window"></div>
-
       </div>
 
       <div class="platform"></div>
@@ -146,6 +98,7 @@
     </section>
 
 
+    <!-- 대전역 -->
 
     <section class="station station-daejeon">
 
@@ -157,12 +110,9 @@
       </div>
 
       <div class="station-building">
-
+        <div class="station-window"></div>
         <div class="station-door"></div>
-
         <div class="station-window"></div>
-        <div class="station-window"></div>
-
       </div>
 
       <div class="platform"></div>
@@ -170,6 +120,7 @@
     </section>
 
 
+    <!-- 부산역 -->
 
     <section class="station station-busan">
 
@@ -181,12 +132,9 @@
       </div>
 
       <div class="station-building">
-
+        <div class="station-window"></div>
         <div class="station-door"></div>
-
         <div class="station-window"></div>
-        <div class="station-window"></div>
-
       </div>
 
       <div class="platform"></div>
@@ -194,77 +142,52 @@
     </section>
 
 
+    <!-- 선로 -->
 
     <div class="rail-track track-upper">
-
-      <div class="rail rail-one"></div>
-      <div class="rail rail-two"></div>
-
+      <div class="rail rail-top"></div>
+      <div class="rail rail-bottom"></div>
     </div>
-
 
     <div class="rail-track track-middle">
-
-      <div class="rail rail-one"></div>
-      <div class="rail rail-two"></div>
-
+      <div class="rail rail-top"></div>
+      <div class="rail rail-bottom"></div>
     </div>
-
 
     <div class="rail-track track-lower">
-
-      <div class="rail rail-one"></div>
-      <div class="rail rail-two"></div>
-
+      <div class="rail rail-top"></div>
+      <div class="rail rail-bottom"></div>
     </div>
 
 
+    <!-- 터널 -->
 
     <section class="tunnel-area">
 
       <div class="tunnel-sign">
-
-        <div class="tunnel-number">
-          T-01
-        </div>
-
+        <span>T-01</span>
         단선 터널
-
       </div>
 
+      <div class="tunnel-shell">
 
-      <div class="tunnel-rock tunnel-rock-left"></div>
-
-
-      <div class="tunnel-structure">
-
-        <div class="tunnel-arch">
-
-          <div class="tunnel-dark">
-
-            <div class="tunnel-rail-line"></div>
-
-          </div>
-
+        <div class="tunnel-opening">
+          <div class="tunnel-inside-rail"></div>
         </div>
 
       </div>
-
-
-      <div class="tunnel-rock tunnel-rock-right"></div>
 
     </section>
 
 
+    <!-- 신호 A -->
 
     <section
       id="signalA"
       class="rail-signal signal-a red"
     >
 
-      <div class="signal-label">
-        A
-      </div>
+      <div class="signal-label">A</div>
 
       <div class="signal-head">
 
@@ -275,21 +198,19 @@
       </div>
 
       <div class="signal-pole"></div>
-
       <div class="signal-base"></div>
 
     </section>
 
 
+    <!-- 신호 B -->
 
     <section
       id="signalB"
       class="rail-signal signal-b green"
     >
 
-      <div class="signal-label">
-        B
-      </div>
+      <div class="signal-label">B</div>
 
       <div class="signal-head">
 
@@ -300,16 +221,15 @@
       </div>
 
       <div class="signal-pole"></div>
-
       <div class="signal-base"></div>
 
     </section>
 
 
+    <!-- 분기기 -->
 
     <div class="branch-track branch-up"></div>
     <div class="branch-track branch-down"></div>
-
 
     <section class="switch-area">
 
@@ -317,22 +237,14 @@
         POINT
       </div>
 
-      <button
-        id="switchBtn"
-        class="switch-button"
-      >
-
-        🔀
-
-        <span id="switchText">
-          직진
-        </span>
-
+      <button id="switchBtn">
+        🔀 <span id="switchText">직진</span>
       </button>
 
     </section>
 
 
+    <!-- SRT -->
 
     <div
       id="srt"
@@ -340,13 +252,9 @@
     >
 
       <div class="srt-nose">
-
         <div class="srt-front-window"></div>
-
         <div class="srt-headlight"></div>
-
       </div>
-
 
       <div class="srt-car">
 
@@ -354,7 +262,7 @@
           SRT
         </div>
 
-        <div class="windows">
+        <div class="train-windows">
           <span></span>
           <span></span>
           <span></span>
@@ -363,10 +271,9 @@
 
       </div>
 
-
       <div class="srt-car">
 
-        <div class="windows">
+        <div class="train-windows">
           <span></span>
           <span></span>
           <span></span>
@@ -378,6 +285,7 @@
     </div>
 
 
+    <!-- 무궁화호 -->
 
     <div
       id="mugunghwa"
@@ -387,13 +295,10 @@
       <div class="mug-engine">
 
         <div class="mug-front-window"></div>
-
         <div class="mug-headlight"></div>
-
         <div class="mug-blue-line"></div>
 
       </div>
-
 
       <div class="mug-car">
 
@@ -401,7 +306,7 @@
           무궁화
         </div>
 
-        <div class="windows">
+        <div class="train-windows">
           <span></span>
           <span></span>
           <span></span>
@@ -409,10 +314,9 @@
 
       </div>
 
-
       <div class="mug-car">
 
-        <div class="windows">
+        <div class="train-windows">
           <span></span>
           <span></span>
           <span></span>
@@ -423,78 +327,36 @@
     </div>
 
 
+    <!-- 조작판 -->
 
     <div class="rail-control-panel">
 
       <button
         id="signalABtn"
-        class="rail-button signal-control red"
+        class="rail-button red"
       >
-
-        <span>
-          🚦
-        </span>
-
-        <span>
-          신호 A
-        </span>
-
-        <strong>
-          🔴
-        </strong>
-
+        🚦 신호 A 🔴
       </button>
-
 
       <button
         id="signalBBtn"
-        class="rail-button signal-control green"
+        class="rail-button green"
       >
-
-        <span>
-          🚦
-        </span>
-
-        <span>
-          신호 B
-        </span>
-
-        <strong>
-          🟢
-        </strong>
-
+        🚦 신호 B 🟢
       </button>
-
 
       <button
         id="departSrtBtn"
         class="rail-button srt-button"
       >
-
-        <span>
-          🚄
-        </span>
-
-        <span>
-          SRT 출발
-        </span>
-
+        🚄 SRT 출발
       </button>
-
 
       <button
         id="departMugBtn"
         class="rail-button mug-button"
       >
-
-        <span>
-          🚂
-        </span>
-
-        <span>
-          무궁화 출발
-        </span>
-
+        🚂 무궁화 출발
       </button>
 
     </div>
@@ -502,9 +364,7 @@
   </main>
 
 
-
   <section class="language-zone">
-
 
     <div class="radio-panel">
 
@@ -520,22 +380,24 @@
     </div>
 
 
-
     <div class="mission-panel">
 
-      <div
-        id="missionType"
-        class="mission-tag"
-      >
-        안전 판단
-      </div>
+      <div class="mission-header">
 
+        <div
+          id="missionType"
+          class="mission-tag"
+        >
+          안전 판단
+        </div>
 
-      <div
-        id="question"
-        class="mission-question"
-      >
-        상황을 잘 보고 알맞은 행동을 골라요.
+        <div
+          id="question"
+          class="mission-question"
+        >
+          상황을 잘 보고 알맞은 행동을 골라요.
+        </div>
+
       </div>
 
 
@@ -545,51 +407,52 @@
       ></div>
 
 
-      <div class="speech-area">
+      <div class="mission-footer">
 
-        <div class="speech-text">
+        <div class="speech-box">
 
-          <b>
-            🎙️ 관제사가 직접 말해봐요
-          </b>
+          <div class="speech-copy">
 
-          <span id="speakPrompt">
-            정답을 고른 뒤 말해요.
-          </span>
+            <b>
+              🎙️ 직접 말해봐요
+            </b>
+
+            <span id="speakPrompt">
+              정답을 고른 뒤 말해요.
+            </span>
+
+          </div>
+
+          <button
+            id="speakDoneBtn"
+            disabled
+          >
+            말했어요!
+          </button>
 
         </div>
 
 
-        <button
-          id="speakDoneBtn"
-          disabled
-        >
-          말했어요!
-        </button>
+        <div class="next-box">
 
-      </div>
+          <span id="feedback">
+            기관사의 이야기를 잘 들어보세요.
+          </span>
 
+          <button
+            id="nextBtn"
+            disabled
+          >
+            다음 상황 ▶
+          </button>
 
-      <div class="next-area">
-
-        <span id="feedback">
-          기관사의 이야기를 잘 들어보세요.
-        </span>
-
-
-        <button
-          id="nextBtn"
-          disabled
-        >
-          다음 상황 ▶
-        </button>
+        </div>
 
       </div>
 
     </div>
 
   </section>
-
 
 
   <div
@@ -599,8 +462,8 @@
 
     <div class="finish-card">
 
-      <div class="finish-train">
-        🚄
+      <div class="finish-icon">
+        🏆
       </div>
 
       <h1>
@@ -610,7 +473,7 @@
       <div id="resultText"></div>
 
       <button id="restartBtn">
-        🚦 다시 관제하기
+        다시 관제하기
       </button>
 
     </div>
@@ -618,7 +481,6 @@
   </div>
 
 </div>
-
 
 <script src="script.js"></script>
 
