@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
   >
 
   <meta
@@ -14,475 +16,810 @@
   >
 
   <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black-translucent"
+    name="theme-color"
+    content="#11345e"
   >
 
-  <title>SRT & 무궁화호 철도 관제 게임</title>
+  <title>SRT 왕복 대작전</title>
 
-  <link rel="stylesheet" href="style.css?v=10">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 
 <body>
 
-<div id="app">
 
-  <header class="top-bar">
+<main class="game">
 
-    <div class="game-title">
-      <span class="title-icon">🚦</span>
 
-      <div>
-        <div class="main-title">KIDS RAIL CONTROL</div>
-        <div class="sub-title">SRT & 무궁화호 안전 운행</div>
+  <!-- ===================================== -->
+  <!-- 상단 -->
+  <!-- ===================================== -->
+
+  <header class="topbar">
+
+
+    <div class="title-area">
+
+      <div class="small-title">
+        AJUN SRT ADVENTURE
       </div>
+
+      <h1>
+        🚄 SRT 왕복 대작전
+      </h1>
+
     </div>
 
-    <div class="score-area">
 
-      <div class="score-chip">
-        🚆 <b id="roundText">1</b>/12
+    <div class="top-status">
+
+      <div class="status-box">
+
+        <span>
+          ❤️
+        </span>
+
+        <strong id="lifeText">
+          3
+        </strong>
+
       </div>
 
-      <div class="score-chip">
-        ⭐ <b id="starText">0</b>
+
+      <div class="status-box">
+
+        <span>
+          ⭐
+        </span>
+
+        <strong id="scoreText">
+          0
+        </strong>
+
       </div>
 
-      <div class="score-chip">
-        💬 <b id="talkText">0</b>
+
+      <div class="status-box">
+
+        <span>
+          🏅
+        </span>
+
+        <strong id="stickerText">
+          0
+        </strong>
+
       </div>
 
     </div>
+
 
   </header>
 
 
-  <main class="rail-world">
 
-    <div class="sun"></div>
+  <!-- ===================================== -->
+  <!-- 노선 진행 -->
+  <!-- ===================================== -->
 
-    <div class="cloud cloud-a"></div>
-    <div class="cloud cloud-b"></div>
+  <section class="route-panel">
 
-    <div class="mountain mountain-a"></div>
-    <div class="mountain mountain-b"></div>
-    <div class="mountain mountain-c"></div>
 
     <div
-      id="mapBadge"
-      class="map-badge"
+      id="startStationLabel"
+      class="station-label active-station"
     >
-      🚦 안전 운행 준비!
+      🏠 창원중앙역
     </div>
 
 
-    <!-- 서울역 -->
-
-    <section class="station station-seoul">
-
-      <div class="station-roof"></div>
-
-      <div class="station-name">
-        서울
-        <small>SEOUL</small>
-      </div>
-
-      <div class="station-building">
-        <div class="station-window"></div>
-        <div class="station-door"></div>
-        <div class="station-window"></div>
-      </div>
-
-      <div class="platform"></div>
-
-    </section>
-
-
-    <!-- 대전역 -->
-
-    <section class="station station-daejeon">
-
-      <div class="station-roof"></div>
-
-      <div class="station-name">
-        대전
-        <small>DAEJEON</small>
-      </div>
-
-      <div class="station-building">
-        <div class="station-window"></div>
-        <div class="station-door"></div>
-        <div class="station-window"></div>
-      </div>
-
-      <div class="platform"></div>
-
-    </section>
-
-
-    <!-- 부산역 -->
-
-    <section class="station station-busan">
-
-      <div class="station-roof"></div>
-
-      <div class="station-name">
-        부산
-        <small>BUSAN</small>
-      </div>
-
-      <div class="station-building">
-        <div class="station-window"></div>
-        <div class="station-door"></div>
-        <div class="station-window"></div>
-      </div>
-
-      <div class="platform"></div>
-
-    </section>
-
-
-    <!-- 선로 -->
-
-    <div class="rail-track track-upper">
-      <div class="rail rail-top"></div>
-      <div class="rail rail-bottom"></div>
-    </div>
-
-    <div class="rail-track track-middle">
-      <div class="rail rail-top"></div>
-      <div class="rail rail-bottom"></div>
-    </div>
-
-    <div class="rail-track track-lower">
-      <div class="rail rail-top"></div>
-      <div class="rail rail-bottom"></div>
-    </div>
-
-
-    <!-- 터널 -->
-
-    <section class="tunnel-area">
-
-      <div class="tunnel-sign">
-        <span>T-01</span>
-        단선 터널
-      </div>
-
-      <div class="tunnel-shell">
-
-        <div class="tunnel-opening">
-          <div class="tunnel-inside-rail"></div>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- 신호 A -->
-
-    <section
-      id="signalA"
-      class="rail-signal signal-a red"
-    >
-
-      <div class="signal-label">A</div>
-
-      <div class="signal-head">
-
-        <div class="signal-light red-light"></div>
-        <div class="signal-light yellow-light"></div>
-        <div class="signal-light green-light"></div>
-
-      </div>
-
-      <div class="signal-pole"></div>
-      <div class="signal-base"></div>
-
-    </section>
-
-
-    <!-- 신호 B -->
-
-    <section
-      id="signalB"
-      class="rail-signal signal-b green"
-    >
-
-      <div class="signal-label">B</div>
-
-      <div class="signal-head">
-
-        <div class="signal-light red-light"></div>
-        <div class="signal-light yellow-light"></div>
-        <div class="signal-light green-light"></div>
-
-      </div>
-
-      <div class="signal-pole"></div>
-      <div class="signal-base"></div>
-
-    </section>
-
-
-    <!-- 분기기 -->
-
-    <div class="branch-track branch-up"></div>
-    <div class="branch-track branch-down"></div>
-
-    <section class="switch-area">
-
-      <div class="switch-sign">
-        POINT
-      </div>
-
-      <button id="switchBtn">
-        🔀 <span id="switchText">직진</span>
-      </button>
-
-    </section>
-
-
-    <!-- SRT -->
-
-    <div
-      id="srt"
-      class="train srt-train"
-    >
-
-      <div class="srt-nose">
-        <div class="srt-front-window"></div>
-        <div class="srt-headlight"></div>
-      </div>
-
-      <div class="srt-car">
-
-        <div class="train-logo">
-          SRT
-        </div>
-
-        <div class="train-windows">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-      </div>
-
-      <div class="srt-car">
-
-        <div class="train-windows">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- 무궁화호 -->
-
-    <div
-      id="mugunghwa"
-      class="train mugunghwa-train"
-    >
-
-      <div class="mug-engine">
-
-        <div class="mug-front-window"></div>
-        <div class="mug-headlight"></div>
-        <div class="mug-blue-line"></div>
-
-      </div>
-
-      <div class="mug-car">
-
-        <div class="mug-logo">
-          무궁화
-        </div>
-
-        <div class="train-windows">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-      </div>
-
-      <div class="mug-car">
-
-        <div class="train-windows">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- 조작판 -->
-
-    <div class="rail-control-panel">
-
-      <button
-        id="signalABtn"
-        class="rail-button red"
-      >
-        🚦 신호 A 🔴
-      </button>
-
-      <button
-        id="signalBBtn"
-        class="rail-button green"
-      >
-        🚦 신호 B 🟢
-      </button>
-
-      <button
-        id="departSrtBtn"
-        class="rail-button srt-button"
-      >
-        🚄 SRT 출발
-      </button>
-
-      <button
-        id="departMugBtn"
-        class="rail-button mug-button"
-      >
-        🚂 무궁화 출발
-      </button>
-
-    </div>
-
-  </main>
-
-
-  <section class="language-zone">
-
-    <div class="radio-panel">
-
-      <div class="panel-title">
-        📻 기관사 무전
-      </div>
+    <div class="route-line">
 
       <div
-        id="dialogueList"
-        class="dialogue-list"
+        id="routeProgress"
+        class="route-progress"
       ></div>
-
-    </div>
-
-
-    <div class="mission-panel">
-
-      <div class="mission-header">
-
-        <div
-          id="missionType"
-          class="mission-tag"
-        >
-          안전 판단
-        </div>
-
-        <div
-          id="question"
-          class="mission-question"
-        >
-          상황을 잘 보고 알맞은 행동을 골라요.
-        </div>
-
-      </div>
-
 
       <div
-        id="choices"
-        class="choice-area"
-      ></div>
-
-
-      <div class="mission-footer">
-
-        <div class="speech-box">
-
-          <div class="speech-copy">
-
-            <b>
-              🎙️ 직접 말해봐요
-            </b>
-
-            <span id="speakPrompt">
-              정답을 고른 뒤 말해요.
-            </span>
-
-          </div>
-
-          <button
-            id="speakDoneBtn"
-            disabled
-          >
-            말했어요!
-          </button>
-
-        </div>
-
-
-        <div class="next-box">
-
-          <span id="feedback">
-            기관사의 이야기를 잘 들어보세요.
-          </span>
-
-          <button
-            id="nextBtn"
-            disabled
-          >
-            다음 상황 ▶
-          </button>
-
-        </div>
-
+        id="routeTrain"
+        class="route-train"
+      >
+        🚄
       </div>
 
     </div>
+
+
+    <div
+      id="destinationLabel"
+      class="station-label"
+    >
+      🏙️ 수서역
+    </div>
+
 
   </section>
 
 
-  <div
-    id="finishModal"
-    class="finish-modal hidden"
+
+  <!-- ===================================== -->
+  <!-- 게임 화면 -->
+  <!-- ===================================== -->
+
+  <section
+    id="railWorld"
+    class="rail-world"
   >
 
-    <div class="finish-card">
 
-      <div class="finish-icon">
-        🏆
+    <!-- 하늘 -->
+
+    <div class="sky">
+
+      <div class="cloud cloud1">
+        ☁️
       </div>
 
-      <h1>
-        안전 운행 성공!
-      </h1>
+      <div class="cloud cloud2">
+        ☁️
+      </div>
 
-      <div id="resultText"></div>
+      <div class="mountain">
+        ⛰️
+      </div>
 
-      <button id="restartBtn">
-        다시 관제하기
+    </div>
+
+
+
+    <!-- 현재 구간 표시 -->
+
+    <div
+      id="tripBadge"
+      class="trip-badge"
+    >
+      창원 → 수서
+    </div>
+
+
+
+    <!-- 거리 -->
+
+    <div
+      id="distanceBadge"
+      class="distance-badge"
+    >
+      0 km
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- 3개 선로 -->
+    <!-- ================================= -->
+
+    <div class="track-lane lane-0">
+
+      <div class="rail-line rail-top"></div>
+
+      <div class="rail-line rail-bottom"></div>
+
+    </div>
+
+
+    <div class="track-lane lane-1">
+
+      <div class="rail-line rail-top"></div>
+
+      <div class="rail-line rail-bottom"></div>
+
+    </div>
+
+
+    <div class="track-lane lane-2">
+
+      <div class="rail-line rail-top"></div>
+
+      <div class="rail-line rail-bottom"></div>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- SRT -->
+    <!-- ================================= -->
+
+    <div
+      id="playerTrain"
+      class="player-train lane-position-1"
+    >
+
+      <div class="srt-engine">
+
+        <div class="srt-window"></div>
+
+        <div class="srt-light"></div>
+
+        <div class="srt-name">
+          SRT
+        </div>
+
+      </div>
+
+
+      <div class="srt-car">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </div>
+
+
+      <div class="srt-car">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- 장애물 -->
+    <!-- ================================= -->
+
+    <div
+      id="obstacle"
+      class="obstacle hidden"
+    >
+
+      <div
+        id="obstacleEmoji"
+        class="obstacle-emoji"
+      >
+        🪨
+      </div>
+
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- 충돌 효과 -->
+    <!-- ================================= -->
+
+    <div
+      id="hitEffect"
+      class="hit-effect hidden"
+    >
+      💥
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- 회피 성공 -->
+    <!-- ================================= -->
+
+    <div
+      id="successEffect"
+      class="success-effect hidden"
+    >
+      ✨ GOOD! ✨
+    </div>
+
+
+
+    <!-- ================================= -->
+    <!-- 출발 전 화면 -->
+    <!-- ================================= -->
+
+    <div
+      id="startOverlay"
+      class="start-overlay"
+    >
+
+      <div class="start-card">
+
+        <div class="start-train">
+          🚄
+        </div>
+
+        <div class="start-route">
+          🏠 ➜ 🏙️ ➜ 🏠
+        </div>
+
+        <button
+          id="startGameBtn"
+          class="start-game-btn"
+          type="button"
+        >
+          ▶️ 출발!
+        </button>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ===================================== -->
+  <!-- 컨트롤 -->
+  <!-- ===================================== -->
+
+  <section class="controls">
+
+
+    <button
+      id="upBtn"
+      class="control-btn"
+      type="button"
+    >
+      ⬆️
+    </button>
+
+
+    <button
+      id="stopBtn"
+      class="control-btn stop-btn"
+      type="button"
+    >
+      🛑
+    </button>
+
+
+    <button
+      id="downBtn"
+      class="control-btn"
+      type="button"
+    >
+      ⬇️
+    </button>
+
+
+  </section>
+
+
+
+  <!-- ===================================== -->
+  <!-- 상태 패널 -->
+  <!-- ===================================== -->
+
+  <section class="mission-status">
+
+
+    <div class="status-card">
+
+      <div class="status-icon">
+        🚄
+      </div>
+
+      <div>
+
+        <div class="status-title">
+          SRT
+        </div>
+
+        <div
+          id="trainStatusText"
+          class="status-text"
+        >
+          출발 준비
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="status-card">
+
+      <div
+        id="nextObstacleIcon"
+        class="status-icon"
+      >
+        👀
+      </div>
+
+      <div>
+
+        <div class="status-title">
+          앞쪽
+        </div>
+
+        <div
+          id="nextObstacleText"
+          class="status-text"
+        >
+          안전
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="status-card">
+
+      <div class="status-icon">
+        🎙️
+      </div>
+
+      <div>
+
+        <div class="status-title">
+          대화
+        </div>
+
+        <div
+          id="talkMissionText"
+          class="status-text"
+        >
+          준비
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+</main>
+
+
+
+<!-- ===================================== -->
+<!-- 화용언어 미션 -->
+<!-- ===================================== -->
+
+<div
+  id="talkModal"
+  class="talk-modal hidden"
+>
+
+
+  <div class="talk-card">
+
+
+    <div class="talk-top">
+
+
+      <span
+        id="talkType"
+        class="talk-type"
+      >
+        상황 파악
+      </span>
+
+
+      <button
+        id="talkSoundBtn"
+        class="talk-sound-btn"
+        type="button"
+      >
+        🔊
+      </button>
+
+
+    </div>
+
+
+
+    <div
+      id="talkCharacter"
+      class="talk-character"
+    >
+      👨‍✈️ 기관사
+    </div>
+
+
+
+    <div
+      id="talkIcon"
+      class="talk-icon"
+    >
+      📡
+    </div>
+
+
+
+    <h2 id="talkTitle">
+      기관사의 질문
+    </h2>
+
+
+
+    <p id="talkQuestion">
+      앞 선로에 장애물이 있습니다. 어떻게 할까요?
+    </p>
+
+
+
+    <div
+      id="talkChoices"
+      class="talk-choices"
+    ></div>
+
+
+
+    <div
+      id="talkFeedback"
+      class="talk-feedback hidden"
+    ></div>
+
+
+
+    <div
+      id="speakArea"
+      class="speak-area hidden"
+    >
+
+      <div class="speak-label">
+        🎙️ 따라 말해보기
+      </div>
+
+      <div
+        id="speakText"
+        class="speak-text"
+      ></div>
+
+      <button
+        id="speakDoneBtn"
+        class="speak-done-btn"
+        type="button"
+      >
+        말했어요!
       </button>
 
     </div>
 
+
   </div>
+
 
 </div>
 
+
+
+<!-- ===================================== -->
+<!-- 수서역 도착 -->
+<!-- ===================================== -->
+
+<div
+  id="stationModal"
+  class="station-modal hidden"
+>
+
+
+  <div class="station-card">
+
+
+    <div class="station-big-icon">
+      🏙️
+    </div>
+
+
+    <h2>
+      수서역 도착!
+    </h2>
+
+
+    <p>
+      승객들의 문제를 해결해 주세요.
+    </p>
+
+
+    <div class="passenger-row">
+
+      <span>
+        👧
+      </span>
+
+      <span>
+        👵
+      </span>
+
+      <span>
+        👩
+      </span>
+
+      <span>
+        🧔
+      </span>
+
+    </div>
+
+
+    <button
+      id="suseoMissionBtn"
+      class="station-btn"
+      type="button"
+    >
+      🎙️ 승객 도와주기
+    </button>
+
+
+  </div>
+
+
+</div>
+
+
+
+<!-- ===================================== -->
+<!-- 수서 미션 완료 후 출발 -->
+<!-- ===================================== -->
+
+<div
+  id="returnModal"
+  class="station-modal hidden"
+>
+
+
+  <div class="station-card">
+
+
+    <div class="station-big-icon">
+      🚄
+    </div>
+
+
+    <h2>
+      창원으로 돌아가요!
+    </h2>
+
+
+    <p>
+      돌아오는 길에는 장애물이 조금 더 어려워져요.
+    </p>
+
+
+    <button
+      id="returnStartBtn"
+      class="station-btn return-btn"
+      type="button"
+    >
+      ▶️ 창원중앙역으로 출발
+    </button>
+
+
+  </div>
+
+
+</div>
+
+
+
+<!-- ===================================== -->
+<!-- 최종 결과 -->
+<!-- ===================================== -->
+
+<div
+  id="resultModal"
+  class="result-modal hidden"
+>
+
+
+  <div class="result-card">
+
+
+    <div class="result-trophy">
+      🏆
+    </div>
+
+
+    <h2>
+      왕복 운행 성공!
+    </h2>
+
+
+    <div class="result-route">
+      🏠 창원 → 🏙️ 수서 → 🏠 창원
+    </div>
+
+
+    <div class="result-grid">
+
+
+      <div class="result-box">
+
+        <span>
+          🚧
+        </span>
+
+        <strong id="resultAvoid">
+          0
+        </strong>
+
+        <small>
+          회피
+        </small>
+
+      </div>
+
+
+      <div class="result-box">
+
+        <span>
+          🎙️
+        </span>
+
+        <strong id="resultTalk">
+          0
+        </strong>
+
+        <small>
+          대화
+        </small>
+
+      </div>
+
+
+      <div class="result-box">
+
+        <span>
+          🏅
+        </span>
+
+        <strong id="resultSticker">
+          0
+        </strong>
+
+        <small>
+          스티커
+        </small>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div
+      id="stickerReward"
+      class="sticker-reward"
+    >
+      🚄
+    </div>
+
+
+    <button
+      id="restartBtn"
+      class="restart-btn"
+      type="button"
+    >
+      🔁 다시 운행
+    </button>
+
+
+  </div>
+
+
+</div>
+
+
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
