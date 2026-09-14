@@ -2,10 +2,9 @@ document.addEventListener(
   "DOMContentLoaded",
   function () {
 
-
-    /* ========================================= */
+    /* ================================================= */
     /* DOM */
-    /* ========================================= */
+    /* ================================================= */
 
     const startGameBtn =
       document.getElementById("startGameBtn");
@@ -77,7 +76,7 @@ document.addEventListener(
       document.getElementById("talkMissionText");
 
 
-    /* Talk */
+    /* 화용언어 */
 
     const talkModal =
       document.getElementById("talkModal");
@@ -116,7 +115,7 @@ document.addEventListener(
       document.getElementById("talkSoundBtn");
 
 
-    /* Station */
+    /* 역 */
 
     const stationModal =
       document.getElementById("stationModal");
@@ -131,7 +130,7 @@ document.addEventListener(
       document.getElementById("returnStartBtn");
 
 
-    /* Result */
+    /* 결과 */
 
     const resultModal =
       document.getElementById("resultModal");
@@ -152,10 +151,48 @@ document.addEventListener(
       document.getElementById("restartBtn");
 
 
+    /* ================================================= */
+    /* 등장인물 */
+    /* ================================================= */
 
-    /* ========================================= */
+    const characters = {
+
+      ajun: "👦 아준이",
+
+      ise: "👧 이서",
+
+      kkakkungi: "🧸 까꿍이",
+
+      uncle: "🧔 삼촌",
+
+      aunt: "👩‍🦰 이모",
+
+      dad: "👨 아빠",
+
+      mom: "👩 엄마",
+
+      jinjuGrandma: "👵 진주할머니",
+
+      jinjuGrandpa: "👴 진주할아버지",
+
+      masanGrandpa: "👴 마산할아버지",
+
+      masanGrandma: "👵 마산할머니",
+
+      sihwan: "👦 시환이",
+
+      yena: "👧 예나",
+
+      driver: "👨‍✈️ SRT 기관사",
+
+      stationStaff: "🧑‍💼 역무원"
+
+    };
+
+
+    /* ================================================= */
     /* 장애물 */
-    /* ========================================= */
+    /* ================================================= */
 
     const obstacles = [
 
@@ -174,13 +211,13 @@ document.addEventListener(
       {
         icon: "🚧",
         type: "avoid",
-        label: "공사"
+        label: "공사 구간"
       },
 
       {
         icon: "💧",
         type: "avoid",
-        label: "물 고임"
+        label: "물이 고인 선로"
       },
 
       {
@@ -190,47 +227,576 @@ document.addEventListener(
       },
 
       {
+        icon: "📦",
+        type: "avoid",
+        label: "선로의 상자"
+      },
+
+      {
+        icon: "🛒",
+        type: "avoid",
+        label: "선로의 카트"
+      },
+
+      {
         icon: "🔴",
         type: "stop",
-        label: "정지 신호"
+        label: "빨간 신호"
       }
 
     ];
 
 
+    /* ================================================= */
+    /* 화용언어 문제 풀 */
+    /* ================================================= */
 
-    /* ========================================= */
-    /* 화용언어 문제 */
-    /* ========================================= */
+    const talkPool = [
 
-    const outboundTalk = [
+      /* ----------------------------------------- */
+      /* 아준 */
+      /* ----------------------------------------- */
 
       {
-        type: "관제 대화",
-
-        character:
-          "👨‍✈️ SRT 기관사",
-
-        icon:
-          "📡",
-
-        title:
-          "앞 선로에 공사 구간",
+        type: "상황 파악",
+        character: characters.ajun,
+        icon: "🚄",
+        title: "아준이가 너무 신났어요",
 
         question:
-          "기관사가 “앞 선로에 공사 구간이 있습니다. 어떻게 할까요?”라고 물었어요.",
+          "아준이가 SRT를 보고 너무 신나서 기관사에게 계속 질문하고 있어요. 기관사가 다른 일을 하고 있다면 어떻게 하는 게 좋을까요?",
 
         choices: [
-          "🚄 그냥 빨리 지나가세요",
-          "🚧 속도를 줄이고 다른 선로를 확인해 주세요",
-          "🤷 잘 모르겠어요",
-          "😠 왜 물어봐요?"
+          "계속 질문한다",
+          "기관사가 일을 마칠 때까지 기다린다",
+          "더 큰 소리로 부른다",
+          "기관사 옆으로 간다"
         ],
 
         answer: 1,
 
         feedback:
-          "좋아요! 상황에 맞는 행동을 기관사에게 정확하게 알려줬어요.",
+          "맞아요! 상대방이 지금 이야기할 수 있는 상황인지 살펴보는 것도 중요해요.",
+
+        speech:
+          "기관사 아저씨, 일 끝나면 질문해도 돼요?"
+      },
+
+
+      /* ----------------------------------------- */
+      /* 이서 */
+      /* ----------------------------------------- */
+
+      {
+        type: "감정 이해",
+        character: characters.ise,
+        icon: "😢",
+        title: "이서가 창가에 앉고 싶어요",
+
+        question:
+          "이서가 창가에 앉고 싶었는데 다른 사람이 먼저 앉았어요. 이서는 어떤 기분일 수 있을까요?",
+
+        choices: [
+          "속상할 수 있다",
+          "무조건 화가 난다",
+          "아무 느낌이 없다",
+          "기차가 싫어진다"
+        ],
+
+        answer: 0,
+
+        feedback:
+          "맞아요! 원하는 자리에 앉지 못하면 조금 속상할 수 있어요.",
+
+        speech:
+          "이서야, 속상했지? 다음에는 창가 자리에 앉아보자."
+      },
+
+
+      {
+        type: "질문하기",
+        character: characters.ise,
+        icon: "🎒",
+        title: "이서의 가방",
+
+        question:
+          "이서가 “내 가방이 안 보여.”라고 말했어요. 무엇을 먼저 물어보면 좋을까요?",
+
+        choices: [
+          "왜 잃어버렸어?",
+          "어디에서 마지막으로 봤어?",
+          "새로 사면 돼",
+          "난 몰라"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 문제 해결에 필요한 정보를 물어봤어요.",
+
+        speech:
+          "이서야, 가방을 어디에서 마지막으로 봤어?"
+      },
+
+
+      /* ----------------------------------------- */
+      /* 까꿍이 */
+      /* ----------------------------------------- */
+
+      {
+        type: "도움 요청",
+        character: characters.kkakkungi,
+        icon: "🧸",
+        title: "까꿍이가 없어졌어요!",
+
+        question:
+          "이서가 가장 좋아하는 까꿍이가 좌석에 없어요. 어떻게 하면 좋을까요?",
+
+        choices: [
+          "그냥 집에 간다",
+          "마지막으로 가지고 있었던 곳부터 찾아본다",
+          "이서에게 울지 말라고 한다",
+          "새 인형을 산다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 잃어버린 물건은 마지막으로 봤던 곳부터 차근차근 찾으면 좋아요.",
+
+        speech:
+          "이서야, 까꿍이를 마지막으로 어디에서 봤어?"
+      },
+
+
+      /* ----------------------------------------- */
+      /* 엄마 */
+      /* ----------------------------------------- */
+
+      {
+        type: "질문에 대답",
+        character: characters.mom,
+        icon: "🎫",
+        title: "엄마가 좌석을 물어봐요",
+
+        question:
+          "엄마가 “우리 좌석이 어디야?”라고 물었어요. 어떻게 대답하면 좋을까요?",
+
+        choices: [
+          "SRT는 빨라",
+          "8호차 3A, 3B야",
+          "왜 물어봐?",
+          "기차는 보라색이야"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 질문에 필요한 정보를 짧고 정확하게 대답했어요.",
+
+        speech:
+          "우리 자리는 8호차 3A와 3B야."
+      },
+
+
+      {
+        type: "상황 설명",
+        character: characters.mom,
+        icon: "🔴",
+        title: "왜 기차가 멈췄어요?",
+
+        question:
+          "엄마가 “왜 기차가 멈췄어?”라고 물었어요. 앞 신호가 빨간색이라면 어떻게 설명할까요?",
+
+        choices: [
+          "몰라",
+          "앞 신호가 빨간색이라 안전하게 기다리고 있어",
+          "기차가 쉬고 싶대",
+          "그냥 기다려"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 이유를 상대방이 이해하기 쉽게 설명했어요.",
+
+        speech:
+          "앞 신호가 빨간색이라 안전하게 기다리고 있어."
+      },
+
+
+      /* ----------------------------------------- */
+      /* 아빠 */
+      /* ----------------------------------------- */
+
+      {
+        type: "대화 이어가기",
+        character: characters.dad,
+        icon: "🏙️",
+        title: "아빠의 서울 이야기",
+
+        question:
+          "아빠가 “나는 예전에 서울에서 일한 적이 있어.”라고 말했어요. 어떻게 이어서 말하면 좋을까요?",
+
+        choices: [
+          "SRT 최고 속도는...",
+          "서울 어디에서 일했어?",
+          "그래",
+          "나는 기차가 좋아"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 상대가 이야기한 내용과 연결된 질문을 했어요.",
+
+        speech:
+          "아빠, 서울 어디에서 일했어?"
+      },
+
+
+      /* ----------------------------------------- */
+      /* 삼촌 */
+      /* ----------------------------------------- */
+
+      {
+        type: "정중하게 부탁",
+        character: characters.uncle,
+        icon: "📱",
+        title: "삼촌 휴대폰 소리가 커요",
+
+        question:
+          "삼촌이 SRT에서 휴대폰 영상을 크게 틀었어요. 주변 사람들이 쳐다봐요.",
+
+        choices: [
+          "삼촌 시끄러워!",
+          "삼촌, 다른 사람들도 있으니까 소리를 조금 줄여줄래?",
+          "휴대폰을 뺏는다",
+          "나도 크게 소리낸다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 상대방을 공격하지 않고 이유와 함께 부탁했어요.",
+
+        speech:
+          "삼촌, 다른 사람들도 있으니까 소리를 조금 줄여줄래?"
+      },
+
+
+      /* ----------------------------------------- */
+      /* 이모 */
+      /* ----------------------------------------- */
+
+      {
+        type: "길 안내",
+        character: characters.aunt,
+        icon: "🚻",
+        title: "이모가 화장실을 찾아요",
+
+        question:
+          "이모가 “화장실이 어디야?”라고 물었어요. 어떻게 알려주면 좋을까요?",
+
+        choices: [
+          "저쪽",
+          "앞으로 가서 오른쪽에 있어",
+          "몰라",
+          "직접 찾아봐"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 위치와 방향을 구체적으로 알려줬어요.",
+
+        speech:
+          "앞으로 조금 가서 오른쪽에 있어."
+      },
+
+
+      /* ----------------------------------------- */
+      /* 진주할머니 */
+      /* ----------------------------------------- */
+
+      {
+        type: "도움 주기",
+        character: characters.jinjuGrandma,
+        icon: "🧳",
+        title: "진주할머니의 무거운 가방",
+
+        question:
+          "진주할머니가 무거운 가방을 들고 힘들어 보여요. 어떻게 하면 좋을까요?",
+
+        choices: [
+          "빨리 오라고 한다",
+          "할머니, 제가 가방 들어드릴까요?",
+          "가방이 왜 무거운지 묻는다",
+          "그냥 지나간다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 도움이 필요한지 먼저 물어봤어요.",
+
+        speech:
+          "할머니, 제가 가방 들어드릴까요?"
+      },
+
+
+      {
+        type: "상대 의도 확인",
+        character: characters.jinjuGrandma,
+        icon: "🗺️",
+        title: "진주할머니가 길을 찾아요",
+
+        question:
+          "진주할머니가 수서역에서 두리번거리고 있어요. 어떻게 말하면 좋을까요?",
+
+        choices: [
+          "저쪽으로 가세요",
+          "할머니, 어디로 가세요? 같이 찾아볼게요",
+          "역무원에게 물어보세요",
+          "몰라요"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 먼저 어디로 가고 싶은지 물어보는 것이 좋아요.",
+
+        speech:
+          "할머니, 어디로 가세요? 같이 찾아볼게요."
+      },
+
+
+      /* ----------------------------------------- */
+      /* 진주할아버지 */
+      /* ----------------------------------------- */
+
+      {
+        type: "다시 설명하기",
+        character: characters.jinjuGrandpa,
+        icon: "👂",
+        title: "진주할아버지가 못 들었어요",
+
+        question:
+          "진주할아버지가 “아준아, 잘 못 들었어.”라고 말씀하셨어요. 어떻게 할까요?",
+
+        choices: [
+          "아까 말했잖아요",
+          "천천히 다시 말해드린다",
+          "그냥 넘어간다",
+          "더 빠르게 말한다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 상대가 못 들었을 때 다시 설명해 주는 것이 좋아요.",
+
+        speech:
+          "할아버지, 제가 천천히 다시 말씀드릴게요."
+      },
+
+
+      /* ----------------------------------------- */
+      /* 마산할아버지 */
+      /* ----------------------------------------- */
+
+      {
+        type: "상황 판단",
+        character: characters.masanGrandpa,
+        icon: "💺",
+        title: "마산할아버지 자리",
+
+        question:
+          "마산할아버지 자리에 다른 사람이 앉아 있어요. 어떻게 해결하면 좋을까요?",
+
+        choices: [
+          "비키라고 크게 말한다",
+          "두 사람의 승차권 좌석 번호를 확인한다",
+          "먼저 앉은 사람이 주인이다",
+          "할아버지가 서서 간다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 의견이 다를 때는 먼저 사실을 확인하는 것이 좋아요.",
+
+        speech:
+          "두 분 승차권의 좌석 번호를 같이 확인해 볼게요."
+      },
+
+
+      /* ----------------------------------------- */
+      /* 마산할머니 */
+      /* ----------------------------------------- */
+
+      {
+        type: "배려하기",
+        character: characters.masanGrandma,
+        icon: "😴",
+        title: "마산할머니가 주무세요",
+
+        question:
+          "마산할머니가 좌석에서 잠들었어요. 아준이가 기차 이야기를 하고 싶다면 어떻게 하면 좋을까요?",
+
+        choices: [
+          "할머니를 깨운다",
+          "할머니가 일어날 때까지 기다린다",
+          "귀 옆에서 말한다",
+          "큰 소리로 기차 이야기를 한다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 상대방이 쉬고 있다면 기다려주는 것도 배려예요.",
+
+        speech:
+          "할머니가 일어나시면 이야기해야겠다."
+      },
+
+
+      /* ----------------------------------------- */
+      /* 시환이 */
+      /* ----------------------------------------- */
+
+      {
+        type: "친구와 대화",
+        character: characters.sihwan,
+        icon: "🚄",
+        title: "시환이는 KTX가 더 좋아요",
+
+        question:
+          "아준이는 SRT가 좋고 시환이는 KTX가 더 좋다고 해요. 어떻게 이야기하면 좋을까요?",
+
+        choices: [
+          "SRT가 무조건 최고야",
+          "시환이는 KTX가 왜 좋아?",
+          "KTX는 별로야",
+          "더 이상 이야기하지 않는다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 좋아하는 것이 달라도 상대방 생각을 물어볼 수 있어요.",
+
+        speech:
+          "시환이는 KTX가 왜 좋아?"
+      },
+
+
+      {
+        type: "차례 기다리기",
+        character: characters.sihwan,
+        icon: "🗣️",
+        title: "시환이가 이야기 중이에요",
+
+        question:
+          "시환이가 학교 이야기를 하고 있는데 아준이에게 기차 이야기가 떠올랐어요.",
+
+        choices: [
+          "바로 기차 이야기를 한다",
+          "시환이가 말을 끝낼 때까지 기다린다",
+          "시환이 말을 끊는다",
+          "더 크게 말한다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 상대가 말을 끝낼 때까지 기다리는 것이 중요해요.",
+
+        speech:
+          "시환아, 이야기 끝나면 나도 하나 말해도 돼?"
+      },
+
+
+      /* ----------------------------------------- */
+      /* 예나 */
+      /* ----------------------------------------- */
+
+      {
+        type: "감정 이해",
+        character: characters.yena,
+        icon: "😟",
+        title: "예나가 걱정하고 있어요",
+
+        question:
+          "SRT가 잠깐 멈추자 예나가 창밖을 보며 걱정스러운 표정을 지어요. 어떻게 말하면 좋을까요?",
+
+        choices: [
+          "왜 무서워해?",
+          "예나야, 걱정돼? 신호 때문에 잠깐 기다리는 거야",
+          "아무 말도 하지 않는다",
+          "기차는 원래 위험해"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 상대방의 마음을 살피고 상황을 설명해 줬어요.",
+
+        speech:
+          "예나야, 걱정돼? 신호 때문에 잠깐 기다리는 거야."
+      },
+
+
+      {
+        type: "같이 해결하기",
+        character: characters.yena,
+        icon: "🥤",
+        title: "예나가 물을 쏟았어요",
+
+        question:
+          "예나가 실수로 통로에 물을 쏟았어요. 어떻게 하면 좋을까요?",
+
+        choices: [
+          "예나를 혼낸다",
+          "미끄러울 수 있으니 사람들에게 알려주고 같이 닦는다",
+          "그냥 둔다",
+          "다른 자리로 간다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 잘못을 따지기보다 먼저 안전하게 해결하는 것이 중요해요.",
+
+        speech:
+          "여기 바닥이 미끄러워요. 조심하세요. 같이 닦자."
+      },
+
+
+      /* ----------------------------------------- */
+      /* 기관사 */
+      /* ----------------------------------------- */
+
+      {
+        type: "관제 지시",
+        character: characters.driver,
+        icon: "📡",
+        title: "기관사의 보고",
+
+        question:
+          "기관사가 “앞 선로에 공사 구간이 있습니다.”라고 보고했어요.",
+
+        choices: [
+          "빨리 지나가세요",
+          "속도를 줄이고 다른 선로를 확인해 주세요",
+          "알아서 하세요",
+          "그냥 기다리세요"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 상황에 맞는 구체적인 행동을 알려줬어요.",
 
         speech:
           "속도를 줄이고 다른 선로를 확인해 주세요."
@@ -239,276 +805,388 @@ document.addEventListener(
 
       {
         type: "다시 말하기",
-
-        character:
-          "👨‍✈️ SRT 기관사",
-
-        icon:
-          "📡",
-
-        title:
-          "무전이 잘 안 들렸어요",
+        character: characters.driver,
+        icon: "📡",
+        title: "무전이 끊겼어요",
 
         question:
-          "기관사가 “관제사님, 잘 못 들었습니다.”라고 말했어요. 어떻게 해야 할까요?",
+          "기관사가 “관제사님, 마지막 말을 잘 못 들었습니다.”라고 했어요.",
 
         choices: [
-          "😠 아까 말했잖아요",
-          "📡 네, 다시 말씀드릴게요",
-          "🤷 그냥 알아서 하세요",
-          "🔇 아무 말도 하지 않는다"
+          "아까 말했잖아요",
+          "네, 다시 말씀드릴게요",
+          "알아서 하세요",
+          "아무 말도 하지 않는다"
         ],
 
         answer: 1,
 
         feedback:
-          "맞아요! 상대가 잘 못 들었다면 차분하게 다시 설명하면 좋아요.",
+          "맞아요! 잘 못 들었을 때 다시 설명해 주면 돼요.",
 
         speech:
           "네, 다시 말씀드릴게요. SRT는 2번 선로로 이동해 주세요."
       },
 
 
+      /* ----------------------------------------- */
+      /* 역무원 */
+      /* ----------------------------------------- */
+
       {
-        type: "상황 파악",
-
-        character:
-          "👩 엄마",
-
-        icon:
-          "🎫",
-
-        title:
-          "엄마가 표를 확인해요",
+        type: "도움 요청",
+        character: characters.stationStaff,
+        icon: "🎒",
+        title: "분실물을 찾고 싶어요",
 
         question:
-          "엄마가 “우리 좌석이 몇 번이야?”라고 물었어요. 가장 자연스러운 대답은 무엇일까요?",
+          "아준이가 물건을 잃어버렸어요. 역무원에게 어떻게 말하면 좋을까요?",
 
         choices: [
-          "🚄 SRT는 빠른 기차야",
-          "💺 8호차 3A, 3B 자리야",
-          "🤷 왜 물어봐?",
-          "🎫 표가 예뻐"
+          "내 물건 어디 있어요?",
+          "죄송하지만 분실물 찾는 것을 도와주실 수 있나요?",
+          "빨리 찾아주세요!",
+          "물건이 없어졌어요!"
         ],
 
         answer: 1,
 
         feedback:
-          "좋아요! 질문에서 필요한 정보를 듣고 그 내용에 맞게 대답했어요.",
+          "좋아요! 상황을 설명하고 정중하게 도움을 요청했어요.",
 
         speech:
-          "우리 자리는 8호차 3A와 3B야."
+          "죄송하지만 분실물 찾는 것을 도와주실 수 있나요?"
+      },
+
+
+      /* ----------------------------------------- */
+      /* 가족 다같이 */
+      /* ----------------------------------------- */
+
+      {
+        type: "대화 주제",
+        character:
+          "👦 아준이 · 👧 이서 · 👨 아빠 · 👩 엄마",
+
+        icon: "🍱",
+
+        title: "기차에서 간식을 먹어요",
+
+        question:
+          "엄마가 “우리 간식 뭐부터 먹을까?”라고 물었어요. 가장 자연스러운 대답은 무엇일까요?",
+
+        choices: [
+          "SRT는 시속 300km...",
+          "나는 김밥부터 먹고 싶어. 이서는?",
+          "몰라",
+          "기차 얘기하자"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 지금 대화하는 주제에 맞게 대답하고 다른 사람 생각도 물어봤어요.",
+
+        speech:
+          "나는 김밥부터 먹고 싶어. 이서는?"
+      },
+
+
+      {
+        type: "양보하기",
+        character:
+          "👦 아준이 · 👧 이서",
+
+        icon: "🪟",
+
+        title: "둘 다 창가에 앉고 싶어요",
+
+        question:
+          "아준이와 이서가 둘 다 창가에 앉고 싶어요. 어떻게 해결하면 좋을까요?",
+
+        choices: [
+          "먼저 앉는 사람이 계속 앉는다",
+          "갈 때와 올 때 번갈아 앉는다",
+          "싸워서 결정한다",
+          "엄마가 정해준다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 두 사람 모두 원하는 것이 있을 때 서로 만족할 방법을 찾을 수 있어요.",
+
+        speech:
+          "갈 때는 이서가 앉고, 올 때는 내가 앉을까?"
+      },
+
+
+      {
+        type: "칭찬하기",
+        character:
+          "👦 아준이 · 👧 예나",
+
+        icon: "👏",
+
+        title: "예나가 어려운 퍼즐을 풀었어요",
+
+        question:
+          "예나가 기차 퍼즐을 오래 생각해서 완성했어요. 어떻게 말해주면 좋을까요?",
+
+        choices: [
+          "그것도 오래 걸렸네",
+          "예나야, 끝까지 생각해서 완성했네! 잘했어",
+          "나는 더 빨리 할 수 있어",
+          "별로 안 어려운데?"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "좋아요! 결과뿐 아니라 노력한 과정도 칭찬했어요.",
+
+        speech:
+          "예나야, 끝까지 생각해서 완성했네! 잘했어."
+      },
+
+
+      {
+        type: "사과하기",
+        character:
+          "👦 아준이 · 👦 시환이",
+
+        icon: "🙇",
+
+        title: "시환이 발을 밟았어요",
+
+        question:
+          "아준이가 기차를 보다가 실수로 시환이 발을 밟았어요.",
+
+        choices: [
+          "네가 뒤에 있었잖아",
+          "시환아 미안해. 괜찮아?",
+          "안 아프잖아",
+          "아무 말도 하지 않는다"
+        ],
+
+        answer: 1,
+
+        feedback:
+          "맞아요! 실수했을 때 사과하고 상대가 괜찮은지 확인하면 좋아요.",
+
+        speech:
+          "시환아 미안해. 괜찮아?"
       }
 
     ];
 
 
+    /* ================================================= */
+    /* 셔플 */
+    /* ================================================= */
 
-    const suseoTalk = [
+    function shuffleArray(
+      array
+    ) {
 
-      {
-        type: "도움 요청 듣기",
-
-        character:
-          "👧 이서",
-
-        icon:
-          "🎒",
-
-        title:
-          "이서의 가방",
-
-        question:
-          "이서가 “내 가방이 안 보여!”라고 말했어요. 가장 좋은 질문은 무엇일까요?",
-
-        choices: [
-          "😠 왜 잃어버렸어?",
-          "🎒 어디에서 마지막으로 봤어?",
-          "🛍️ 새로 사면 돼",
-          "🤷 난 몰라"
-        ],
-
-        answer: 1,
-
-        feedback:
-          "좋아요! 문제를 해결하기 위해 필요한 정보를 먼저 물어봤어요.",
-
-        speech:
-          "이서야, 가방을 어디에서 마지막으로 봤어?"
-      },
+      const copy =
+        [...array];
 
 
-      {
-        type: "상대 의도 확인",
+      for (
+        let i =
+          copy.length - 1;
 
-        character:
-          "👵 진주할머니",
+        i > 0;
 
-        icon:
-          "🗺️",
+        i--
+      ) {
 
-        title:
-          "길을 찾는 할머니",
-
-        question:
-          "진주할머니가 수서역에서 어디로 가야 하는지 몰라 주변을 보고 있어요. 어떻게 말하면 좋을까요?",
-
-        choices: [
-          "👉 저쪽이에요",
-          "👵 할머니, 어디로 가세요? 제가 같이 찾아볼게요",
-          "🚶 그냥 가세요",
-          "🤷 직원에게 물어보세요"
-        ],
-
-        answer: 1,
-
-        feedback:
-          "맞아요! 먼저 어디로 가려는지 확인하면 더 정확하게 도울 수 있어요.",
-
-        speech:
-          "할머니, 어디로 가세요? 제가 같이 찾아볼게요."
-      },
+        const j =
+          Math.floor(
+            Math.random() *
+            (i + 1)
+          );
 
 
-      {
-        type: "정중하게 부탁",
+        [
+          copy[i],
+          copy[j]
+        ] =
+        [
+          copy[j],
+          copy[i]
+        ];
 
-        character:
-          "🧔 삼촌",
-
-        icon:
-          "📱",
-
-        title:
-          "삼촌의 큰 휴대폰 소리",
-
-        question:
-          "삼촌이 SRT 안에서 휴대폰 영상을 크게 틀었어요. 주변 승객들이 쳐다봐요. 어떻게 말할까요?",
-
-        choices: [
-          "😠 삼촌 시끄러워!",
-          "🔉 삼촌, 다른 사람들도 있으니까 소리를 조금 줄여줄래?",
-          "📱 휴대폰을 빼앗는다",
-          "🙉 아무 말도 하지 않는다"
-        ],
-
-        answer: 1,
-
-        feedback:
-          "좋아요! 이유와 함께 정중하게 부탁했어요.",
-
-        speech:
-          "삼촌, 다른 사람들도 있으니까 소리를 조금 줄여줄래?"
       }
 
-    ];
+
+      return copy;
+
+    }
 
 
+    /*
+      구간별로 각각 셔플한 문제 큐를 사용.
+      한 번 나온 문제는 큐가 다 소진될 때까지
+      다시 나오지 않는다.
+    */
 
-    const returnTalk = [
-
-      {
-        type: "안전 판단",
-
-        character:
-          "👨‍✈️ SRT 기관사",
-
-        icon:
-          "🔴",
-
-        title:
-          "빨간 신호",
-
-        question:
-          "기관사가 “앞 신호가 빨간색입니다.”라고 보고했어요. 어떻게 대답해야 할까요?",
-
-        choices: [
-          "🚄 빨리 지나가세요",
-          "🛑 현재 위치에서 정지하고 신호를 기다려 주세요",
-          "↗️ 그냥 옆으로 가세요",
-          "🤷 알아서 하세요"
-        ],
-
-        answer: 1,
-
-        feedback:
-          "정답! 안전과 관련된 상황에서는 정확한 행동을 알려줘야 해요.",
-
-        speech:
-          "현재 위치에서 정지하고 신호를 기다려 주세요."
-      },
+    let outboundQueue =
+      shuffleArray(
+        talkPool
+      );
 
 
-      {
-        type: "상황 설명",
-
-        character:
-          "👩 엄마",
-
-        icon:
-          "⏰",
-
-        title:
-          "왜 기차가 멈췄어요?",
-
-        question:
-          "엄마가 “왜 기차가 갑자기 멈췄어?”라고 물었어요. 어떻게 설명하면 좋을까요?",
-
-        choices: [
-          "🤷 몰라",
-          "🔴 앞 신호가 빨간색이라 안전하게 기다리고 있어",
-          "🚄 기차가 쉬고 싶대",
-          "😠 그냥 기다려"
-        ],
-
-        answer: 1,
-
-        feedback:
-          "좋아요! 왜 그런 일이 생겼는지 상대가 이해하기 쉽게 설명했어요.",
-
-        speech:
-          "앞 신호가 빨간색이라 안전하게 기다리고 있어."
-      },
+    let suseoQueue =
+      shuffleArray(
+        talkPool
+      );
 
 
-      {
-        type: "감정 이해",
+    let returnQueue =
+      shuffleArray(
+        talkPool
+      );
 
-        character:
-          "👧 이서",
 
-        icon:
-          "😴",
+    let usedMissionTitles =
+      new Set();
 
-        title:
-          "이서가 피곤해 보여요",
 
-        question:
-          "이서가 창밖을 보다가 하품을 하고 말수가 줄었어요. 어떻게 생각할 수 있을까요?",
+    function getRandomMission(
+      source
+    ) {
 
-        choices: [
-          "😡 화가 났다",
-          "😴 피곤하거나 쉬고 싶을 수 있다",
-          "🎉 더 놀고 싶다",
-          "🚄 기차 이야기를 더 듣고 싶다"
-        ],
+      let queue;
 
-        answer: 1,
 
-        feedback:
-          "맞아요! 표정과 행동을 보면 상대방의 상태를 짐작할 수 있어요.",
+      if (
+        source ===
+        "outbound"
+      ) {
 
-        speech:
-          "이서야, 피곤해? 조금 쉴래?"
+        queue =
+          outboundQueue;
+
       }
 
-    ];
+      else if (
+        source ===
+        "suseo"
+      ) {
+
+        queue =
+          suseoQueue;
+
+      }
+
+      else {
+
+        queue =
+          returnQueue;
+
+      }
 
 
+      /*
+        해당 큐가 다 떨어지면
+        다시 셔플
+      */
 
-    /* ========================================= */
-    /* 게임 상태 */
-    /* ========================================= */
+      if (
+        queue.length === 0
+      ) {
+
+        const newQueue =
+          shuffleArray(
+            talkPool
+          );
+
+
+        if (
+          source ===
+          "outbound"
+        ) {
+
+          outboundQueue =
+            newQueue;
+
+          queue =
+            outboundQueue;
+
+        }
+
+        else if (
+          source ===
+          "suseo"
+        ) {
+
+          suseoQueue =
+            newQueue;
+
+          queue =
+            suseoQueue;
+
+        }
+
+        else {
+
+          returnQueue =
+            newQueue;
+
+          queue =
+            returnQueue;
+
+        }
+
+      }
+
+
+      /*
+        같은 판에서 이미 나왔던 문제라면
+        가능하면 다음 문제 선택
+      */
+
+      let safety =
+        0;
+
+
+      while (
+        queue.length > 1 &&
+        usedMissionTitles.has(
+          queue[0].title
+        ) &&
+        safety <
+        20
+      ) {
+
+        queue.push(
+          queue.shift()
+        );
+
+        safety++;
+
+      }
+
+
+      const mission =
+        queue.shift();
+
+
+      usedMissionTitles.add(
+        mission.title
+      );
+
+
+      return mission;
+
+    }
+
+
+    /* ================================================= */
+    /* 상태 */
+    /* ================================================= */
 
     let running =
       false;
@@ -558,20 +1236,23 @@ document.addEventListener(
     let talkSolved =
       0;
 
-    let outboundTalkIndex =
-      0;
-
-    let suseoTalkIndex =
-      0;
-
-    let returnTalkIndex =
-      0;
-
     let currentTalkMission =
       null;
 
     let currentTalkSource =
       "";
+
+    let suseoMissionCount =
+      0;
+
+    let requiredSuseoMissions =
+      4;
+
+    let outboundTalkCount =
+      0;
+
+    let returnTalkCount =
+      0;
 
     let lastFrame =
       performance.now();
@@ -579,11 +1260,13 @@ document.addEventListener(
     let timeSinceObstacle =
       0;
 
+    let talkOpening =
+      false;
 
 
-    /* ========================================= */
+    /* ================================================= */
     /* 시작 */
-    /* ========================================= */
+    /* ================================================= */
 
     function startGame() {
 
@@ -594,6 +1277,7 @@ document.addEventListener(
 
       running =
         true;
+
 
       paused =
         false;
@@ -616,10 +1300,9 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
+    /* ================================================= */
     /* 선로 변경 */
-    /* ========================================= */
+    /* ================================================= */
 
     function moveUp() {
 
@@ -627,12 +1310,15 @@ document.addEventListener(
         paused ||
         !running
       ) {
+
         return;
+
       }
 
 
       if (
-        playerLane > 0
+        playerLane >
+        0
       ) {
 
         playerLane--;
@@ -650,12 +1336,15 @@ document.addEventListener(
         paused ||
         !running
       ) {
+
         return;
+
       }
 
 
       if (
-        playerLane < 2
+        playerLane <
+        2
       ) {
 
         playerLane++;
@@ -684,10 +1373,9 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
+    /* ================================================= */
     /* 정지 */
-    /* ========================================= */
+    /* ================================================= */
 
     function stopTrain() {
 
@@ -695,7 +1383,9 @@ document.addEventListener(
         paused ||
         !running
       ) {
+
         return;
+
       }
 
 
@@ -708,11 +1398,11 @@ document.addEventListener(
 
 
       playerTrain.style.transform =
-        "scale(.97)";
+        "scale(.96)";
 
 
       setTimeout(
-        function() {
+        function () {
 
           stopped =
             false;
@@ -728,23 +1418,25 @@ document.addEventListener(
           ) {
 
             trainStatusText.textContent =
-              direction === "outbound"
+              direction ===
+              "outbound"
+
                 ? "수서역으로 운행 중"
+
                 : "창원중앙역으로 운행 중";
 
           }
 
         },
-        1100
+        1200
       );
 
     }
 
 
-
-    /* ========================================= */
-    /* 장애물 생성 */
-    /* ========================================= */
+    /* ================================================= */
+    /* 장애물 */
+    /* ================================================= */
 
     function spawnObstacle() {
 
@@ -753,7 +1445,9 @@ document.addEventListener(
         paused ||
         !running
       ) {
+
         return;
+
       }
 
 
@@ -792,7 +1486,8 @@ document.addEventListener(
 
 
       obstacle.style.left =
-        obstacleX + "px";
+        obstacleX +
+        "px";
 
 
       nextObstacleIcon.textContent =
@@ -800,17 +1495,15 @@ document.addEventListener(
 
 
       nextObstacleText.textContent =
-        currentObstacle.type === "stop"
+        currentObstacle.type ===
+        "stop"
+
           ? "정지!"
+
           : "피하기!";
 
     }
 
-
-
-    /* ========================================= */
-    /* 장애물 종료 */
-    /* ========================================= */
 
     function resolveObstacle() {
 
@@ -837,63 +1530,75 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
-    /* 장애물 판정 */
-    /* ========================================= */
+    /* ================================================= */
+    /* 판정 */
+    /* ================================================= */
 
     function checkObstacle() {
 
       if (
         !obstacleActive
       ) {
+
         return;
+
       }
 
 
       const trainRect =
-        playerTrain.getBoundingClientRect();
+        playerTrain
+          .getBoundingClientRect();
 
 
       const obstacleRect =
-        obstacle.getBoundingClientRect();
+        obstacle
+          .getBoundingClientRect();
 
 
-      const overlappingX =
+      const overlap =
         obstacleRect.left <
         trainRect.right &&
+
         obstacleRect.right >
         trainRect.left;
 
 
       if (
-        overlappingX
+        overlap
       ) {
 
 
+        /*
+          빨간 신호는
+          같은 선로에서 정지하면 성공
+        */
+
         if (
-          currentObstacle.type === "stop"
+          currentObstacle.type ===
+          "stop"
         ) {
 
 
           if (
-            stopped
+            obstacleLane ===
+            playerLane
           ) {
 
-            successfulAvoid();
 
-            resolveObstacle();
+            if (
+              stopped
+            ) {
 
-            return;
+              successfulAvoid();
 
-          }
+            }
 
+            else {
 
-          if (
-            obstacleLane === playerLane
-          ) {
+              hitObstacle();
 
-            hitObstacle();
+            }
+
 
             resolveObstacle();
 
@@ -904,11 +1609,16 @@ document.addEventListener(
         }
 
 
+        /*
+          일반 장애물
+        */
+
         else {
 
 
           if (
-            obstacleLane === playerLane
+            obstacleLane ===
+            playerLane
           ) {
 
             hitObstacle();
@@ -924,9 +1634,14 @@ document.addEventListener(
       }
 
 
+      /*
+        지나갔으면 성공
+      */
+
       if (
         obstacleRect.right <
-        trainRect.left - 20
+        trainRect.left -
+        20
       ) {
 
         successfulAvoid();
@@ -938,16 +1653,17 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
+    /* ================================================= */
     /* 성공 */
-    /* ========================================= */
+    /* ================================================= */
 
     function successfulAvoid() {
 
       avoidedCount++;
 
-      score += 10;
+
+      score +=
+        10;
 
 
       scoreText.textContent =
@@ -960,7 +1676,7 @@ document.addEventListener(
 
 
       setTimeout(
-        function() {
+        function () {
 
           successEffect.classList.add(
             "hidden"
@@ -972,70 +1688,65 @@ document.addEventListener(
 
 
       /*
-        일정 횟수마다
-        화용언어 문제
+        기존 3회에서 2회로 변경.
+        훨씬 다양한 대화 상황 등장.
       */
 
       if (
-        direction === "outbound" &&
-        avoidedCount > 0 &&
-        avoidedCount % 3 === 0 &&
-        outboundTalkIndex <
-        outboundTalk.length
+        avoidedCount %
+        2 ===
+        0
       ) {
 
-        setTimeout(
-          function() {
 
-            openTalkMission(
-              outboundTalk[
-                outboundTalkIndex
-              ],
-              "outbound"
-            );
+        if (
+          direction ===
+          "outbound"
+        ) {
 
-            outboundTalkIndex++;
-
-          },
-          500
-        );
-
-      }
+          outboundTalkCount++;
 
 
-      if (
-        direction === "return" &&
-        avoidedCount > 0 &&
-        avoidedCount % 3 === 0 &&
-        returnTalkIndex <
-        returnTalk.length
-      ) {
+          setTimeout(
+            function () {
 
-        setTimeout(
-          function() {
+              tryOpenRandomMission(
+                "outbound"
+              );
 
-            openTalkMission(
-              returnTalk[
-                returnTalkIndex
-              ],
-              "return"
-            );
+            },
+            450
+          );
 
-            returnTalkIndex++;
+        }
 
-          },
-          500
-        );
+
+        else {
+
+          returnTalkCount++;
+
+
+          setTimeout(
+            function () {
+
+              tryOpenRandomMission(
+                "return"
+              );
+
+            },
+            450
+          );
+
+        }
 
       }
 
     }
 
 
-
-    /* ========================================= */
+    /* ================================================= */
     /* 충돌 */
-    /* ========================================= */
+    /* ================================================= */
 
     function hitObstacle() {
 
@@ -1043,10 +1754,12 @@ document.addEventListener(
 
 
       if (
-        lives < 0
+        lives <
+        0
       ) {
 
-        lives = 0;
+        lives =
+          0;
 
       }
 
@@ -1065,7 +1778,7 @@ document.addEventListener(
 
 
       setTimeout(
-        function() {
+        function () {
 
           hitEffect.classList.add(
             "hidden"
@@ -1080,13 +1793,9 @@ document.addEventListener(
       );
 
 
-      /*
-        아이가 게임을 계속할 수 있게
-        하트가 0이면 정비팀이 복구
-      */
-
       if (
-        lives === 0
+        lives ===
+        0
       ) {
 
         paused =
@@ -1094,11 +1803,11 @@ document.addEventListener(
 
 
         trainStatusText.textContent =
-          "🔧 정비 중";
+          "🔧 정비팀 출동";
 
 
         setTimeout(
-          function() {
+          function () {
 
             lives =
               2;
@@ -1113,13 +1822,22 @@ document.addEventListener(
 
 
             setTimeout(
-              function() {
+              function () {
 
                 paused =
                   false;
 
+
+                trainStatusText.textContent =
+                  direction ===
+                  "outbound"
+
+                    ? "수서역으로 운행 중"
+
+                    : "창원중앙역으로 운행 중";
+
               },
-              700
+              600
             );
 
           },
@@ -1131,10 +1849,57 @@ document.addEventListener(
     }
 
 
+    /* ================================================= */
+    /* 랜덤 문제 호출 */
+    /* ================================================= */
 
-    /* ========================================= */
-    /* 화용언어 열기 */
-    /* ========================================= */
+    function tryOpenRandomMission(
+      source
+    ) {
+
+      if (
+        paused ||
+        talkOpening ||
+        !running
+      ) {
+
+        return;
+
+      }
+
+
+      talkOpening =
+        true;
+
+
+      const mission =
+        getRandomMission(
+          source
+        );
+
+
+      openTalkMission(
+        mission,
+        source
+      );
+
+
+      setTimeout(
+        function () {
+
+          talkOpening =
+            false;
+
+        },
+        300
+      );
+
+    }
+
+
+    /* ================================================= */
+    /* 화용언어 문제 */
+    /* ================================================= */
 
     function openTalkMission(
       mission,
@@ -1194,7 +1959,7 @@ document.addEventListener(
       mission
         .choices
         .forEach(
-          function(
+          function (
             choice,
             index
           ) {
@@ -1219,7 +1984,7 @@ document.addEventListener(
 
             button.addEventListener(
               "click",
-              function() {
+              function () {
 
                 answerTalk(
                   index,
@@ -1245,10 +2010,9 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
+    /* ================================================= */
     /* 대화 정답 */
-    /* ========================================= */
+    /* ================================================= */
 
     function answerTalk(
       index,
@@ -1271,7 +2035,7 @@ document.addEventListener(
             ".talk-choice"
           )
           .forEach(
-            function(btn) {
+            function (btn) {
 
               btn.disabled =
                 true;
@@ -1329,10 +2093,9 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
+    /* ================================================= */
     /* 말하기 완료 */
-    /* ========================================= */
+    /* ================================================= */
 
     function finishSpeaking() {
 
@@ -1342,23 +2105,11 @@ document.addEventListener(
 
 
       talkMissionText.textContent =
-        "✅ 성공";
-
-
-      setTimeout(
-        function() {
-
-          talkMissionText.textContent =
-            "운행 중";
-
-        },
-        900
-      );
+        "✅ 해결";
 
 
       /*
-        수서역 미션이라면
-        다음 수서 미션
+        수서역 문제
       */
 
       if (
@@ -1366,22 +2117,22 @@ document.addEventListener(
         "suseo"
       ) {
 
-
-        suseoTalkIndex++;
+        suseoMissionCount++;
 
 
         if (
-          suseoTalkIndex <
-          suseoTalk.length
+          suseoMissionCount <
+          requiredSuseoMissions
         ) {
 
+
           setTimeout(
-            function() {
+            function () {
 
               openTalkMission(
-                suseoTalk[
-                  suseoTalkIndex
-                ],
+                getRandomMission(
+                  "suseo"
+                ),
                 "suseo"
               );
 
@@ -1395,10 +2146,6 @@ document.addEventListener(
         }
 
 
-        /*
-          수서 미션 완료
-        */
-
         stickers++;
 
 
@@ -1407,14 +2154,14 @@ document.addEventListener(
 
 
         setTimeout(
-          function() {
+          function () {
 
             returnModal.classList.remove(
               "hidden"
             );
 
           },
-          350
+          400
         );
 
 
@@ -1423,16 +2170,26 @@ document.addEventListener(
       }
 
 
-      paused =
-        false;
+      setTimeout(
+        function () {
+
+          talkMissionText.textContent =
+            "운행 중";
+
+
+          paused =
+            false;
+
+        },
+        350
+      );
 
     }
 
 
-
-    /* ========================================= */
-    /* 수서역 도착 */
-    /* ========================================= */
+    /* ================================================= */
+    /* 수서역 */
+    /* ================================================= */
 
     function arriveSuseo() {
 
@@ -1477,11 +2234,6 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
-    /* 수서 화용언어 */
-    /* ========================================= */
-
     function startSuseoMission() {
 
       stationModal.classList.add(
@@ -1489,22 +2241,28 @@ document.addEventListener(
       );
 
 
-      suseoTalkIndex =
+      suseoMissionCount =
         0;
 
 
+      /*
+        매번 수서역에서도
+        랜덤 문제 4개
+      */
+
       openTalkMission(
-        suseoTalk[0],
+        getRandomMission(
+          "suseo"
+        ),
         "suseo"
       );
 
     }
 
 
-
-    /* ========================================= */
-    /* 귀환 출발 */
-    /* ========================================= */
+    /* ================================================= */
+    /* 창원 복귀 */
+    /* ================================================= */
 
     function startReturnTrip() {
 
@@ -1529,6 +2287,10 @@ document.addEventListener(
         false;
 
 
+      timeSinceObstacle =
+        0;
+
+
       routeProgress.style.width =
         "0%";
 
@@ -1547,16 +2309,7 @@ document.addEventListener(
       );
 
 
-      tripBadge.textContent =
-        "수서 → 창원";
-
-
-      startStationLabel.textContent =
-        "🏙️ 수서역";
-
-
-      destinationLabel.textContent =
-        "🏠 창원중앙역";
+      updateRouteLabels();
 
 
       playerLane =
@@ -1577,17 +2330,12 @@ document.addEventListener(
       running =
         true;
 
-
-      timeSinceObstacle =
-        0;
-
     }
 
 
-
-    /* ========================================= */
+    /* ================================================= */
     /* 창원 도착 */
-    /* ========================================= */
+    /* ================================================= */
 
     function arriveChangwon() {
 
@@ -1619,10 +2367,13 @@ document.addEventListener(
 
 
       const rewards = [
+
         "🚄",
         "🚅",
         "🚆",
-        "🚇"
+        "🚇",
+        "🚂"
+
       ];
 
 
@@ -1642,10 +2393,9 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
-    /* 경로 표시 */
-    /* ========================================= */
+    /* ================================================= */
+    /* 노선 표시 */
+    /* ================================================= */
 
     function updateRouteLabels() {
 
@@ -1667,6 +2417,7 @@ document.addEventListener(
 
       }
 
+
       else {
 
         startStationLabel.textContent =
@@ -1685,10 +2436,9 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
-    /* 음성 읽기 */
-    /* ========================================= */
+    /* ================================================= */
+    /* 읽기 */
+    /* ================================================= */
 
     function readCurrentTalk() {
 
@@ -1696,7 +2446,9 @@ document.addEventListener(
         !currentTalkMission ||
         !window.speechSynthesis
       ) {
+
         return;
+
       }
 
 
@@ -1707,6 +2459,8 @@ document.addEventListener(
 
       const speech =
         new SpeechSynthesisUtterance(
+          currentTalkMission.character +
+          ". " +
           currentTalkMission.title +
           ". " +
           currentTalkMission.question
@@ -1718,7 +2472,7 @@ document.addEventListener(
 
 
       speech.rate =
-        .88;
+        .87;
 
 
       window
@@ -1730,10 +2484,9 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
-    /* 메인 루프 */
-    /* ========================================= */
+    /* ================================================= */
+    /* 게임 루프 */
+    /* ================================================= */
 
     function gameLoop(
       now
@@ -1758,14 +2511,16 @@ document.addEventListener(
 
 
         /*
-          이동 거리
-        */
+          이동 속도
+      */
 
         const progressSpeed =
           direction ===
           "outbound"
-            ? 0.0044
-            : 0.0052;
+
+            ? 0.0036
+
+            : 0.0042;
 
 
         progress +=
@@ -1785,11 +2540,13 @@ document.addEventListener(
 
 
         routeProgress.style.width =
-          progress + "%";
+          progress +
+          "%";
 
 
         routeTrain.style.left =
-          progress + "%";
+          progress +
+          "%";
 
 
         distance =
@@ -1800,27 +2557,31 @@ document.addEventListener(
 
 
         distanceBadge.textContent =
-          distance + " km";
+          distance +
+          " km";
 
 
         /*
-          장애물 생성 타이머
+          장애물
         */
 
         timeSinceObstacle +=
           delta;
 
 
-        const obstacleInterval =
-          direction === "outbound"
-            ? 2500
-            : 2000;
+        const interval =
+          direction ===
+          "outbound"
+
+            ? 2400
+
+            : 1900;
 
 
         if (
           !obstacleActive &&
           timeSinceObstacle >
-          obstacleInterval
+          interval
         ) {
 
           spawnObstacle();
@@ -1828,18 +2589,17 @@ document.addEventListener(
         }
 
 
-        /*
-          장애물 이동
-        */
-
         if (
           obstacleActive
         ) {
 
 
           const speed =
-            direction === "outbound"
+            direction ===
+            "outbound"
+
               ? .22
+
               : .27;
 
 
@@ -1863,7 +2623,8 @@ document.addEventListener(
         */
 
         if (
-          progress >= 100
+          progress >=
+          100
         ) {
 
 
@@ -1875,6 +2636,7 @@ document.addEventListener(
             arriveSuseo();
 
           }
+
 
           else {
 
@@ -1894,10 +2656,9 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
-    /* 재시작 */
-    /* ========================================= */
+    /* ================================================= */
+    /* 다시하기 */
+    /* ================================================= */
 
     function restartGame() {
 
@@ -1906,10 +2667,9 @@ document.addEventListener(
     }
 
 
-
-    /* ========================================= */
-    /* EVENT */
-    /* ========================================= */
+    /* ================================================= */
+    /* 버튼 */
+    /* ================================================= */
 
     startGameBtn.addEventListener(
       "click",
@@ -1965,19 +2725,18 @@ document.addEventListener(
     );
 
 
-
-    /* ========================================= */
-    /* 초기값 */
-    /* ========================================= */
+    /* ================================================= */
+    /* 시작 */
+    /* ================================================= */
 
     updatePlayerLane();
 
     updateRouteLabels();
 
+
     requestAnimationFrame(
       gameLoop
     );
-
 
   }
 );
