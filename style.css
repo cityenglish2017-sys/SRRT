@@ -1,12 +1,3 @@
-:root {
-  --navy: #153b66;
-  --deep: #0b2947;
-  --blue: #2c74cf;
-  --red: #ee4d4d;
-  --green: #2ac06d;
-  --yellow: #f2ca43;
-}
-
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -17,10 +8,10 @@ html,
 body {
   margin: 0;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-  overscroll-behavior: none;
+  min-height: 100%;
+}
 
+body {
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -28,1790 +19,1449 @@ body {
     "Noto Sans KR",
     sans-serif;
 
-  background: #dcefff;
+  background:
+    linear-gradient(
+      #dff2ff,
+      #f5fbff
+    );
+
+  color: #17324d;
+
+  overflow-x: hidden;
 }
 
 button {
   font: inherit;
-  touch-action: manipulation;
+  cursor: pointer;
 }
 
-#app {
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
+.game {
+  width: min(1400px,100%);
 
-  display: grid;
-
-  grid-template-rows:
-    7dvh
-    44dvh
-    49dvh;
-
-  overflow: hidden;
-
-  padding-bottom: env(safe-area-inset-bottom);
-}
-
-
-/* =========================
-   상단
-========================= */
-
-.top-bar {
-  min-height: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 1.8vw;
-
-  background:
-    linear-gradient(
-      #1b507f,
-      #102f51
-    );
-
-  color: white;
-
-  border-bottom: 3px solid #061d32;
-
-  z-index: 50;
-}
-
-.game-title {
-  display: flex;
-  align-items: center;
-  gap: .65vw;
-}
-
-.title-icon {
-  font-size: 2.2vw;
-}
-
-.main-title {
-  font-size: 1.8vw;
-  line-height: 1;
-  font-weight: 1000;
-  letter-spacing: .04em;
-}
-
-.sub-title {
-  margin-top: .2vh;
-  font-size: .9vw;
-  opacity: .78;
-}
-
-.score-area {
-  display: flex;
-  gap: .6vw;
-}
-
-.score-chip {
-  min-width: 5.5vw;
+  margin: 0 auto;
 
   padding:
-    .4vw
-    .7vw;
+    7px
+    max(10px,env(safe-area-inset-right))
+    max(7px,env(safe-area-inset-bottom))
+    max(10px,env(safe-area-inset-left));
+}
+
+
+/* ======================================= */
+/* TOP */
+/* ======================================= */
+
+.topbar {
+  min-height: 50px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.small-title {
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: .15em;
+
+  color: #337db3;
+}
+
+h1 {
+  margin: 1px 0 0;
+
+  font-size:
+    clamp(
+      21px,
+      2.6vw,
+      31px
+    );
+
+  line-height: 1;
+}
+
+.top-status {
+  display: flex;
+
+  gap: 6px;
+}
+
+.status-box {
+  min-width: 64px;
+
+  padding: 5px 8px;
+
+  border-radius: 13px;
+
+  background: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  box-shadow:
+    0 4px 13px
+    rgba(34,80,125,.11);
+}
+
+
+/* ======================================= */
+/* ROUTE */
+/* ======================================= */
+
+.route-panel {
+  display: grid;
+
+  grid-template-columns:
+    105px 1fr 105px;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin:
+    4px 0 6px;
+
+  padding:
+    6px 9px;
+
+  border-radius: 15px;
+
+  background: white;
+
+  box-shadow:
+    0 5px 14px
+    rgba(34,80,125,.09);
+}
+
+.station-label {
+  padding:
+    5px 7px;
+
+  border-radius: 9px;
+
+  background: #eef3f7;
 
   text-align: center;
 
-  border-radius: .7vw;
-
-  background: rgba(255,255,255,.14);
-
-  border: 1px solid rgba(255,255,255,.25);
-
-  font-size: 1.05vw;
+  font-size: 10px;
 
   font-weight: 900;
 }
 
+.station-label.active-station {
+  background: #dff4e8;
 
-/* =========================
-   철도 화면
-========================= */
+  color: #176941;
+}
+
+.route-line {
+  position: relative;
+
+  height: 13px;
+
+  border-radius: 99px;
+
+  background: #dfe6ed;
+}
+
+.route-progress {
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  width: 0%;
+
+  height: 100%;
+
+  border-radius: 99px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #3186dc,
+      #60bded
+    );
+
+  transition:
+    width .2s linear;
+}
+
+.route-train {
+  position: absolute;
+
+  left: 0%;
+
+  top: 50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  font-size: 24px;
+
+  transition:
+    left .2s linear;
+}
+
+
+/* ======================================= */
+/* WORLD */
+/* ======================================= */
 
 .rail-world {
   position: relative;
 
-  min-height: 0;
+  height: 365px;
 
   overflow: hidden;
 
+  border-radius: 25px;
+
+  border:
+    4px solid
+    rgba(255,255,255,.92);
+
   background:
     linear-gradient(
-      to bottom,
-      #91d4ff 0%,
-      #e5f7ff 39%,
-      #8dc66c 40%,
-      #69a451 100%
+      #83c8ed 0 30%,
+      #7fbd6a 30% 100%
     );
+
+  box-shadow:
+    0 10px 28px
+    rgba(34,84,130,.18);
 }
 
-.sun {
+.sky {
   position: absolute;
 
-  right: 9vw;
-  top: 2.3vh;
+  left: 0;
+  right: 0;
+  top: 0;
 
-  width: 3vw;
-  height: 3vw;
-
-  border-radius: 50%;
+  height: 32%;
 
   background:
-    radial-gradient(
-      circle,
-      #fff9a0,
-      #ffc526
+    linear-gradient(
+      #6eb9e7,
+      #caebf8
     );
-
-  box-shadow: 0 0 28px #ffe569;
 }
 
 .cloud {
   position: absolute;
 
-  height: 1.6vh;
+  font-size: 43px;
 
-  border-radius: 999px;
+  opacity: .85;
 
-  background: white;
-
-  opacity: .86;
+  animation:
+    cloudMove 15s
+    linear infinite;
 }
 
-.cloud::before,
-.cloud::after {
-  content: "";
-
-  position: absolute;
-
-  bottom: 0;
-
-  border-radius: 50%;
-
-  background: white;
+.cloud1 {
+  left: 8%;
+  top: 10px;
 }
 
-.cloud::before {
-  width: 2.2vw;
-  height: 2.2vw;
+.cloud2 {
+  left: 60%;
+  top: 28px;
 
-  left: 1vw;
+  animation-duration: 20s;
 }
 
-.cloud::after {
-  width: 1.7vw;
-  height: 1.7vw;
+@keyframes cloudMove {
 
-  right: 1vw;
-}
+  from {
+    transform: translateX(0);
+  }
 
-.cloud-a {
-  width: 7vw;
+  to {
+    transform: translateX(120px);
+  }
 
-  left: 8vw;
-  top: 4vh;
-}
-
-.cloud-b {
-  width: 6vw;
-
-  left: 61vw;
-  top: 5vh;
 }
 
 .mountain {
   position: absolute;
 
-  bottom: 21vh;
+  right: 8%;
+  bottom: -4px;
 
-  width: 29vw;
-  height: 14vh;
+  font-size: 75px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #6aa064,
-      #477c4c
-    );
-
-  clip-path:
-    polygon(
-      50% 0,
-      100% 100%,
-      0 100%
-    );
+  opacity: .55;
 }
 
-.mountain-a {
-  left: -8vw;
-}
 
-.mountain-b {
-  left: 15vw;
-  height: 10vh;
-  opacity: .78;
-}
+/* ======================================= */
+/* BADGES */
+/* ======================================= */
 
-.mountain-c {
-  right: -7vw;
-  height: 12vh;
-}
-
-.map-badge {
+.trip-badge,
+.distance-badge {
   position: absolute;
 
-  left: 50%;
-  top: .7vh;
+  top: 10px;
 
-  transform: translateX(-50%);
-
-  z-index: 30;
+  z-index: 25;
 
   padding:
-    .35vw
-    1vw;
+    5px 10px;
 
-  border-radius: 999px;
+  border-radius: 99px;
 
   background:
-    linear-gradient(
-      #fffceb,
-      #ffe47e
-    );
+    rgba(255,255,255,.9);
 
-  border: 2px solid #d8a826;
+  font-size: 11px;
 
-  color: #554100;
-
-  font-size: 1.05vw;
-
-  font-weight: 1000;
+  font-weight: 950;
 
   box-shadow:
-    0 4px 9px
-    rgba(0,0,0,.17);
+    0 3px 12px
+    rgba(38,89,128,.12);
+}
+
+.trip-badge {
+  left: 15px;
+}
+
+.distance-badge {
+  right: 15px;
 }
 
 
-/* =========================
-   역
-========================= */
+/* ======================================= */
+/* TRACKS */
+/* ======================================= */
 
-.station {
+.track-lane {
   position: absolute;
 
-  top: 5vh;
+  left: 0;
 
-  width: 10.5vw;
+  width: 100%;
 
-  z-index: 5;
-}
-
-.station-seoul {
-  left: 4vw;
-}
-
-.station-daejeon {
-  left: 44.8vw;
-}
-
-.station-busan {
-  right: 4vw;
-}
-
-.station-roof {
-  width: 11.5vw;
-
-  margin-left: -.5vw;
-
-  height: .8vh;
+  height: 72px;
 
   background:
-    linear-gradient(
-      #485d70,
-      #273b4c
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 32px,
+      rgba(104,74,49,.8) 32px 42px,
+      transparent 42px 74px
     );
 }
 
-.station-name {
-  width: 6vw;
-
-  margin:
-    -.1vh
-    auto
-    .25vh;
-
-  padding: .16vw;
-
-  background: #195b93;
-
-  border: 2px solid white;
-
-  color: white;
-
-  text-align: center;
-
-  font-size: .85vw;
-
-  font-weight: 1000;
-
-  box-shadow:
-    0 2px 5px
-    rgba(0,0,0,.25);
+.lane-0 {
+  top: 126px;
 }
 
-.station-name small {
-  display: block;
-
-  font-size: .4vw;
-
-  opacity: .75;
+.lane-1 {
+  top: 207px;
 }
 
-.station-building {
-  height: 3.5vh;
+.lane-2 {
+  top: 288px;
+}
+
+.rail-line {
+  position: absolute;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 5px;
+
+  background: #59636a;
+}
+
+.rail-top {
+  top: 19px;
+}
+
+.rail-bottom {
+  bottom: 19px;
+}
+
+
+/* ======================================= */
+/* SRT */
+/* ======================================= */
+
+.player-train {
+  position: absolute;
+
+  left: 13%;
+
+  z-index: 20;
 
   display: flex;
 
   align-items: flex-end;
-  justify-content: center;
 
-  gap: .7vw;
-
-  padding-bottom: .3vh;
-
-  background:
-    linear-gradient(
-      white,
-      #dfe9ef
-    );
-
-  border:
-    2px solid
-    #6b7e8d;
-}
-
-.station-door {
-  width: 1.1vw;
-  height: 2.1vh;
-
-  background:
-    linear-gradient(
-      #83bad9,
-      #44708d
-    );
-}
-
-.station-window {
-  width: 1.2vw;
-  height: 1.2vh;
-
-  background: #91d4f4;
-
-  border:
-    1px solid
-    #607788;
-}
-
-.platform {
-  width: 13vw;
-  height: .9vh;
-
-  margin-left: -1.25vw;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #5b6167 0 2vw,
-      #f2d643 2vw 2.25vw
-    );
-
-  border-top:
-    2px solid
-    #34383b;
-}
-
-
-/* =========================
-   선로
-========================= */
-
-.rail-track {
-  position: absolute;
-
-  left: 2vw;
-
-  width: 96vw;
-  height: 3vh;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 1.5vw,
-      #6b4e32 1.5vw 1.85vw,
-      transparent 1.85vw 3vw
-    );
-
-  z-index: 2;
-}
-
-.track-upper {
-  top: 19vh;
-}
-
-.track-middle {
-  top: 27vh;
-}
-
-.track-lower {
-  top: 35vh;
-}
-
-.rail-track::before {
-  content: "";
-
-  position: absolute;
-
-  inset:
-    -.3vh
-    -1vw;
-
-  height: 3.6vh;
-
-  z-index: -1;
-
-  opacity: .42;
-
-  background:
-    repeating-radial-gradient(
-      circle,
-      #6d7276 0 2px,
-      #999ea2 2px 4px
-    );
-}
-
-.rail {
-  position: absolute;
-
-  left: 0;
-
-  width: 100%;
-
-  height: .34vh;
-
-  background:
-    linear-gradient(
-      #e2e2e2,
-      #555e66,
-      #252a2f
-    );
-
-  box-shadow:
-    0 1px 2px black;
-}
-
-.rail-top {
-  top: .4vh;
-}
-
-.rail-bottom {
-  top: 2.2vh;
-}
-
-
-/* =========================
-   터널
-========================= */
-
-.tunnel-area {
-  position: absolute;
-
-  left: 34vw;
-  top: 12.5vh;
-
-  width: 32vw;
-  height: 12vh;
-
-  z-index: 9;
-}
-
-.tunnel-sign {
-  position: absolute;
-
-  top: -1.2vh;
-
-  width: 100%;
-
-  text-align: center;
-
-  color: #222;
-
-  font-size: .75vw;
-
-  font-weight: 1000;
-}
-
-.tunnel-sign span {
-  display: inline-block;
-
-  margin-right: .35vw;
-
-  padding:
-    .05vw
-    .25vw;
-
-  background: white;
-
-  border:
-    1px solid
-    #333;
-}
-
-.tunnel-shell {
-  position: absolute;
-
-  left: 6vw;
-  top: .8vh;
-
-  width: 20vw;
-  height: 10vh;
-
-  border:
-    .75vw solid
-    #656b70;
-
-  border-radius:
-    10vw
-    10vw
-    .7vw
-    .7vw;
-
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #74797d 0 1.8vw,
-      #888d90 1.8vw 2vw
-    );
-
-  box-shadow:
-    0 5px 10px
-    rgba(0,0,0,.3);
-}
-
-.tunnel-opening {
-  position: absolute;
-
-  left: 2.7vw;
-  right: 2.7vw;
-
-  top: 1vh;
-  bottom: 0;
-
-  border-radius:
-    7vw
-    7vw
-    0
-    0;
-
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      ellipse,
-      #34383b,
-      #080909 70%
-    );
-}
-
-.tunnel-inside-rail {
-  position: absolute;
-
-  left: 0;
-  right: 0;
-
-  bottom: 1.4vh;
-
-  height: .35vh;
-
-  background: #a3a3a3;
-}
-
-
-/* =========================
-   신호
-========================= */
-
-.rail-signal {
-  position: absolute;
-
-  width: 3.4vw;
-
-  text-align: center;
-
-  z-index: 22;
-}
-
-.signal-a {
-  left: 25vw;
-  top: 12.8vh;
-}
-
-.signal-b {
-  right: 23vw;
-  top: 25.3vh;
-}
-
-.signal-label {
-  display: inline-block;
-
-  min-width: 1.5vw;
-
-  margin-bottom: .1vh;
-
-  background: white;
-
-  border:
-    1px solid #222;
-
-  font-size: .65vw;
-
-  font-weight: 1000;
-}
-
-.signal-head {
-  width: 2.15vw;
-  height: 5.8vh;
-
-  margin: auto;
-
-  padding:
-    .25vh
-    .25vw;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: space-around;
-
-  border:
-    2px solid
-    #070909;
-
-  border-radius: .55vw;
-
-  background:
-    linear-gradient(
-      90deg,
-      #0b0e10,
-      #34383b,
-      #0b0e10
-    );
-}
-
-.signal-light {
-  width: .9vw;
-  height: .9vw;
-
-  margin: auto;
-
-  border-radius: 50%;
-
-  background: #292929;
-
-  border:
-    1px solid #050505;
-}
-
-.rail-signal.red .red-light {
-  background: #ff3232;
-
-  box-shadow:
-    0 0 10px #ff3232;
-}
-
-.rail-signal.yellow .yellow-light {
-  background: #ffd033;
-
-  box-shadow:
-    0 0 10px #ffd033;
-}
-
-.rail-signal.green .green-light {
-  background: #32ee78;
-
-  box-shadow:
-    0 0 10px #32ee78;
-}
-
-.signal-pole {
-  width: .3vw;
-  height: 4vh;
-
-  margin: auto;
-
-  background:
-    repeating-linear-gradient(
-      180deg,
-      #222 0 .5vh,
-      white .5vh 1vh
-    );
-}
-
-.signal-base {
-  width: 1.6vw;
-  height: .5vh;
-
-  margin: auto;
-
-  background: #444;
-}
-
-
-/* =========================
-   분기기
-========================= */
-
-.branch-track {
-  position: absolute;
-
-  left: 56vw;
-  top: 29vh;
-
-  width: 18vw;
-  height: .5vh;
-
-  background: #646a6f;
-
-  transform-origin: left center;
-
-  z-index: 3;
-}
-
-.branch-up {
-  transform: rotate(-17deg);
-}
-
-.branch-down {
-  transform: rotate(17deg);
-}
-
-.switch-area {
-  position: absolute;
-
-  left: 57vw;
-  top: 31vh;
-
-  z-index: 25;
-}
-
-.switch-sign {
-  padding: .1vw;
-
-  background: #1f2932;
-
-  color: white;
-
-  text-align: center;
-
-  font-size: .55vw;
-
-  font-weight: 1000;
-}
-
-#switchBtn {
-  border: none;
-
-  padding:
-    .34vw
-    .55vw;
-
-  border-radius:
-    0 0 .5vw .5vw;
-
-  background:
-    linear-gradient(
-      #ffe56c,
-      #eab529
-    );
-
-  box-shadow:
-    0 3px 0
-    #947215;
-
-  font-size: .75vw;
-
-  font-weight: 1000;
-}
-
-
-/* =========================
-   SRT
-========================= */
-
-.train {
-  position: absolute;
-
-  display: flex;
-
-  z-index: 18;
+  gap: 2px;
 
   transition:
-    left 1.4s ease,
-    top .7s ease;
-
-  filter:
-    drop-shadow(
-      0 .35vh .35vh
-      rgba(0,0,0,.38)
-    );
+    top .25s ease,
+    transform .18s ease;
 }
 
-.srt-train {
-  left: 4vw;
-  top: 16.8vh;
-  height: 4.6vh;
+.lane-position-0 {
+  top: 137px;
 }
 
-.srt-nose {
-  position: relative;
-
-  width: 4.6vw;
-  height: 4.6vh;
-
-  background:
-    linear-gradient(
-      #fcfcfc 0 54%,
-      #6a55bb 55%,
-      #4b3b97 100%
-    );
-
-  clip-path:
-    polygon(
-      100% 0,
-      100% 100%,
-      18% 100%,
-      0 65%,
-      9% 30%,
-      36% 5%
-    );
+.lane-position-1 {
+  top: 218px;
 }
 
-.srt-front-window {
-  position: absolute;
-
-  left: 1.45vw;
-  top: .55vh;
-
-  width: 1.8vw;
-  height: 1.1vh;
-
-  border-radius: .25vw;
-
-  transform: skew(-20deg);
-
-  background:
-    linear-gradient(
-      #7ed5ff,
-      #245a7a
-    );
+.lane-position-2 {
+  top: 299px;
 }
 
-.srt-headlight {
-  position: absolute;
-
-  left: .7vw;
-  bottom: .55vh;
-
-  width: .42vw;
-  height: .42vw;
-
-  border-radius: 50%;
-
-  background: #fff9a9;
-
-  box-shadow:
-    0 0 8px white;
-}
-
+.srt-engine,
 .srt-car {
   position: relative;
 
-  width: 7.5vw;
-  height: 4.6vh;
+  height: 43px;
 
-  border-left:
-    1px solid #aaa;
+  border:
+    3px solid
+    #293949;
+}
+
+.srt-engine {
+  width: 100px;
+
+  border-radius:
+    27px 6px 5px 5px;
 
   background:
     linear-gradient(
-      #fafafa 0 56%,
-      #6751b5 57%,
-      #4e3b96 100%
+      #f5f3f7 0 55%,
+      #7c4b8f 55% 76%,
+      #452553 76%
     );
 }
 
-.train-logo {
-  position: absolute;
-
-  left: .5vw;
-  bottom: .4vh;
-
-  color: white;
-
-  font-size: .6vw;
-
-  font-weight: 1000;
-}
-
-.train-windows {
-  position: absolute;
-
-  top: .65vh;
-  left: .6vw;
+.srt-car {
+  width: 88px;
 
   display: flex;
 
-  gap: .25vw;
+  justify-content: space-evenly;
+
+  align-items: center;
+
+  background:
+    linear-gradient(
+      #f5f3f7 0 55%,
+      #7c4b8f 55% 76%,
+      #452553 76%
+    );
 }
 
-.train-windows span {
-  width: 1vw;
-  height: .85vh;
-
-  border-radius: .15vw;
+.srt-car span,
+.srt-window {
+  background: #95d3ed;
 
   border:
-    1px solid #365365;
-
-  background:
-    linear-gradient(
-      #8bd9ff,
-      #386c8a
-    );
+    2px solid
+    #29485c;
 }
 
+.srt-car span {
+  width: 18px;
 
-/* =========================
-   무궁화호
-========================= */
+  height: 11px;
 
-.mugunghwa-train {
-  left: 77vw;
-  top: 32.8vh;
-  height: 4.6vh;
-  flex-direction: row-reverse;
+  border-radius: 3px;
 }
 
-.mug-engine {
-  position: relative;
-
-  width: 4.3vw;
-  height: 4.6vh;
-
-  background:
-    linear-gradient(
-      #eeeeee 0 44%,
-      #d84a4a 45%,
-      #ba3039 74%,
-      #3a4c71 75%
-    );
-
-  clip-path:
-    polygon(
-      0 0,
-      72% 0,
-      100% 27%,
-      100% 100%,
-      0 100%
-    );
-}
-
-.mug-front-window {
+.srt-window {
   position: absolute;
 
-  right: .6vw;
-  top: .55vh;
+  left: 24px;
 
-  width: 1.4vw;
-  height: 1.1vh;
+  top: 7px;
 
-  background:
-    linear-gradient(
-      #8ed4ef,
-      #355d76
-    );
+  width: 33px;
 
-  border:
-    1px solid #454545;
+  height: 12px;
+
+  border-radius: 7px;
 }
 
-.mug-headlight {
+.srt-light {
   position: absolute;
 
-  right: .3vw;
-  bottom: .75vh;
+  left: 7px;
 
-  width: .38vw;
-  height: .38vw;
+  bottom: 6px;
+
+  width: 8px;
+
+  height: 8px;
 
   border-radius: 50%;
 
-  background: #fff4a3;
+  background: #ffe36b;
 
   box-shadow:
-    0 0 7px white;
+    0 0 9px
+    #ffe36b;
 }
 
-.mug-blue-line {
+.srt-name {
   position: absolute;
 
-  left: 0;
-  right: 0;
+  right: 5px;
 
-  bottom: .25vh;
+  bottom: 2px;
 
-  height: .5vh;
+  padding:
+    1px 4px;
 
-  background: #283f70;
+  border-radius: 4px;
+
+  background: white;
+
+  color: #6e387e;
+
+  font-size: 8px;
+
+  font-weight: 950;
 }
 
-.mug-car {
-  position: relative;
 
-  width: 7vw;
-  height: 4.6vh;
+/* ======================================= */
+/* OBSTACLE */
+/* ======================================= */
 
-  background:
-    linear-gradient(
-      #eeeeee 0 47%,
-      #cf4652 48%,
-      #cf4652 62%,
-      #f2f2f2 63%,
-      #d8d8d8 100%
+.obstacle {
+  position: absolute;
+
+  right: -90px;
+
+  z-index: 22;
+
+  width: 85px;
+
+  height: 65px;
+
+  display: grid;
+
+  place-items: center;
+
+  transition:
+    top .1s linear;
+}
+
+.obstacle.lane-obstacle-0 {
+  top: 130px;
+}
+
+.obstacle.lane-obstacle-1 {
+  top: 211px;
+}
+
+.obstacle.lane-obstacle-2 {
+  top: 292px;
+}
+
+.obstacle-emoji {
+  font-size: 50px;
+
+  filter:
+    drop-shadow(
+      0 3px 3px
+      rgba(0,0,0,.22)
     );
-
-  border-right:
-    1px solid #aaa;
-}
-
-.mug-logo {
-  position: absolute;
-
-  left: .35vw;
-  bottom: .3vh;
-
-  color: #374d75;
-
-  font-size: .5vw;
-
-  font-weight: 1000;
 }
 
 
-/* =========================
-   관제 조작판
-========================= */
+/* ======================================= */
+/* EFFECTS */
+/* ======================================= */
 
-.rail-control-panel {
+.hit-effect,
+.success-effect {
   position: absolute;
 
   left: 50%;
-  bottom: .3vh;
 
-  width: 74vw;
+  top: 50%;
 
-  transform: translateX(-50%);
+  transform:
+    translate(-50%,-50%);
+
+  z-index: 60;
+
+  pointer-events: none;
+}
+
+.hit-effect {
+  font-size: 78px;
+
+  animation:
+    hitAnimation .6s ease;
+}
+
+.success-effect {
+  padding:
+    9px 15px;
+
+  border-radius: 99px;
+
+  background:
+    rgba(255,255,255,.93);
+
+  color: #17714b;
+
+  font-size: 22px;
+
+  font-weight: 950;
+
+  animation:
+    goodAnimation .7s ease;
+}
+
+@keyframes hitAnimation {
+
+  0% {
+    transform:
+      translate(-50%,-50%)
+      scale(.3);
+  }
+
+  50% {
+    transform:
+      translate(-50%,-50%)
+      scale(1.3);
+  }
+
+  100% {
+    transform:
+      translate(-50%,-50%)
+      scale(1);
+  }
+
+}
+
+@keyframes goodAnimation {
+
+  0% {
+    opacity: 0;
+    transform:
+      translate(-50%,-30%);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%,-70%);
+  }
+
+}
+
+
+/* ======================================= */
+/* START */
+/* ======================================= */
+
+.start-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 80;
 
   display: grid;
 
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: .55vw;
-
-  padding:
-    .35vw
-    .6vw;
-
-  border:
-    2px solid #1a2935;
-
-  border-radius: .8vw;
-
-  z-index: 40;
+  place-items: center;
 
   background:
-    linear-gradient(
-      #405568,
-      #253746
-    );
+    rgba(16,46,71,.24);
+
+  backdrop-filter:
+    blur(2px);
+}
+
+.start-card {
+  min-width: 260px;
+
+  padding: 22px;
+
+  border-radius: 25px;
+
+  background:
+    rgba(255,255,255,.96);
+
+  text-align: center;
 
   box-shadow:
-    0 5px 10px
-    rgba(0,0,0,.28);
+    0 12px 35px
+    rgba(20,62,94,.23);
 }
 
-.rail-button {
-  min-height: 3.1vh;
-
-  border:
-    1px solid
-    rgba(255,255,255,.35);
-
-  border-radius: .6vw;
-
-  font-size: .8vw;
-
-  font-weight: 1000;
-
-  box-shadow:
-    inset
-    0 1px 3px
-    rgba(255,255,255,.45),
-    0 3px 0
-    rgba(0,0,0,.22);
+.start-train {
+  font-size: 65px;
 }
 
-.rail-button.red {
-  background: #ffdada;
+.start-route {
+  margin:
+    4px 0 14px;
+
+  font-size: 25px;
 }
 
-.rail-button.green {
-  background: #daf7e2;
-}
+.start-game-btn {
+  min-width: 180px;
 
-.srt-button {
+  min-height: 52px;
+
+  border: 0;
+
+  border-radius: 15px;
+
   background:
     linear-gradient(
-      #eeeaff,
-      #b8abf3
+      #5e96e0,
+      #2e6fbe
     );
-}
-
-.mug-button {
-  background:
-    linear-gradient(
-      #ffe7e8,
-      #f9b2b8
-    );
-}
-
-
-/* =========================
-   아래 화용언어 영역
-========================= */
-
-.language-zone {
-  min-height: 0;
-
-  overflow: hidden;
-
-  display: grid;
-
-  grid-template-columns:
-    34%
-    66%;
-
-  background: #eef3f8;
-
-  border-top:
-    3px solid #b6c7d6;
-
-  padding-bottom:
-    max(
-      .3vh,
-      env(safe-area-inset-bottom)
-    );
-}
-
-
-/* =========================
-   기관사 무전
-========================= */
-
-.radio-panel {
-  min-height: 0;
-
-  overflow: hidden;
-
-  padding:
-    .8vh
-    1vw;
-
-  background: white;
-
-  border-right:
-    2px solid #cad6e0;
-}
-
-.panel-title {
-  margin-bottom: .65vh;
-
-  color: #1b466e;
-
-  font-size: 2.2vw;
-
-  line-height: 1;
-
-  font-weight: 1000;
-}
-
-.dialogue-list {
-  max-height:
-    calc(49dvh - 5vh);
-
-  overflow-y: auto;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: .7vh;
-}
-
-.dialogue-row {
-  display: grid;
-
-  grid-template-columns:
-    4.5vw
-    1fr;
-
-  gap: .9vw;
-
-  align-items: start;
-
-  padding:
-    .75vh
-    .8vw;
-
-  border-radius: 1vw;
-
-  background: #f3f7fa;
-}
-
-.dialogue-icon {
-  width: 4vw;
-  height: 4vw;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background: #dcecff;
-
-  font-size: 2vw;
-}
-
-.dialogue-name {
-  font-size: 1.75vw;
-
-  line-height: 1.05;
-
-  font-weight: 1000;
-}
-
-.dialogue-text {
-  margin-top: .2vh;
-
-  font-size: 1.95vw;
-
-  line-height: 1.23;
-
-  font-weight: 800;
-}
-
-
-/* =========================
-   오른쪽 미션
-========================= */
-
-.mission-panel {
-  min-height: 0;
-
-  overflow: hidden;
-
-  display: grid;
-
-  grid-template-rows:
-    auto
-    minmax(0, 1fr)
-    auto;
-
-  gap: .65vh;
-
-  padding:
-    .7vh
-    1vw
-    .6vh;
-}
-
-.mission-header {
-  display: grid;
-
-  grid-template-columns:
-    auto
-    1fr;
-
-  gap: .9vw;
-
-  align-items: center;
-}
-
-.mission-tag {
-  white-space: nowrap;
-
-  padding:
-    .28vw
-    .75vw;
-
-  border-radius: 999px;
-
-  background: #3177c7;
 
   color: white;
 
-  font-size: 1.4vw;
+  font-size: 21px;
 
-  line-height: 1;
+  font-weight: 950;
 
-  font-weight: 1000;
+  box-shadow:
+    0 5px 0
+    #204e89;
 }
 
-.mission-question {
-  min-width: 0;
+.start-game-btn:active {
+  transform:
+    translateY(4px);
 
-  padding:
-    .65vw
-    .85vw;
-
-  border:
-    3px solid #c5d9eb;
-
-  border-radius: .9vw;
-
-  background: white;
-
-  font-size: 2.15vw;
-
-  line-height: 1.18;
-
-  font-weight: 1000;
+  box-shadow: none;
 }
 
 
-/* =========================
-   선택지
-========================= */
+/* ======================================= */
+/* CONTROLS */
+/* ======================================= */
 
-.choice-area {
-  min-height: 0;
-
-  overflow-y: auto;
-
+.controls {
   display: grid;
 
   grid-template-columns:
-    1fr
-    1fr;
+    1fr 1fr 1fr;
 
-  align-content: start;
+  gap: 8px;
 
-  gap: .65vw;
+  margin-top: 7px;
 }
 
-.choice {
-  min-height: 6vh;
+.control-btn {
+  min-height: 58px;
 
-  padding:
-    .75vw
-    .9vw;
-
-  border:
-    3px solid #c3d0dd;
-
-  border-radius: .9vw;
-
-  background: white;
-
-  text-align: left;
-
-  font-size: 1.85vw;
-
-  line-height: 1.2;
-
-  font-weight: 900;
-}
-
-.choice.correct {
-  background: #daf7e4;
-
-  border:
-    4px solid #2eaf68;
-}
-
-.choice.wrong {
-  background: #ffe1e1;
-
-  border:
-    4px solid #df4e4e;
-}
-
-
-/* =========================
-   하단 고정 영역
-========================= */
-
-.mission-footer {
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap: .85vw;
-
-  min-height: 0;
-}
-
-.speech-box,
-.next-box {
-  min-height: 7.4vh;
-
-  border-radius: 1vw;
-
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    auto;
-
-  align-items: center;
-
-  gap: .8vw;
-
-  padding:
-    .7vw
-    .9vw;
-}
-
-.speech-box {
-  background: #fff6cf;
-
-  border:
-    3px solid #e5c85b;
-}
-
-.next-box {
-  background: #e9f2ff;
-
-  border:
-    3px solid #b5cee9;
-}
-
-.speech-copy {
-  display: flex;
-
-  flex-direction: column;
-
-  min-width: 0;
-
-  font-size: 1.55vw;
-
-  line-height: 1.18;
-}
-
-.speech-copy b {
-  font-size: 1.75vw;
-
-  font-weight: 1000;
-}
-
-.speech-copy span {
-  margin-top: .15vh;
-
-  font-size: 1.55vw;
-
-  line-height: 1.18;
-
-  font-weight: 800;
-}
-
-
-/* =========================
-   버튼
-========================= */
-
-#speakDoneBtn,
-#nextBtn {
   border: none;
 
-  border-radius: .9vw;
+  border-radius: 16px;
 
-  min-height: 5.5vh;
+  background:
+    linear-gradient(
+      #ffffff,
+      #eaf1f7
+    );
+
+  font-size: 30px;
+
+  box-shadow:
+    0 5px 13px
+    rgba(34,72,110,.12),
+    inset 0 -4px 0
+    rgba(100,130,155,.13);
+}
+
+.control-btn:active {
+  transform:
+    translateY(3px);
+}
+
+.stop-btn {
+  background:
+    linear-gradient(
+      #fff2f2,
+      #ffd9d9
+    );
+}
+
+
+/* ======================================= */
+/* STATUS */
+/* ======================================= */
+
+.mission-status {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 7px;
+
+  margin-top: 7px;
+}
+
+.status-card {
+  min-height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
 
   padding:
-    .7vw
-    1vw;
+    5px 10px;
 
-  font-size: 1.65vw;
+  border-radius: 15px;
 
-  line-height: 1;
+  background: white;
 
-  font-weight: 1000;
-
-  white-space: nowrap;
+  box-shadow:
+    0 4px 13px
+    rgba(34,72,110,.08);
 }
 
-#speakDoneBtn {
-  background:
-    linear-gradient(
-      #ffd85e,
-      #ecb72e
-    );
-
-  color: #493700;
+.status-icon {
+  font-size: 25px;
 }
 
-#nextBtn {
-  background:
-    linear-gradient(
-      #3a88e5,
-      #2568b8
-    );
+.status-title {
+  font-size: 9px;
 
-  color: white;
+  color: #708096;
+
+  font-weight: 850;
 }
 
-#speakDoneBtn:disabled,
-#nextBtn:disabled {
-  opacity: .4;
-}
+.status-text {
+  font-size: 12px;
 
-#feedback {
-  min-width: 0;
-
-  font-size: 1.5vw;
-
-  line-height: 1.2;
-
-  font-weight: 900;
-
-  color: #49647c;
+  font-weight: 950;
 }
 
 
-/* =========================
-   종료
-========================= */
+/* ======================================= */
+/* TALK MODAL */
+/* ======================================= */
 
-.finish-modal {
+.talk-modal,
+.station-modal,
+.result-modal {
   position: fixed;
 
   inset: 0;
 
-  z-index: 100;
+  z-index: 200;
 
-  display: flex;
+  display: grid;
 
-  align-items: center;
-  justify-content: center;
+  place-items: center;
+
+  padding: 15px;
 
   background:
-    rgba(7,20,36,.78);
+    rgba(13,31,50,.55);
+
+  backdrop-filter:
+    blur(5px);
 }
 
-.hidden {
-  display: none;
+.talk-card {
+  width:
+    min(680px,94vw);
+
+  padding: 19px;
+
+  border-radius: 25px;
+
+  background: white;
+
+  box-shadow:
+    0 18px 55px
+    rgba(0,0,0,.24);
 }
 
-.finish-card {
-  width: 38vw;
+.talk-top {
+  display: flex;
 
-  padding: 1.8vw;
+  justify-content: space-between;
 
-  border-radius: 1.6vw;
+  align-items: center;
+}
+
+.talk-type {
+  padding:
+    4px 10px;
+
+  border-radius: 99px;
+
+  background: #e9f3ff;
+
+  color: #23609f;
+
+  font-size: 11px;
+
+  font-weight: 900;
+}
+
+.talk-sound-btn {
+  width: 40px;
+
+  height: 35px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #edf2f7;
+}
+
+.talk-character {
+  display: inline-block;
+
+  margin-top: 7px;
+
+  padding:
+    4px 9px;
+
+  border-radius: 99px;
+
+  background: #fff0d9;
+
+  font-size: 12px;
+
+  font-weight: 900;
+}
+
+.talk-icon {
+  margin-top: 5px;
+
+  font-size: 34px;
+}
+
+.talk-card h2 {
+  margin:
+    1px 0 5px;
+
+  font-size: 24px;
+}
+
+#talkQuestion {
+  margin:
+    0 0 10px;
+
+  font-size: 17px;
+
+  line-height: 1.4;
+
+  font-weight: 800;
+}
+
+.talk-choices {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 7px;
+}
+
+.talk-choice {
+  min-height: 54px;
+
+  padding:
+    8px 10px;
+
+  border:
+    2px solid
+    #dce5ee;
+
+  border-radius: 13px;
+
+  background: white;
+
+  color: #172e49;
+
+  font-size: 14px;
+
+  font-weight: 850;
+
+  text-align: left;
+}
+
+.talk-choice.correct {
+  background: #e8faef;
+
+  border-color: #32ae6e;
+}
+
+.talk-choice.wrong {
+  background: #fff0f0;
+
+  border-color: #dd5656;
+}
+
+.talk-feedback {
+  margin-top: 7px;
+
+  padding: 7px 9px;
+
+  border-radius: 10px;
+
+  background: #e9f8ef;
+
+  color: #176b44;
+
+  font-size: 13px;
+
+  font-weight: 850;
+}
+
+.speak-area {
+  margin-top: 8px;
+
+  padding: 9px;
+
+  border:
+    2px dashed
+    #7eaadc;
+
+  border-radius: 12px;
+
+  background: #eff6ff;
+}
+
+.speak-label {
+  font-size: 11px;
+
+  font-weight: 900;
+}
+
+.speak-text {
+  margin:
+    5px 0 7px;
+
+  font-size: 14px;
+
+  font-weight: 850;
+}
+
+.speak-done-btn {
+  width: 100%;
+
+  min-height: 38px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #735ec7;
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+
+/* ======================================= */
+/* STATION MODAL */
+/* ======================================= */
+
+.station-card {
+  width:
+    min(440px,88vw);
+
+  padding: 27px;
+
+  border-radius: 26px;
 
   background: white;
 
   text-align: center;
+
+  box-shadow:
+    0 18px 55px
+    rgba(0,0,0,.24);
 }
 
-.finish-icon {
-  font-size: 4vw;
+.station-big-icon {
+  font-size: 65px;
 }
 
-.finish-card h1 {
-  font-size: 2vw;
+.station-card h2 {
+  margin:
+    4px 0;
 }
 
-.finish-card button {
-  margin-top: 1vw;
+.station-card p {
+  margin:
+    5px 0 14px;
+
+  font-weight: 750;
+}
+
+.passenger-row {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 13px;
+
+  margin:
+    12px 0;
+
+  font-size: 38px;
+}
+
+.station-btn {
+  width: 100%;
+
+  min-height: 48px;
 
   border: none;
 
-  border-radius: .7vw;
+  border-radius: 13px;
 
-  padding:
-    .7vw
-    1.1vw;
-
-  background: #2872cc;
+  background:
+    linear-gradient(
+      #4a8be0,
+      #2869bc
+    );
 
   color: white;
 
-  font-size: 1.4vw;
+  font-size: 16px;
 
-  font-weight: 1000;
+  font-weight: 950;
+}
+
+.return-btn {
+  background:
+    linear-gradient(
+      #7d5796,
+      #5e3878
+    );
 }
 
 
-/* =========================
-   iPad Air 가로
-========================= */
+/* ======================================= */
+/* RESULT */
+/* ======================================= */
+
+.result-card {
+  width:
+    min(520px,90vw);
+
+  padding: 27px;
+
+  border-radius: 27px;
+
+  background: white;
+
+  text-align: center;
+
+  box-shadow:
+    0 18px 55px
+    rgba(0,0,0,.24);
+}
+
+.result-trophy {
+  font-size: 65px;
+}
+
+.result-card h2 {
+  margin:
+    3px 0;
+}
+
+.result-route {
+  margin:
+    8px 0 15px;
+
+  padding:
+    7px;
+
+  border-radius: 99px;
+
+  background: #edf5ff;
+
+  font-weight: 900;
+}
+
+.result-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap: 7px;
+}
+
+.result-box {
+  padding:
+    10px;
+
+  border-radius: 13px;
+
+  background: #f5f7fa;
+}
+
+.result-box span {
+  display: block;
+
+  font-size: 28px;
+}
+
+.result-box strong {
+  display: block;
+
+  font-size: 24px;
+}
+
+.result-box small {
+  color: #728095;
+
+  font-weight: 850;
+}
+
+.sticker-reward {
+  margin:
+    14px 0;
+
+  font-size: 56px;
+
+  animation:
+    rewardBounce
+    .65s ease-in-out
+    infinite alternate;
+}
+
+@keyframes rewardBounce {
+
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform:
+      scale(1.18)
+      rotate(5deg);
+  }
+
+}
+
+.restart-btn {
+  width: 100%;
+
+  min-height: 46px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #2d77d5;
+
+  color: white;
+
+  font-weight: 950;
+}
+
+
+/* ======================================= */
+/* HIDDEN */
+/* ======================================= */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ======================================= */
+/* iPAD LANDSCAPE */
+/* ======================================= */
 
 @media
-(orientation: landscape)
+(max-height:850px)
 and
-(min-width: 1000px)
-and
-(max-width: 1500px) {
+(orientation:landscape) {
 
-  #app {
-    grid-template-rows:
-      7dvh
-      43dvh
-      50dvh;
+  .game {
+    padding-top: 3px;
   }
 
-  .panel-title {
-    font-size: 2.25vw;
+  .topbar {
+    min-height: 36px;
   }
 
-  .dialogue-name {
-    font-size: 1.8vw;
+  .small-title {
+    display: none;
   }
 
-  .dialogue-text {
-    font-size: 2vw;
+  h1 {
+    font-size: 19px;
   }
 
-  .mission-tag {
-    font-size: 1.45vw;
+  .status-box {
+    min-width: 54px;
+
+    padding:
+      3px 6px;
   }
 
-  .mission-question {
-    font-size: 2.2vw;
+  .route-panel {
+    margin:
+      2px 0 3px;
+
+    padding:
+      4px 7px;
   }
 
-  .choice {
-    font-size: 1.9vw;
-    min-height: 6vh;
+  .station-label {
+    padding:
+      3px 5px;
   }
 
-  .speech-copy {
-    font-size: 1.6vw;
+  .rail-world {
+    height: 285px;
   }
 
-  .speech-copy b {
-    font-size: 1.8vw;
+  .track-lane {
+    height: 56px;
   }
 
-  .speech-copy span {
-    font-size: 1.6vw;
+  .lane-0 {
+    top: 86px;
   }
 
-  #feedback {
-    font-size: 1.55vw;
+  .lane-1 {
+    top: 151px;
   }
 
-  #speakDoneBtn,
-  #nextBtn {
-    font-size: 1.7vw;
-    min-height: 5.6vh;
+  .lane-2 {
+    top: 216px;
   }
-}
-/* ===== 철도 영역 세로 간격 압축 최종 보정 ===== */
 
-.track-upper {
-  top: 18vh !important;
-}
+  .lane-position-0 {
+    top: 94px;
+  }
 
-.track-middle {
-  top: 24vh !important;
-}
+  .lane-position-1 {
+    top: 159px;
+  }
 
-.track-lower {
-  top: 30vh !important;
-}
+  .lane-position-2 {
+    top: 224px;
+  }
 
+  .obstacle.lane-obstacle-0 {
+    top: 88px;
+  }
 
-/* SRT를 위 선로에 맞춤 */
+  .obstacle.lane-obstacle-1 {
+    top: 153px;
+  }
 
-.srt-train {
-  top: 15.8vh !important;
-}
+  .obstacle.lane-obstacle-2 {
+    top: 218px;
+  }
 
+  .srt-engine,
+  .srt-car {
+    height: 34px;
+  }
 
-/* 무궁화호를 아래 선로에 맞춤 */
+  .srt-engine {
+    width: 78px;
+  }
 
-.mugunghwa-train {
-  top: 27.8vh !important;
-}
+  .srt-car {
+    width: 68px;
+  }
 
+  .srt-window {
+    left: 18px;
 
-/* 터널도 위 선로 위치에 맞춤 */
+    width: 25px;
 
-.tunnel-area {
-  top: 11.5vh !important;
-}
+    height: 9px;
 
+    top: 5px;
+  }
 
-/* 신호 A */
+  .srt-car span {
+    width: 13px;
 
-.signal-a {
-  top: 11.5vh !important;
-}
+    height: 8px;
+  }
 
+  .obstacle-emoji {
+    font-size: 38px;
+  }
 
-/* 신호 B */
+  .controls {
+    margin-top: 4px;
+  }
 
-.signal-b {
-  top: 21.5vh !important;
-}
+  .control-btn {
+    min-height: 43px;
 
+    font-size: 24px;
+  }
 
-/* 분기 선로 */
+  .mission-status {
+    margin-top: 4px;
+  }
 
-.branch-track {
-  top: 25.5vh !important;
-}
+  .status-card {
+    min-height: 42px;
+  }
 
+  .status-icon {
+    font-size: 20px;
+  }
 
-/* 분기기 버튼 */
+  .status-text {
+    font-size: 10px;
+  }
 
-.switch-area {
-  top: 27vh !important;
-}
-
-
-/* 산이 선로를 가리지 않도록 살짝 위로 */
-
-.mountain {
-  bottom: 19vh !important;
-}
-
-
-/* 관제 버튼은 기존처럼 맨 아래 유지 */
-
-.rail-control-panel {
-  bottom: .4vh !important;
 }
